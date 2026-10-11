@@ -36,3 +36,8 @@ export function showErrorEffectOn (element, duration = 3000) {
         element.classList.remove("error")
     }, duration);
 }
+
+export function showError (element, message) {
+    showErrorPopup(message);
+    showErrorEffectOn(element);
+}

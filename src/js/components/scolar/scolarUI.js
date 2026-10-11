@@ -17,6 +17,9 @@ export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
 export const flashcardCreateButton = safeQuery(".flashcardCreateButton");
 export const flashcardPopupOverlay = safeQuery(".overlayPopupFlashcardLab");
 
+//human made
+export const flashcardLab = safeQuery(".popupFlashcardLab");
+
 //AI made : carte éditable de la popup et bouton qui la retourne
 export const editableFlashcard = safeQuery(".editableFlashcard");
 export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
