@@ -86,3 +86,10 @@ export function setupFlashcardFlip() {
         });
     });
 }
+
+
+// renderFlashcards (packet) {
+//     for (let flashcard in packet) {
+
+//     }
+// } 
