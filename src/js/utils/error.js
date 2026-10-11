@@ -28,3 +28,11 @@ export function showErrorPopup(message, duration = 3000) {
         setTimeout(() => popup.remove(), 300);   // 300 ms = durée de la transition CSS
     }, duration);
 }
+
+export function showErrorEffectOn (element, duration = 3000) {
+    element.classList.add("error")
+
+    setTimeout ( () => {
+        element.classList.remove("error")
+    }, duration);
+}
