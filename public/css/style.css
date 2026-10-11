@@ -2342,130 +2342,6 @@ td:last-child {
   padding: var(--space-7) 0;
 }
 
-/* ==========================================================================
-   AXE — Redesign — Effets & animations (src/js/utils/effects.js)
-   ========================================================================== */
-/* ---- Pulsation d'anneau autour du checkmark quand une habitude est cochée ----
-   Élément ajouté À CÔTÉ du .checkmark (jamais dessus ni dedans) : le design
-   du checkmark protégé n'est ni modifié, ni recouvert. */
-.checkmark-pulse {
-  position: absolute;
-  inset: -4px;
-  border-radius: 8px;
-  border: 2px solid var(--success);
-  opacity: 0;
-  pointer-events: none;
-}
-.checkmark-pulse.is-active {
-  animation: pulse-ring var(--dur-slow) var(--ease) forwards;
-}
-
-@keyframes pulse-ring {
-  0% {
-    opacity: 0.9;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.9);
-  }
-}
-/* ---- Confettis (particules DOM générées par effects.js) ---- */
-.confetti-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  pointer-events: none;
-}
-
-.confetti-piece {
-  position: absolute;
-  top: var(--y, 50%);
-  left: var(--x, 50%);
-  width: 7px;
-  height: 10px;
-  background: var(--piece-color, var(--accent));
-  border-radius: 2px;
-  opacity: 0;
-  animation: confetti-pop var(--piece-duration, 700ms) var(--ease) forwards;
-  animation-delay: var(--piece-delay, 0ms);
-}
-
-@keyframes confetti-pop {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + var(--piece-dx, 40px)), calc(-50% + var(--piece-dy, -60px))) rotate(var(--piece-rot, 200deg)) scale(0.6);
-  }
-}
-/* ---- Compteurs animés (juste pour garantir des chiffres bien alignés) ---- */
-[data-count-up] {
-  font-variant-numeric: tabular-nums;
-}
-
-#errorPopups {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  pointer-events: none; /* la popup ne bloque pas les clics derrière */
-}
-
-.errorPopup {
-  background: #d93025;
-  color: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  max-width: 20rem;
-  opacity: 0;
-  transform: translateX(100%); /* départ : hors de l'écran, à droite */
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.errorPopup--visible {
-  opacity: 1;
-  transform: translateX(0); /* arrivée : en place */
-}
-
-.error {
-  border-radius: 0.5rem;
-  outline: 3px solid #d93025; /* contour franc, bien visible */
-  outline-offset: 2px;
-  background-color: rgba(217, 48, 37, 0.08); /* léger fond rouge */
-  box-shadow: 0 0 6px 2px rgba(217, 48, 37, 0.8), 0 0 20px 6px rgba(217, 48, 37, 0.35); /* halo large et doux */
-  animation: errorShake 0.4s ease-in-out; /* petit tremblement à l'apparition */
-}
-
-@keyframes errorShake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(-6px);
-  }
-  40% {
-    transform: translateX(6px);
-  }
-  60% {
-    transform: translateX(-4px);
-  }
-  80% {
-    transform: translateX(4px);
-  }
-}
-/* Pour les personnes qui ont désactivé les animations dans leur système */
-@media (prefers-reduced-motion: reduce) {
-  .error {
-    animation: none;
-  }
-}
 .scolar {
   min-height: 640px;
   display: flex;
@@ -2817,6 +2693,131 @@ td:last-child {
 @media (prefers-reduced-motion: reduce) {
   .flashcardSwitch::after {
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   AXE — Redesign — Effets & animations (src/js/utils/effects.js)
+   ========================================================================== */
+/* ---- Pulsation d'anneau autour du checkmark quand une habitude est cochée ----
+   Élément ajouté À CÔTÉ du .checkmark (jamais dessus ni dedans) : le design
+   du checkmark protégé n'est ni modifié, ni recouvert. */
+.checkmark-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 8px;
+  border: 2px solid var(--success);
+  opacity: 0;
+  pointer-events: none;
+}
+.checkmark-pulse.is-active {
+  animation: pulse-ring var(--dur-slow) var(--ease) forwards;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+/* ---- Confettis (particules DOM générées par effects.js) ---- */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 7px;
+  height: 10px;
+  background: var(--piece-color, var(--accent));
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-pop var(--piece-duration, 700ms) var(--ease) forwards;
+  animation-delay: var(--piece-delay, 0ms);
+}
+
+@keyframes confetti-pop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--piece-dx, 40px)), calc(-50% + var(--piece-dy, -60px))) rotate(var(--piece-rot, 200deg)) scale(0.6);
+  }
+}
+/* ---- Compteurs animés (juste pour garantir des chiffres bien alignés) ---- */
+[data-count-up] {
+  font-variant-numeric: tabular-nums;
+}
+
+#errorPopups {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none; /* la popup ne bloque pas les clics derrière */
+}
+
+.errorPopup {
+  background: #d93025;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  max-width: 20rem;
+  opacity: 0;
+  transform: translateX(100%); /* départ : hors de l'écran, à droite */
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.errorPopup--visible {
+  opacity: 1;
+  transform: translateX(0); /* arrivée : en place */
+}
+
+.error {
+  border-radius: 0.5rem;
+  outline: 3px solid #d93025; /* contour franc, bien visible */
+  outline-offset: 2px;
+  background-color: rgba(217, 48, 37, 0.08); /* léger fond rouge */
+  box-shadow: 0 0 6px 2px rgba(217, 48, 37, 0.8), 0 0 20px 6px rgba(217, 48, 37, 0.35); /* halo large et doux */
+  animation: errorShake 0.4s ease-in-out; /* petit tremblement à l'apparition */
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+/* Pour les personnes qui ont désactivé les animations dans leur système */
+@media (prefers-reduced-motion: reduce) {
+  .error {
+    animation: none;
   }
 }
 
