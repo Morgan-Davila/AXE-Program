@@ -64,3 +64,33 @@
 [data-count-up] {
     font-variant-numeric: tabular-nums;
 }
+
+
+// style de la popup de message d'error
+#errorPopups {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none;   /* la popup ne bloque pas les clics derrière */
+}
+
+.errorPopup {
+    background: #d93025;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    max-width: 20rem;
+    opacity: 0;
+    transform: translateX(100%);          /* départ : hors de l'écran, à droite */
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.errorPopup--visible {
+    opacity: 1;
+    transform: translateX(0);             /* arrivée : en place */
+}
