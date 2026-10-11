@@ -2789,12 +2789,9 @@ td:last-child {
 }
 
 .error {
-  border-radius: 0.5rem;
-  outline: 3px solid #d93025; /* contour franc, bien visible */
-  outline-offset: 2px;
-  background-color: rgba(217, 48, 37, 0.08); /* léger fond rouge */
-  box-shadow: 0 0 6px 2px rgba(217, 48, 37, 0.8), 0 0 20px 6px rgba(217, 48, 37, 0.35); /* halo large et doux */
-  animation: errorShake 0.4s ease-in-out; /* petit tremblement à l'apparition */
+  background-image: linear-gradient(rgba(217, 48, 37, 0.06), rgba(217, 48, 37, 0.06));
+  box-shadow: 0 0 3px 1px rgba(217, 48, 37, 0.7), 0 0 14px 4px rgba(217, 48, 37, 0.45), 0 0 32px 10px rgba(217, 48, 37, 0.25), inset 0 0 14px 2px rgba(217, 48, 37, 0.25); /* lueur à l'intérieur */
+  animation: errorShake 0.4s ease-in-out; /* tremblement, une fois */
 }
 
 @keyframes errorShake {
@@ -2814,7 +2811,6 @@ td:last-child {
     transform: translateX(4px);
   }
 }
-/* Pour les personnes qui ont désactivé les animations dans leur système */
 @media (prefers-reduced-motion: reduce) {
   .error {
     animation: none;
