@@ -8,7 +8,7 @@ import {
 import { streakTier } from "./../../utils/format.js";
 import { countUp } from "./../../utils/effects.js";
 
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement dashboardUI.js");
 

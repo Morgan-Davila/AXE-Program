@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement dashboardEvents.js");
 
