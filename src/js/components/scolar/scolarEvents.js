@@ -11,14 +11,16 @@ import {
     editableFlashcard,
     flashcardSwitchButton,
     flipFlashcard,
-    saveFlashcardButton
+    saveFlashcardButton,
+    flashcardLab
 } from "./scolarUI.js";
 
-import { showEditorFace, editors, resetFlashcardEditor } from "./flashcardsEditor.js";
+import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
 import { addFlashcard } from "../../services/storage.js";
 import { createFlashcard } from "./scolar.js";
+import { showError } from "../../utils/error.js";
 
-
+const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 
 
 //AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
@@ -71,10 +73,14 @@ export function setupFlashcardSaving () {
             front: editors.front.getContents(),
             back: editors.back.getContents()
         };
+        if (checkIfNotEmpty()) {
+            const flashcard = createFlashcard(content);
+            addFlashcard(flashcard);
+            closeFlashcardPopup();
+            resetFlashcardEditor();
+        } else {
+            showError(flashcardLab, EMPTY_FLASHCARD_MESSAGE);
+        }
         
-        const flashcard = createFlashcard(content);
-        addFlashcard(flashcard);
-        closeFlashcardPopup();
-        resetFlashcardEditor();
     });
 }
