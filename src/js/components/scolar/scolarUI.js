@@ -91,24 +91,14 @@ export function setupFlashcardFlip() {
     });
 }
 
-let viewer = null
-export function deltaToHTML (packet) {
-    let flashcardsHtmlArray = [];
-
-    let element = document.createElement("div");
-    viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
-
-    for (let flashcard of packet) {
-        let content = flashcard.content;
-
+// pour utiliser cette function il faut imperativement lui fournir un viewer tel que :
+//  let element = document.createElement("div");
+// let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
+export function deltaToHTML (viewer, delta) {
+    viewer.setContents(delta);
         
-        viewer.setContents(content);
-        
-        const flashcardHTML = viewer.getSemanticHTML();
-        flashcardsHtmlArray.push(flashcardHTML);
+    const html = viewer.getSemanticHTML();
 
-        //je vide pour la prochaine itération
-        viewer.setContents([])
-    }
-    return flashcardsHtmlArray;
+    return html;
 } 
+
