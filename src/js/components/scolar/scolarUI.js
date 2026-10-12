@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement scolarUI.js"); //test
 
@@ -10,6 +10,9 @@ import {
     exists
 } from "../../utils/dom.js"
 
+import {
+    flashcardsArray
+} from "../../services/storage.js"
 export const flashcardBox = safeQuery(".flashcardBox");
 
 export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
@@ -102,3 +105,17 @@ export function deltaToHTML (viewer, delta) {
     return html;
 } 
 
+//temporaire
+export function testFunctionDeltaToHTML () {
+    let element = document.createElement("div");
+    let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
+
+    for (let flashcard of flashcardsArray) {
+        let content = flashcard.content;
+        let frontDelta = content.front
+
+
+        let frontHTML = deltaToHTML(viewer, frontDelta);
+        debug(LOCAL_DEBUG, frontHTML)
+    }
+}

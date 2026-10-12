@@ -97,9 +97,11 @@ import { setupFlashcard } from "./components/scolar/scolar.js";
 setupFlashcard();
 
 
-import { setupFlashcardFlip } from "./components/scolar/scolarUI.js";
+import { setupFlashcardFlip, testFunctionDeltaToHTML} from "./components/scolar/scolarUI.js";
 
 setupFlashcardFlip();
+
+testFunctionDeltaToHTML();
 
 //AI made
 import { setupFlashcardPopup, setupFlashcardSwitch, setupFlashcardSaving } from "./components/scolar/scolarEvents.js";
@@ -113,3 +115,5 @@ setupFlashcardSwitch();
 
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();
+
+
