@@ -2,6 +2,7 @@ const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement scolarUI.js"); //test
 
+
 import {
     safeQuery,
     safeQueryAll,
@@ -90,9 +91,24 @@ export function setupFlashcardFlip() {
     });
 }
 
+let viewer = null
+export function deltaToHTML (packet) {
+    let flashcardsHtmlArray = [];
 
-// renderFlashcards (packet) {
-//     for (let flashcard in packet) {
+    let element = document.createElement("div");
+    viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
 
-//     }
-// } 
+    for (let flashcard of packet) {
+        let content = flashcard.content;
+
+        
+        viewer.setContents(content);
+        
+        const flashcardHTML = viewer.getSemanticHTML();
+        flashcardsHtmlArray.push(flashcardHTML);
+
+        //je vide pour la prochaine itération
+        viewer.setContents([])
+    }
+    return flashcardsHtmlArray;
+} 
