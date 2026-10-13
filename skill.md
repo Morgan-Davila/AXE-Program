@@ -59,7 +59,7 @@ Bloc racine en camelCase ou kebab-case, éléments enchaînés via `&__` imbriqu
 ```
 
 - `&--modifier` pour un état de style lié au contenu/variante (`&--done`, `&--removing`).
-- Classe séparée togglée en JS quand l'état est piloté par du JS (`.activeTabs`, `.durationActive`, `.hiddenPopup`, `.hiddenTypeProposition`).
+- Classe séparée togglée en JS quand l'état est piloté par du JS (`.activeTabs`, `.hiddenPopup`, `.hiddenTypeProposition`).
 - Attribut `data-*` quand le JS fournit une valeur plutôt qu'un état (`[data-tier="high"]` sur le badge streak).
 - **Ne jamais renommer une classe ou un id lu par le JS** (`src/js/`) : vérifier avec une recherche avant toute modification de markup ou de sélecteur.
 

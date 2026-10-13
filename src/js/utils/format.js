@@ -6,43 +6,6 @@ debug(LOCAL_DEBUG, "Chargement format.js");
 
 
 // ----------------------
-// Durée
-// ----------------------
-
-export function formatDuration(seconds) {
-
-    seconds = Number(seconds);
-
-    if (Number.isNaN(seconds)) {
-        debug(LOCAL_DEBUG, "formatDuration : valeur invalide", seconds);
-        return "Aucune durée spécifiée";
-    }
-    
-    if (seconds < 60) {
-        return `${seconds} s`;
-    }
-
-    const minutes = Math.floor(seconds / 60);
-
-    if (minutes < 60) {
-        return `${minutes} min`;
-    }
-
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-
-    if (remainingMinutes === 0) {
-        return `${hours} h`;
-    }
-
-    return `${hours} h ${remainingMinutes} min`;
-}
-
-
-
-
-
-// ----------------------
 // Date
 // ----------------------
 

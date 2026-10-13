@@ -1239,55 +1239,6 @@ main {
   transform: scale(0.95);
 }
 
-.duration-picker {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.duration-picker__title {
-  margin: 0;
-  font-size: var(--text-sm);
-}
-.duration-picker__input {
-  display: flex;
-  gap: var(--space-2);
-}
-.duration-picker__input input {
-  width: 80px;
-  padding: 8px;
-  border-radius: 6px;
-  font-size: 15px;
-}
-.duration-picker__input select {
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.duration-picker__options {
-  margin-top: var(--space-5);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  justify-content: space-around;
-}
-
-.duration-option {
-  padding: 6px 12px;
-  border: 1px solid var(--accent-violet);
-  border-radius: 6px;
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-}
-.duration-option:hover {
-  transform: translateY(-2px);
-}
-.duration-option.durationActive {
-  background-color: var(--accent-violet);
-  color: var(--on-brand);
-  border-color: var(--accent-violet);
-}
-
 /* ==========================================================================
    Popup de recherche d'habitude
    Mêmes classes/ids que l'ancienne version (lus par habitsSearchUI.js /
@@ -1742,7 +1693,7 @@ main {
    AXE — Redesign — Gestionnaire d'habitudes (table)
    Classes conservées : .habitManagerBox, .habitManagerMenu(__icons...),
    .habitManager(__table__button), table/thead/tbody, .large/.narrow,
-   .habitCell(__name/__type/__frequency/__duration/__commands...)
+   .habitCell(__name/__type/__frequency/__commands...)
    Popups (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir _popup.scss,
    _popupSearch.scss et _tabs.scss.
    ========================================================================== */
@@ -1862,7 +1813,7 @@ td:last-child {
 }
 
 .narrow {
-  width: 20%;
+  width: 30%;
 }
 
 /* ---- Lignes d'habitude générées par renderHabits() ---- */
@@ -1899,14 +1850,9 @@ td:last-child {
   vertical-align: middle;
 }
 .habitCell__frequency {
-  color: var(--ink-soft);
-  font-size: var(--text-sm);
-}
-.habitCell__duration {
   position: relative;
   color: var(--ink-soft);
   font-size: var(--text-sm);
-  font-variant-numeric: tabular-nums;
 }
 .habitCell__commands {
   position: absolute;

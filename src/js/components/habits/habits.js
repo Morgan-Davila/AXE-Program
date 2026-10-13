@@ -15,32 +15,6 @@ import { renderTypesProposition } from "./habitsUI.js";
 let typesArray = [];
 
 
-//cette fonction se charge de récuperer la durée dans l'input et de transformer cette valeur en nombre utilisable
-export function getDuration() {
-
-    const input = safeId("durationInput");
-    const unit = safeId("durationUnit");
-
-    let duration = {
-        unit: 0,
-        value: 0
-    };
-
-    // Sécurité
-    if (!input || !unit) return duration;
-
-    const value = Number(input.value);
-    const multiplier = Number(unit.value);
-
-    // Vérification
-    if (!value || value <= 0) return duration;
-
-    duration.unit = multiplier;
-    duration.value = value * multiplier;
-
-    return duration;
-
-}
 //cette fonction générique récupère tout les chceckbox:checked dans un espace donné (form) qui portent un selector précis (selector)
 //Cette fonction doit etre mise dans un autre endroit a l'avenir
 function getCheckedCheckboxValues(form, selector) {
@@ -114,8 +88,6 @@ export function createHabit(data){
 
         frequency: getFrequency(),
 
-        duration: getDuration(),
-
         streak: 0,
 
         createdAt: Date.now(),
@@ -133,7 +105,6 @@ export function editHabit (data) {
 
         frequency: getFrequency(),
 
-        duration: getDuration(),
     };
 }
 

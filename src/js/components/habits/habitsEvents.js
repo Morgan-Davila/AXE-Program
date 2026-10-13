@@ -181,38 +181,6 @@ export function setupHabitsPopup() {
 
 }
 
-// cette fonction met à jour la durée lorsqu'on clique sur une proposition
-export function setupDurationPicker() {
-
-    const options = safeQueryAll(".duration-option");
-    const input = safeId("durationInput");
-
-
-    if (!input || options.length === 0) return;
-
-
-    options.forEach(option => {
-
-        option.addEventListener("click", () => {
-
-            // retirer la sélection précédente
-            options.forEach(option => {
-                option.classList.remove("durationActive");
-            });
-
-
-            // ajouter la sélection actuelle
-            option.classList.add("durationActive");
-
-
-            // mettre la valeur dans l'input
-            input.value = Number(option.dataset.duration) / 60;
-
-        });
-
-    });
-
-}
 
 
 export function setupPopupTypePicker () {

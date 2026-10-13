@@ -2,7 +2,7 @@
    AXE — Redesign — Gestionnaire d'habitudes (table)
    Classes conservées : .habitManagerBox, .habitManagerMenu(__icons...),
    .habitManager(__table__button), table/thead/tbody, .large/.narrow,
-   .habitCell(__name/__type/__frequency/__duration/__commands...)
+   .habitCell(__name/__type/__frequency/__commands...)
    Popups (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir _popup.scss,
    _popupSearch.scss et _tabs.scss.
    ========================================================================== */
@@ -127,7 +127,7 @@ td:first-child { border-left: none; padding-left: var(--space-2); }
 td:last-child { border-right: none; padding-right: var(--space-2); }
 
 .large { width: 40%; }
-.narrow { width: 20%; }
+.narrow { width: 30%; }
 
 /* ---- Lignes d'habitude générées par renderHabits() ---- */
 
@@ -168,16 +168,11 @@ td:last-child { border-right: none; padding-right: var(--space-2); }
         }
     }
 
+    // dernière colonne : porte aussi les boutons d'action (.habitCell__commands)
     &__frequency {
-        color: var(--ink-soft);
-        font-size: var(--text-sm);
-    }
-
-    &__duration {
         position: relative;
         color: var(--ink-soft);
         font-size: var(--text-sm);
-        font-variant-numeric: tabular-nums;
     }
 
     &__commands {

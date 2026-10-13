@@ -5,7 +5,6 @@ debug(LOCAL_DEBUG, "Chargement habitsUI.js");
 
 
 import {
-    formatDuration,
     joinFrench,
     translateFrequency
 } from "../../utils/format.js";
@@ -86,10 +85,6 @@ export function renderHabits (habits = habitArray) {
         frequency.classList.add("habitCell__frequency");
         frequency.textContent = translateFrequency(habit);
 
-        let duration = document.createElement("td");
-        duration.classList.add("habitCell__duration");
-        duration.textContent = formatDuration(habit.duration.value);
-
         let commands = document.createElement("div");
         commands.classList.add("habitCell__commands");
 
@@ -108,13 +103,12 @@ export function renderHabits (habits = habitArray) {
         commands.appendChild(edit);
         commands.appendChild(del);
 
-        duration.appendChild(commands);
+        frequency.appendChild(commands);
 
         // rassemblement des td
         habitCell.appendChild(name);
         habitCell.appendChild(type);
         habitCell.appendChild(frequency);
-        habitCell.appendChild(duration);
 
         habitCellZone.appendChild(habitCell);
 
@@ -199,28 +193,6 @@ export function emptyPopup() {
     if (habitsFormInput.type) {
         habitsFormInput.type.innerHTML = "";
     }
-
-    // Reset de la durée
-    const durationInput = safeId("durationInput");
-    const durationUnit = safeId("durationUnit");
-
-    if (durationInput) {
-        durationInput.value = "";
-    }
-
-    if (durationUnit) {
-        durationUnit.value = "60";
-    }
-
-    // Reset des boutons de durée
-    const durationOptions = safeQueryAll(
-        ".duration-option",
-        habitsPopupOverlay
-    );
-
-    durationOptions.forEach(option => {
-        option.classList.remove("durationActive");
-    });
 
     // Reset des tabs
     const tabs = safeQueryAll(".tab", habitsPopupOverlay);
@@ -426,10 +398,4 @@ export function insertDataInHabitPopup (data) {
     }
 
     habitsFormInput.type.value = data.type;
-
-    const durationInput = safeId("durationInput");
-    const durationValue = Number(data.duration.value);
-    const durationUnit = Number(data.duration.unit);
-
-    durationInput.value = durationValue / durationUnit;
 }

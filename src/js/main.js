@@ -25,7 +25,6 @@ setupTypePropositionSelection();
 import {
     setupHabitsPopup,
     setupHabitsForm,
-    setupDurationPicker,
     setupPopupTypePicker,
     setupHabitDeleteButton,
     setupHabitEditButton
@@ -33,7 +32,6 @@ import {
 
 setupHabitsPopup();
 setupHabitsForm();
-setupDurationPicker();
 setupPopupTypePicker();
 
 import {
