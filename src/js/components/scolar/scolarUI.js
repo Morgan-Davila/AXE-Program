@@ -102,7 +102,7 @@ export function deltaToHTML (viewer, delta) {
         
     const html = viewer.getSemanticHTML();
 
-    return html;
+    return html.replaceAll("&nbsp;", " ");   // remet de vraies espaces, pour que le texte passe à la ligne
 } 
 
 //temporaire
@@ -113,9 +113,54 @@ export function testFunctionDeltaToHTML () {
     for (let flashcard of flashcardsArray) {
         let content = flashcard.content;
         let frontDelta = content.front
+        let backDelta = content.back
 
 
         let frontHTML = deltaToHTML(viewer, frontDelta);
+        let backHTML = deltaToHTML(viewer, backDelta)
         debug(LOCAL_DEBUG, frontHTML)
+        debug(LOCAL_DEBUG, backHTML)
     }
+}
+
+
+export function renderFlashcard (packet) {
+    let element = document.createElement("div");
+    let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
+
+    let flashcards = [];
+
+    for (let data of packet) {
+        const flashcardId = data.id
+        const content = data.content;
+        const frontDelta = content.front
+        const backDelta = content.back
+
+
+        const flashcard = document.createElement("article");
+        flashcard.classList.add("flashcard");
+        flashcard.dataset.flashcardId = flashcardId
+
+        const flashcardInner = document.createElement("div");
+        flashcardInner.classList.add("flashcard__inner");
+
+        const front = document.createElement("div");
+        front.classList.add("flashcard__face")
+        front.classList.add("flashcard__face--front")
+        front.innerHTML = deltaToHTML(viewer, frontDelta)
+
+        const back = document.createElement("div");
+        back.classList.add("flashcard__face");
+        back.classList.add("flashcard__face--back");
+        back.innerHTML = deltaToHTML(viewer, backDelta)
+
+        flashcardInner.appendChild(front);
+        flashcardInner.appendChild(back);
+
+        flashcard.appendChild(flashcardInner)
+
+        flashcards.push(flashcard);
+    }
+
+    return flashcards;
 }
