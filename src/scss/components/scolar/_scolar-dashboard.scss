@@ -95,6 +95,67 @@
 }
 //end AI made
 
+//AI made : boutons d'action de la flashcard, même style que .habitCell__commands, dans le coin haut droit
+.flashcard {
+    position: relative;
+
+    &:hover &__commands {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    &__commands {
+        position: absolute;
+        top: var(--space-2);
+        right: var(--space-2);
+        z-index: 1; // au-dessus des faces 3D
+        transform: translateX(8px);
+
+        gap: 4px;
+        align-items: center;
+        display: flex;
+
+        padding: 4px;
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+            opacity 150ms ease-in-out,
+            transform 150ms ease-in-out,
+            visibility 150ms ease-in-out;
+
+        &__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            color: var(--ink-soft);
+            cursor: pointer;
+
+            transition: all var(--dur-fast) var(--ease);
+
+            &--edit:hover,
+            &--copy:hover {
+                background-color: var(--bg-soft);
+                color: var(--accent);
+            }
+            &--del:hover {
+                background-color: color-mix(in srgb, #ef4444 12%, transparent);
+                color: #ef4444;
+            }
+        }
+    }
+}
+//end AI made
+
 
 
 /* From Uiverse.io by cssbuttons-io */
