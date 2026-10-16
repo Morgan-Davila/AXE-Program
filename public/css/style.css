@@ -2310,10 +2310,6 @@ td:last-child {
   width: 300px;
   height: 200px;
   cursor: pointer;
-  transition: transform var(--dur-base) var(--ease);
-}
-.flashcard:hover, .editableFlashcard:hover {
-  transform: translateY(-3px);
 }
 .flashcard:hover .flashcard__face, .flashcard:hover .editableFlashcard__face, .editableFlashcard:hover .flashcard__face, .editableFlashcard:hover .editableFlashcard__face {
   box-shadow: var(--shadow-md);
@@ -2321,14 +2317,6 @@ td:last-child {
 }
 .flashcard:hover .flashcard__face--back, .flashcard:hover .editableFlashcard__face--back, .editableFlashcard:hover .flashcard__face--back, .editableFlashcard:hover .editableFlashcard__face--back {
   border-color: color-mix(in srgb, var(--accent-violet) 60%, white);
-}
-@media (prefers-reduced-motion: reduce) {
-  .flashcard, .editableFlashcard {
-    transition: none;
-  }
-  .flashcard:hover, .editableFlashcard:hover {
-    transform: none;
-  }
 }
 .flashcard__inner, .editableFlashcard__inner {
   position: relative;

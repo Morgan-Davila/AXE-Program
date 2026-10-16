@@ -26,14 +26,8 @@
     width: 300px;
     height: 200px;
     cursor: pointer;
-    //AI made
-    transition: transform var(--dur-base) var(--ease);
 
-    //AI made : même effet que les cartes du dashboard (léger soulèvement + ombre + bordure teintée)
-    &:hover {
-        transform: translateY(-3px);
-    }
-
+    //AI made : au survol, ombre + bordure teintée (sans soulèvement)
     &:hover &__face {
         box-shadow: var(--shadow-md);
         border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
@@ -42,14 +36,7 @@
     &:hover &__face--back {
         border-color: color-mix(in srgb, var(--accent-violet) 60%, white);
     }
-
-    @media (prefers-reduced-motion: reduce) {
-        transition: none;
-
-        &:hover {
-            transform: none;
-        }
-    }
+    //end AI made
 
     &__inner {
         position: relative;
