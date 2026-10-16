@@ -47,5 +47,5 @@ Les couleurs, espacements, rayons, ombres et durées sont des **variables CSS** 
 
 - Les textes d'interface, les commentaires et la majorité des messages de commit sont en français ; garde cette cohérence dans le code lié aux habitudes.
 - Les messages de commit suivent globalement Conventional Commits (`feat:`, `fix:`, `refactor:`, parfois scopés comme `feat(habits):`), mais le format n'est pas homogène (`feat :` vs `feat:`) — les deux sont acceptés, mais préfère l'absence d'espace avant les deux-points pour les nouveaux commits.
-- Tout bloc de code écrit par une IA doit être annoncé par un commentaire `//AI made` juste au-dessus.
-- Tout commit fait par une IA doit l'annoncer explicitement (par ex. dans le message de commit).
+- Tout bloc de code écrit par une IA doit être annoncé par un commentaire `//AI made` juste au-dessus et fermé par un commentaire `//end AI made` juste en dessous, pour délimiter clairement le code IA. En SCSS, même chose avec `//AI made` / `//end AI made` ; en HTML, `<!-- AI made -->` / `<!-- end AI made -->`. Les blocs existants sans marqueur de fin n'ont pas besoin d'être modifiés.
+- Tout commit fait par une IA doit l'annoncer explicitement (par ex. dans le message de commit), sauf si le contenu commité est majoritairement écrit par un humain : dans ce cas, aucune mention de l'IA.
