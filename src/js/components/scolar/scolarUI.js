@@ -56,11 +56,34 @@ export function setupFlashcardFlip() {
     const cards = safeQueryAll(".flashcard");
 
     cards.forEach(card => {
-        card.addEventListener("click", () => {
+        card.addEventListener("click", (e) => {
+            if (e.target.closest(".flashcard__commands")) return;
             flipFlashcard(card);
+            hideCommandsDuringFlip(card);
         });
     });
 }
+
+//AI made : cache les commandes pendant l'animation de retournement, puis les réaffiche
+function hideCommandsDuringFlip(card) {
+    // pas d'animation (prefers-reduced-motion) : rien à cacher
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const inner = card.querySelector(".flashcard__inner");
+    if (!inner) return;
+
+    card.classList.add("flashcard--flipping");
+
+    // les transitions des faces (bordure, ombre) remontent aussi jusqu'à inner : on attend celle du transform d'inner
+    function onFlipEnd(e) {
+        if (e.target !== inner || e.propertyName !== "transform") return;
+        card.classList.remove("flashcard--flipping");
+        inner.removeEventListener("transitionend", onFlipEnd);
+    }
+
+    inner.addEventListener("transitionend", onFlipEnd);
+}
+//end AI made
 
 // pour utiliser cette function il faut imperativement lui fournir un viewer tel que :
 //  let element = document.createElement("div");

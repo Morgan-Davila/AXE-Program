@@ -2370,6 +2370,11 @@ td:last-child {
   visibility: visible;
   transform: translateX(0);
 }
+.flashcard--flipping .flashcard__commands, .flashcard--flipping:hover .flashcard__commands {
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
 .flashcard__commands {
   position: absolute;
   top: var(--space-2);

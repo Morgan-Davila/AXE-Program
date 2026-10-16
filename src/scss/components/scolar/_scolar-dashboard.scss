@@ -105,6 +105,15 @@
         transform: translateX(0);
     }
 
+    //AI made : commandes cachées pendant le retournement (classe posée par hideCommandsDuringFlip)
+    &--flipping &__commands,
+    &--flipping:hover &__commands {
+        opacity: 0;
+        visibility: hidden;
+        transition: none;
+    }
+    //end AI made
+
     &__commands {
         position: absolute;
         top: var(--space-2);
