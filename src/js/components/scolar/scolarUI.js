@@ -105,25 +105,6 @@ export function deltaToHTML (viewer, delta) {
     return html.replaceAll("&nbsp;", " ");   // remet de vraies espaces, pour que le texte passe à la ligne
 } 
 
-//temporaire
-export function testFunctionDeltaToHTML () {
-    let element = document.createElement("div");
-    let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
-
-    for (let flashcard of flashcardsArray) {
-        let content = flashcard.content;
-        let frontDelta = content.front
-        let backDelta = content.back
-
-
-        let frontHTML = deltaToHTML(viewer, frontDelta);
-        let backHTML = deltaToHTML(viewer, backDelta)
-        debug(LOCAL_DEBUG, frontHTML)
-        debug(LOCAL_DEBUG, backHTML)
-    }
-}
-
-
 export function renderFlashcard (packet) {
     let element = document.createElement("div");
     let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });

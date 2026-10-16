@@ -17,7 +17,7 @@ import {
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
 import { addFlashcard } from "../../services/storage.js";
-import { createFlashcard } from "./scolar.js";
+import { createFlashcard, setupFlashcard } from "./scolar.js";
 import { showError } from "../../utils/error.js";
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
@@ -78,6 +78,7 @@ export function setupFlashcardSaving () {
             addFlashcard(flashcard);
             closeFlashcardPopup();
             resetFlashcardEditor();
+            setupFlashcard();
         } else {
             showError(flashcardLab, EMPTY_FLASHCARD_MESSAGE);
         }
