@@ -93,12 +93,12 @@ export function setupFlashcardSaving () {
 export function setupFlashcardsCommandsButton () {
     flashcardBox.addEventListener("click", (event) => {
 
-        const button = event.target.closest("flashcard__commands__button");
+        const button = event.target.closest(".flashcard__commands__button");
         if (!button) return;
 
         const card = event.target.closest(".flashcard");
         const id = Number(card.dataset.flashcardId);
-        const action = button.dataset.flashCommandAction;
+        const action = button.dataset.flashcardCommandAction;
 
         if (action === "edit") {
             
