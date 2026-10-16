@@ -12,7 +12,8 @@ import {
     flashcardSwitchButton,
     flipFlashcard,
     saveFlashcardButton,
-    flashcardLab
+    flashcardLab,
+    setupFlashcardFlip
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
@@ -79,6 +80,7 @@ export function setupFlashcardSaving () {
             closeFlashcardPopup();
             resetFlashcardEditor();
             setupFlashcard();
+            setupFlashcardFlip();
         } else {
             showError(flashcardLab, EMPTY_FLASHCARD_MESSAGE);
         }
