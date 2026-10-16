@@ -29,7 +29,7 @@ export const editableFlashcard = safeQuery(".editableFlashcard");
 export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 
 //AI made
-export function openFlashcardPopup() {
+export function showFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
     flashcardPopupOverlay.classList.remove("overlayPopupFlashcardLab--hidden");
 }

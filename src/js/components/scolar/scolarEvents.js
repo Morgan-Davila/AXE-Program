@@ -5,7 +5,7 @@ debug(LOCAL_DEBUG, "Chargement scolarEvents.js"); //test
 import {
     flashcardCreateButton,
     flashcardPopupOverlay,
-    openFlashcardPopup,
+    showFlashcardPopup,
     closeFlashcardPopup,
     isFlashcardPopupOpen,
     editableFlashcard,
@@ -43,7 +43,7 @@ export function setupFlashcardPopup() {
     // ouvrir la popup
     if (flashcardCreateButton) {
         flashcardCreateButton.addEventListener("click", () => {
-            openFlashcardPopup();
+            showFlashcardPopup();
         });
     }
 
