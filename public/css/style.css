@@ -2370,6 +2370,10 @@ td:last-child {
   transform: rotate3d(1, 1, 0, 180deg);
 }
 
+.flashcard__face {
+  padding: 5px;
+}
+
 /* From Uiverse.io by cssbuttons-io */
 .flashcardCreateButton {
   width: 150px;

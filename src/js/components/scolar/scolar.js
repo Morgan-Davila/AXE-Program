@@ -2,6 +2,7 @@ const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement scolar.js"); //test
 
+import { flashcardsArray } from "../../services/storage.js";
 import {
     safeQuery,
     safeQueryAll,
@@ -9,12 +10,13 @@ import {
     exists
 } from "../../utils/dom.js"
 
-import { flashcardBox, renderTestFlashCards } from "./scolarUI.js";
+import { flashcardBox, renderFlashcard } from "./scolarUI.js";
 
 
 export function setupFlashcard () {
     //lancement des flashcards de test
-    renderTestFlashCards(flashcardBox, 5);
+    
+    flashcardBox.replaceChildren(...renderFlashcard(flashcardsArray))
 }
 
 

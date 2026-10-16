@@ -47,35 +47,35 @@ export function isFlashcardPopupOpen() {
 }
 
 
-export function renderTestFlashCards (destination, amount) {
+// export function renderTestFlashCards (destination, amount) {
     
-    for (let i = 0; i < amount ; i ++) {
+//     for (let i = 0; i < amount ; i ++) {
 
-        let flashcard = document.createElement("article");
-        flashcard.classList.add("flashcard");
+//         let flashcard = document.createElement("article");
+//         flashcard.classList.add("flashcard");
 
-        let flashcardInner = document.createElement("div");
-        flashcardInner.classList.add("flashcard__inner");
+//         let flashcardInner = document.createElement("div");
+//         flashcardInner.classList.add("flashcard__inner");
 
-        let flashcardFront = document.createElement("div");
-        flashcardFront.classList.add("flashcard__face");
-        flashcardFront.classList.add("flashcard__face--front");
-        flashcardFront.textContent = "Recto";
+//         let flashcardFront = document.createElement("div");
+//         flashcardFront.classList.add("flashcard__face");
+//         flashcardFront.classList.add("flashcard__face--front");
+//         flashcardFront.textContent = "Recto";
 
-        let flashcardBack = document.createElement("div");
-        flashcardBack.classList.add("flashcard__face");
-        flashcardBack.classList.add("flashcard__face--back");
-        flashcardBack.textContent = "Verso";
+//         let flashcardBack = document.createElement("div");
+//         flashcardBack.classList.add("flashcard__face");
+//         flashcardBack.classList.add("flashcard__face--back");
+//         flashcardBack.textContent = "Verso";
 
-        flashcardInner.appendChild(flashcardFront);
-        flashcardInner.appendChild(flashcardBack);
+//         flashcardInner.appendChild(flashcardFront);
+//         flashcardInner.appendChild(flashcardBack);
 
-        flashcard.appendChild(flashcardInner);
+//         flashcard.appendChild(flashcardInner);
 
-        destination.appendChild(flashcard)
-    }
+//         destination.appendChild(flashcard)
+//     }
 
-}
+// }
 
 
 //AI made : retourne une carte ; block = classe BEM de la carte ("flashcard" ou "editableFlashcard")

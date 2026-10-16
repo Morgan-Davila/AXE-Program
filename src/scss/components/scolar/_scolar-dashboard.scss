@@ -102,7 +102,10 @@
     }
 }
 
-
+//AI made : marge intérieure du contenu des flashcards affichées (pas de la carte éditable, qui a déjà celle de Quill)
+.flashcard__face {
+    padding: 5px;
+}
 
 
 
