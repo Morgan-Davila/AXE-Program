@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 import { setupFlashcard } from "./components/scolar/scolar.js";
-setupFlashcard();
+//setupFlashcard();
 
 
 import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";

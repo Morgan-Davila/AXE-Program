@@ -46,38 +46,6 @@ export function isFlashcardPopupOpen() {
         && !flashcardPopupOverlay.classList.contains("overlayPopupFlashcardLab--hidden");
 }
 
-
-// export function renderTestFlashCards (destination, amount) {
-    
-//     for (let i = 0; i < amount ; i ++) {
-
-//         let flashcard = document.createElement("article");
-//         flashcard.classList.add("flashcard");
-
-//         let flashcardInner = document.createElement("div");
-//         flashcardInner.classList.add("flashcard__inner");
-
-//         let flashcardFront = document.createElement("div");
-//         flashcardFront.classList.add("flashcard__face");
-//         flashcardFront.classList.add("flashcard__face--front");
-//         flashcardFront.textContent = "Recto";
-
-//         let flashcardBack = document.createElement("div");
-//         flashcardBack.classList.add("flashcard__face");
-//         flashcardBack.classList.add("flashcard__face--back");
-//         flashcardBack.textContent = "Verso";
-
-//         flashcardInner.appendChild(flashcardFront);
-//         flashcardInner.appendChild(flashcardBack);
-
-//         flashcard.appendChild(flashcardInner);
-
-//         destination.appendChild(flashcard)
-//     }
-
-// }
-
-
 //AI made : retourne une carte ; block = classe BEM de la carte ("flashcard" ou "editableFlashcard")
 // renvoie true si la carte montre maintenant son verso
 export function flipFlashcard(card, block = "flashcard") {
@@ -138,7 +106,33 @@ export function renderFlashcard (packet) {
         flashcardInner.appendChild(front);
         flashcardInner.appendChild(back);
 
-        flashcard.appendChild(flashcardInner)
+        const command = document.createElement("div");
+        command.classList.add("flashcard__commands");
+
+        const edit = document.createElement("div");
+        edit.classList.add("flashcard__commands__button");
+        edit.classList.add("flashcard__commands__button--edit");
+        edit.dataset.flashcardCommandAction = "edit";
+        edit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=""><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg>';
+
+        const del = document.createElement("div");
+        del.classList.add("flashcard__commands__button");
+        del.classList.add("flashcard__commands__button--del");
+        del.dataset.flashcardCommandAction = "del";
+        del.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
+
+        const copy = document.createElement("div");
+        copy.classList.add("flashcard__commands__button");
+        copy.classList.add("flashcard__commands__button--copy");
+        copy.dataset.flashcardCommandAction = "copy";
+        copy.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy preview-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+
+        command.appendChild(edit);
+        command.appendChild(del);
+        command.appendChild(copy);
+
+        flashcard.appendChild(flashcardInner);
+        flashcard.appendChild(command);
 
         flashcards.push(flashcard);
     }
