@@ -14,12 +14,13 @@ import {
     saveFlashcardButton,
     flashcardLab,
     setupFlashcardFlip,
-    flashcardBox
+    flashcardBox,
+    renderFlashcard
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
-import { addFlashcard, getFlashcard } from "../../services/storage.js";
-import { createFlashcard, setupFlashcard } from "./scolar.js";
+import { addFlashcard, flashcardsArray, getFlashcard, updateFlashcard } from "../../services/storage.js";
+import { createFlashcard, editDataFlashcard, setupFlashcard } from "./scolar.js";
 import { showError } from "../../utils/error.js";
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
@@ -43,6 +44,8 @@ export function setupFlashcardPopup() {
     // ouvrir la popup
     if (flashcardCreateButton) {
         flashcardCreateButton.addEventListener("click", () => {
+            flashcardPopupMode = "create";
+        resetFlashcardEditor();
             showFlashcardPopup();
         });
     }
@@ -77,13 +80,37 @@ export function setupFlashcardSaving () {
         };
         if (checkIfNotEmpty()) {
 
+            switch (flashcardPopupMode) {
+                case "create" : {
+                    const flashcard = createFlashcard(content);
+                    addFlashcard(flashcard);
+                    closeFlashcardPopup();
+                    resetFlashcardEditor();
+                    setupFlashcard();
+                    setupFlashcardFlip();
+
+                    break;
+                }
+
+                case "edit" : {
+                    const actualId = Number(saveFlashcardButton.dataset.actualId);
+                    const flashcard = editDataFlashcard(content);
+
+                    updateFlashcard(actualId, flashcard);
+
+                    setupFlashcard();
+                    setupFlashcardFlip();
+                    closeFlashcardPopup();
+                    resetFlashcardEditor();
+
+
+                    saveFlashcardButton.dataset.actualId = null;
+                    flashcardPopupMode = "create";
+                    break;
+                }
+            }
             
-            const flashcard = createFlashcard(content);
-            addFlashcard(flashcard);
-            closeFlashcardPopup();
-            resetFlashcardEditor();
-            setupFlashcard();
-            setupFlashcardFlip();
+            
         } else {
             showError(flashcardLab, EMPTY_FLASHCARD_MESSAGE);
         }
@@ -113,6 +140,7 @@ export function setupFlashcardsCommandsButton () {
             editors.back.setContents(flashcard.content.back);
 
             showFlashcardPopup();
+            saveFlashcardButton.dataset.actualId = id;
         }
 
         if (action === "del") {
