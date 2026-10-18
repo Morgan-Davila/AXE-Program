@@ -122,6 +122,7 @@ export function setupFlashcardSaving () {
 
 
 export function setupFlashcardsCommandsButton () {
+    if (!flashcardBox) return;
     flashcardBox.addEventListener("click", (event) => {
 
         const button = event.target.closest(".flashcard__commands__button");
