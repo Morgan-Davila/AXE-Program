@@ -28,6 +28,7 @@ export const flashcardLab = safeQuery(".popupFlashcardLab");
 export const editableFlashcard = safeQuery(".editableFlashcard");
 export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 
+
 //AI made
 export function showFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
@@ -86,6 +87,30 @@ function hideCommandsDuringFlip(card) {
     }
 
     inner.addEventListener("transitionend", onFlipEnd);
+}
+//end AI made
+
+//AI made : fait disparaître la carte en fondu avant de la retirer du DOM
+export function removeFlashcardCard(card) {
+    if (!card || card.classList.contains("flashcard--removing")) return;   // déjà en train de disparaître
+
+    let removed = false;
+
+    const finish = () => {
+        if (removed) return;
+        removed = true;
+        card.remove();
+    };
+
+    // les transitions des faces et des commandes remontent aussi jusqu'à la carte : on attend celle de la carte elle-même
+    card.addEventListener("transitionend", (e) => {
+        if (e.target === card && e.propertyName === "opacity") finish();
+    });
+
+    card.classList.add("flashcard--removing");
+
+    // filet de sécurité si aucune transition ne se déclenche (ex. prefers-reduced-motion)
+    setTimeout(finish, 400);
 }
 //end AI made
 

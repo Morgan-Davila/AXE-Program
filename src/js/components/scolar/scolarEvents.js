@@ -15,7 +15,9 @@ import {
     flashcardLab,
     setupFlashcardFlip,
     flashcardBox,
-    renderFlashcard
+    renderFlashcard,
+    //AI made
+    removeFlashcardCard
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
@@ -145,10 +147,9 @@ export function setupFlashcardsCommandsButton () {
 
         if (action === "del") {
             deleteFlashcard(id);
-            
-            setupFlashcard();
-            setupFlashcardFlip();
-            
+            //AI made : suppression animée ; les autres cartes ne sont pas re-rendues, elles gardent donc leurs listeners
+            removeFlashcardCard(card);
+            //end AI made
         }
 
         if (action === "copy") {

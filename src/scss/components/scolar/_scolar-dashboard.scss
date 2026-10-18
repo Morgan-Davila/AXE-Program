@@ -99,6 +99,20 @@
 .flashcard {
     position: relative;
 
+    //AI made : disparition à la suppression (classe posée par removeFlashcardCard)
+    transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+
+    &--removing {
+        opacity: 0;
+        transform: scale(.92);
+        pointer-events: none; // plus de clic ni de hover pendant la disparition
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+    //end AI made
+
     &:hover &__commands {
         opacity: 1;
         visibility: visible;
