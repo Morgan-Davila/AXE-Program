@@ -27,3 +27,9 @@ export function createFlashcard (content) {
         content : content
     }
 }
+
+export function editDataFlashcard (content) {
+    return {
+        content : content
+    }
+}
