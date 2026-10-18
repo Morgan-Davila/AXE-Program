@@ -8,6 +8,9 @@ debug(LOCAL_DEBUG, "Chargement storage.js");
 const STORAGE_KEY = "habitArray";
 const DELETED_STORAGE_KEY = "deletedHabitsArray";
 const FLASHCARDS_STORAGE_KEY = "flashcardsArray"
+//AI made
+const DELETED_FLASHCARDS_STORAGE_KEY = "deletedFlashcardsArray";
+//end AI made
 
 
 
@@ -58,6 +61,14 @@ export function addHabit(habit) {
 
 // Supprimer une habitude
 export function deleteHabit(id) {
+
+    //AI made : archive l'habitude dans deletedHabitsArray avant de la retirer
+    const habit = getHabit(id);
+    if (!habit) return;
+
+    deletedHabitsArray.push(habit);
+    saveDeletedHabits();
+    //end AI made
 
     habitArray = habitArray.filter(
         habit => habit.id !== id
@@ -140,10 +151,37 @@ export function addFlashcard(flashcard) {
 }
 
 
+//AI made
+// Charger les flashcards supprimées
+export function loadDeletedFlashcards() {
+    return JSON.parse(localStorage.getItem(DELETED_FLASHCARDS_STORAGE_KEY)) || [];
+}
+
+// Chargement initial
+export let deletedFlashcardsArray = loadDeletedFlashcards();
+
+// Sauvegarder les flashcards supprimées
+export function saveDeletedFlashcards() {
+    localStorage.setItem(
+        DELETED_FLASHCARDS_STORAGE_KEY,
+        JSON.stringify(deletedFlashcardsArray)
+    );
+}
+//end AI made
+
+
 // Supprimer une habitude
 export function deleteFlashcard(id) {
 
-    flashcardsArray = flashcardsArray.filter(
+    //AI made : archive la flashcard dans deletedFlashcardsArray avant de la retirer
+    const flashcard = getFlashcard(id);
+    if (!flashcard) return;
+
+    deletedFlashcardsArray.push(flashcard);
+    saveDeletedFlashcards();
+    //end AI made
+
+    flashcardsArray =flashcardsArray.filter(
         flashcard => flashcard.id !== id
     );
 

@@ -21,9 +21,7 @@ import {
     addHabit,
     deleteHabit,
     getHabit,
-    updateHabit,
-    deletedHabitsArray,
-    saveDeletedHabits
+    updateHabit
 } from "./../../services/storage.js";
 
 import {
@@ -59,12 +57,10 @@ export function setupHabitDeleteButton () {
             const parent = event.target.closest("tr")
             
             const habitID = Number(parent.dataset.habitId);
-            
-            const deletedHabit = getHabit(habitID);
-            deletedHabitsArray.push(deletedHabit);
-            saveDeletedHabits();
 
+            //AI made : deleteHabit archive elle-même l'habitude dans deletedHabitsArray
             deleteHabit(habitID);
+            //end AI made
             //AI made — suppression animée (remplace parent.remove())
             removeHabitRow(parent);
         });
