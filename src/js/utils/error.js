@@ -3,7 +3,13 @@ const LOCAL_DEBUG = false;
 debug(LOCAL_DEBUG, "Chargement error.js");
 
 
-export function showErrorPopup(message, duration = 3000) {
+//AI made : variant "success" pour réutiliser la même popup en vert (ex. "Recto copié")
+export function showSuccessPopup(message, duration = 3000) {
+    showErrorPopup(message, duration, "success");
+}
+//end AI made
+
+export function showErrorPopup(message, duration = 3000, variant = "error") {
     // Conteneur des popups : créé une seule fois, réutilisé ensuite
     let container = document.getElementById("errorPopups");
     if (!container) {
@@ -16,6 +22,12 @@ export function showErrorPopup(message, duration = 3000) {
     const popup = document.createElement("div");
     popup.className = "errorPopup";
     popup.setAttribute("role", "alert");   // les lecteurs d'écran l'annoncent
+    //AI made : une réussite est annoncée poliment ("status") au lieu d'interrompre ("alert")
+    if (variant === "success") {
+        popup.classList.add("errorPopup--success");
+        popup.setAttribute("role", "status");
+    }
+    //end AI made
     popup.textContent = message;           // textContent et pas innerHTML (plus sûr)
     container.append(popup);
 

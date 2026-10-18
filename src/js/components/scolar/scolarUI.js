@@ -90,6 +90,13 @@ function hideCommandsDuringFlip(card) {
 }
 //end AI made
 
+//AI made : renvoie la face actuellement visible de la carte ("front" ou "back") et son élément
+export function getVisibleFlashcardFace(card) {
+    const side = card.classList.contains("flashcard--flipped") ? "back" : "front";
+    return { side, element: card.querySelector(`.flashcard__face--${side}`) };
+}
+//end AI made
+
 //AI made : fait disparaître la carte en fondu avant de la retirer du DOM
 export function removeFlashcardCard(card) {
     if (!card || card.classList.contains("flashcard--removing")) return;   // déjà en train de disparaître

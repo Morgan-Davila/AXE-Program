@@ -95,6 +95,12 @@
     transform: translateX(0);             /* arrivée : en place */
 }
 
+//AI made : variante verte pour les messages de réussite (showSuccessPopup)
+.errorPopup--success {
+    background: var(--success);
+}
+//end AI made
+
 
 
 //style d'error

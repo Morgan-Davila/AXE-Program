@@ -17,13 +17,14 @@ import {
     flashcardBox,
     renderFlashcard,
     //AI made
-    removeFlashcardCard
+    removeFlashcardCard,
+    getVisibleFlashcardFace
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
 import { addFlashcard, deleteFlashcard, flashcardsArray, getFlashcard, updateFlashcard } from "../../services/storage.js";
 import { createFlashcard, editDataFlashcard, setupFlashcard } from "./scolar.js";
-import { showError } from "../../utils/error.js";
+import { showError, showErrorPopup, showSuccessPopup } from "../../utils/error.js";
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 let flashcardPopupMode = "create";
@@ -154,7 +155,39 @@ export function setupFlashcardsCommandsButton () {
         }
 
         if (action === "copy") {
-            
+            //AI made
+            copyFlashcardFace(card);
+            //end AI made
         }
     })
 }
+
+//AI made : copie la face visible de la carte dans le presse-papier, avec sa mise en forme quand c'est possible
+async function copyFlashcardFace(card) {
+    const { side, element } = getVisibleFlashcardFace(card);
+    if (!element) return;
+
+    const html = element.innerHTML;
+    const text = element.innerText;
+
+    try {
+        if (window.ClipboardItem) {
+            // text/html garde le gras, les couleurs… à coller dans un éditeur ; text/plain sert partout ailleurs
+            await navigator.clipboard.write([
+                new ClipboardItem({
+                    "text/html": new Blob([html], { type: "text/html" }),
+                    "text/plain": new Blob([text], { type: "text/plain" })
+                })
+            ]);
+        } else {
+            await navigator.clipboard.writeText(text);
+        }
+
+        showSuccessPopup(side === "back" ? "Verso copié" : "Recto copié");
+    } catch (error) {
+        // presse-papier refusé (page non sécurisée, permission refusée…)
+        debug(LOCAL_DEBUG, error);
+        showErrorPopup("Impossible de copier la flashcard.");
+    }
+}
+//end AI made
