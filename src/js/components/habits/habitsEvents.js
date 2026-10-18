@@ -12,7 +12,7 @@ import {
 import {
     createHabit,
     searchTypes,
-    editHabit,
+    editDataHabit,
     //AI made
     getVisibleHabits
 } from "./habits.js";
@@ -135,7 +135,7 @@ export function setupHabitsForm() {
 
             case "edit" : {
                 const actualId = Number(habitsFormButton.dataset.actualId);
-                const habit = editHabit(data);
+                const habit = editDataHabit(data);
 
                 updateHabit(actualId, habit);
                 //AI made — garde la recherche en cours affichée

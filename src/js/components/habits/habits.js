@@ -97,7 +97,7 @@ export function createHabit(data){
     
 }
 
-export function editHabit (data) {
+export function editDataHabit (data) {
     return {
         name: data.name,
 
