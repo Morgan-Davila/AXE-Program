@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 import { setupFlashcard } from "./components/scolar/scolar.js";
-//setupFlashcard();
+setupFlashcard();
 
 
 import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";
@@ -100,12 +100,14 @@ import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";
 setupFlashcardFlip();
 
 //AI made
-import { setupFlashcardPopup, setupFlashcardSwitch, setupFlashcardSaving } from "./components/scolar/scolarEvents.js";
+import { setupFlashcardPopup, setupFlashcardSwitch, setupFlashcardSaving, setupFlashcardsCommandsButton } from "./components/scolar/scolarEvents.js";
 setupFlashcardPopup();
 setupFlashcardSaving();
 //AI made
 setupFlashcardSwitch();
 
+
+setupFlashcardsCommandsButton();
 
 
 

@@ -123,11 +123,11 @@ export function setupHabitsForm() {
 
                 debug(LOCAL_DEBUG, habit);
                 addHabit(habit);
-                //AI made — garde la recherche en cours affichée
+                //AI made - garde la recherche en cours affichée
                 renderHabits(getVisibleHabits());
                 closeHabitsPopup();
                 setupHabitDeleteButton();
-                //AI made — les lignes viennent d'être re-rendues : sans ça, le bouton d'édition ne répond plus
+                //AI made - les lignes viennent d'être re-rendues : sans ça, le bouton d'édition ne répond plus
                 setupHabitEditButton();
                 emptyPopup();
                 break;

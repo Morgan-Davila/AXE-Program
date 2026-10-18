@@ -46,6 +46,10 @@ export function isFlashcardPopupOpen() {
         && !flashcardPopupOverlay.classList.contains("overlayPopupFlashcardLab--hidden");
 }
 
+
+//humain made
+
+
 //AI made : retourne une carte ; block = classe BEM de la carte ("flashcard" ou "editableFlashcard")
 // renvoie true si la carte montre maintenant son verso
 export function flipFlashcard(card, block = "flashcard") {

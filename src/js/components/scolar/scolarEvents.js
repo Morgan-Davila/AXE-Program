@@ -18,7 +18,7 @@ import {
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
-import { addFlashcard } from "../../services/storage.js";
+import { addFlashcard, getFlashcard } from "../../services/storage.js";
 import { createFlashcard, setupFlashcard } from "./scolar.js";
 import { showError } from "../../utils/error.js";
 
@@ -76,6 +76,8 @@ export function setupFlashcardSaving () {
             back: editors.back.getContents()
         };
         if (checkIfNotEmpty()) {
+
+            
             const flashcard = createFlashcard(content);
             addFlashcard(flashcard);
             closeFlashcardPopup();
@@ -101,7 +103,16 @@ export function setupFlashcardsCommandsButton () {
         const action = button.dataset.flashcardCommandAction;
 
         if (action === "edit") {
+            flashcardPopupMode = "edit";
+
+            const flashcard = getFlashcard(id);
+
             
+            resetFlashcardEditor();
+            editors.front.setContents(flashcard.content.front);
+            editors.back.setContents(flashcard.content.back);
+
+            showFlashcardPopup();
         }
 
         if (action === "del") {
