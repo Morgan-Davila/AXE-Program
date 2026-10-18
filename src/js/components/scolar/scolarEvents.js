@@ -19,7 +19,7 @@ import {
 } from "./scolarUI.js";
 
 import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
-import { addFlashcard, flashcardsArray, getFlashcard, updateFlashcard } from "../../services/storage.js";
+import { addFlashcard, deleteFlashcard, flashcardsArray, getFlashcard, updateFlashcard } from "../../services/storage.js";
 import { createFlashcard, editDataFlashcard, setupFlashcard } from "./scolar.js";
 import { showError } from "../../utils/error.js";
 
@@ -144,7 +144,11 @@ export function setupFlashcardsCommandsButton () {
         }
 
         if (action === "del") {
-
+            deleteFlashcard(id);
+            
+            setupFlashcard();
+            setupFlashcardFlip();
+            
         }
 
         if (action === "copy") {
