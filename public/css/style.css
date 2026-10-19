@@ -2477,6 +2477,32 @@ td:last-child {
   transform: scale(0.8);
 }
 
+.flashcardActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+}
+.flashcardActions .flashcardCreateButton {
+  margin: 0;
+}
+
+.flashcardTestButton {
+  height: 50px;
+  padding: 0 var(--space-5);
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--ink);
+  font-weight: bold;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.flashcardTestButton:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .overlayPopupFlashcardLab {
   position: fixed;
   inset: 0;
