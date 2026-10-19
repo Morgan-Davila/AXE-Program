@@ -13,6 +13,7 @@
     "sass:watch": "sass --watch src/scss/main.scss public/css/style.css"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "sass": "^1.100.0"
   },
   "dependencies": {
