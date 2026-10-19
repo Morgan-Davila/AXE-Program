@@ -18,13 +18,40 @@ import {
     renderFlashcard,
     //AI made
     removeFlashcardCard,
-    getVisibleFlashcardFace
+    getVisibleFlashcardFace,
+    flashcardTestButton
 } from "./scolarUI.js";
 
-import { showEditorFace, editors, resetFlashcardEditor, checkIfNotEmpty } from "./flashcardsEditor.js";
-import { addFlashcard, deleteFlashcard, flashcardsArray, getFlashcard, updateFlashcard } from "../../services/storage.js";
-import { createFlashcard, editDataFlashcard, setupFlashcard } from "./scolar.js";
-import { showError, showErrorPopup, showSuccessPopup } from "../../utils/error.js";
+import { 
+    showEditorFace, 
+    editors, 
+    resetFlashcardEditor, 
+    checkIfNotEmpty 
+} from "./flashcardsEditor.js";
+
+import { 
+    addFlashcard, 
+    deleteFlashcard, 
+    flashcardsArray, 
+    getFlashcard, 
+    updateFlashcard 
+} from "../../services/storage.js";
+
+import { 
+    createFlashcard, 
+    editDataFlashcard, 
+    setupFlashcard 
+} from "./scolar.js";
+
+import { 
+    showError, 
+    showErrorPopup, 
+    showSuccessPopup 
+} from "../../utils/error.js";
+
+//AI made : pas de bundler, donc chemin relatif vers node_modules (version française uniquement)
+import { faker } from "../../../../node_modules/@faker-js/faker/dist/locale/fr.js";
+//end AI made
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 let flashcardPopupMode = "create";
@@ -191,3 +218,26 @@ async function copyFlashcardFace(card) {
     }
 }
 //end AI made
+
+
+
+export function setupTestFlashcardGeneration () {
+
+    if (!flashcardTestButton) return;
+    
+    flashcardTestButton.addEventListener("click", (e) => {
+        debug(LOCAL_DEBUG, faker.word.noun())
+        debug(LOCAL_DEBUG, faker.lorem.paragraph())
+
+        const content = {
+            front : editors.front.setText(faker.word.noun()),
+            back : editors.back.setText(faker.lorem.paragraph())
+        }
+
+        const flashcard = createFlashcard(content);
+        addFlashcard(flashcard);
+        resetFlashcardEditor();
+        setupFlashcard();
+        setupFlashcardFlip();
+    });
+}

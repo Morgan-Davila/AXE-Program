@@ -23,6 +23,7 @@ export const flashcardPopupOverlay = safeQuery(".overlayPopupFlashcardLab");
 
 //human made
 export const flashcardLab = safeQuery(".popupFlashcardLab");
+export const flashcardTestButton = safeQuery(".flashcardTestButton");
 
 //AI made : carte éditable de la popup et bouton qui la retourne
 export const editableFlashcard = safeQuery(".editableFlashcard");
