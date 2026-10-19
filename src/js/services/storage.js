@@ -214,3 +214,185 @@ export function clearFlashcards() {
 
     saveFlashcards();
 }
+
+
+//AI made
+//--------------------
+//folder management
+//--------------------
+// Les dossiers sont stockés à plat : chaque dossier (et chaque flashcard) connaît
+// seulement son parentId (null = racine). Les enfants ne sont jamais stockés,
+// ils sont recalculés à la demande (cf. getFolderChildren).
+
+const FOLDERS_STORAGE_KEY = "foldersArray";
+const DELETED_FOLDERS_STORAGE_KEY = "deletedFoldersArray";
+
+// Charger les dossiers
+export function loadFolders() {
+    return JSON.parse(localStorage.getItem(FOLDERS_STORAGE_KEY)) || [];
+}
+
+// Chargement initial
+export let foldersArray = loadFolders();
+
+// Sauvegarder
+export function saveFolders() {
+    localStorage.setItem(
+        FOLDERS_STORAGE_KEY,
+        JSON.stringify(foldersArray)
+    );
+}
+
+// Charger les dossiers supprimés
+export function loadDeletedFolders() {
+    return JSON.parse(localStorage.getItem(DELETED_FOLDERS_STORAGE_KEY)) || [];
+}
+
+// Chargement initial
+export let deletedFoldersArray = loadDeletedFolders();
+
+// Sauvegarder les dossiers supprimés
+export function saveDeletedFolders() {
+    localStorage.setItem(
+        DELETED_FOLDERS_STORAGE_KEY,
+        JSON.stringify(deletedFoldersArray)
+    );
+}
+
+// Ajouter un dossier
+export function addFolder(folder) {
+    foldersArray.push(folder);
+
+    saveFolders();
+}
+
+export function getFolder(id) {
+    return foldersArray.find(
+        folder => folder.id === id
+    );
+}
+
+// Modifier un dossier (renommage...) ; la date est ajoutée à son editList
+export function updateFolder(id, data) {
+
+    const folder = getFolder(id);
+
+    if (!folder) return;
+
+    Object.assign(folder, data);
+    folder.editList = [...(folder.editList ?? []), Date.now()];
+
+    saveFolders();
+}
+
+// parentId d'une flashcard : les anciennes cartes sans parentId sont à la racine
+function getFlashcardParentId(flashcard) {
+    return flashcard.parentId ?? null;
+}
+
+// Contenu direct d'un dossier (null = racine), ce qu'affiche l'explorateur
+export function getFolderChildren(folderId = null) {
+    return {
+        folders: foldersArray.filter(folder => folder.parentId === folderId),
+        flashcards: flashcardsArray.filter(flashcard => getFlashcardParentId(flashcard) === folderId)
+    };
+}
+
+// Chemin depuis la racine jusqu'au dossier inclus, pour le fil d'Ariane
+// ex : getFolderPath("c3") -> [Maths, Algèbre, Chapitre 1]
+export function getFolderPath(folderId) {
+    const path = [];
+    const visited = new Set(); // sécurité : évite une boucle infinie si les données sont corrompues
+    let current = getFolder(folderId);
+
+    while (current && !visited.has(current.id)) {
+        visited.add(current.id);
+        path.unshift(current);
+        current = getFolder(current.parentId);
+    }
+
+    return path;
+}
+
+// Ids de tous les sous-dossiers, à toutes les profondeurs (le dossier lui-même exclu)
+export function getDescendantFolderIds(folderId) {
+    const ids = [];
+    const queue = [folderId];
+
+    while (queue.length) {
+        const parentId = queue.shift();
+        for (const folder of foldersArray) {
+            if (folder.parentId === parentId && !ids.includes(folder.id)) {
+                ids.push(folder.id);
+                queue.push(folder.id);
+            }
+        }
+    }
+
+    return ids;
+}
+
+// Un dossier ne peut pas aller dans lui-même ni dans un de ses descendants
+export function canMoveFolder(folderId, targetFolderId) {
+    if (targetFolderId === null) return true;
+    if (!getFolder(targetFolderId)) return false;
+
+    return folderId !== targetFolderId
+        && !getDescendantFolderIds(folderId).includes(targetFolderId);
+}
+
+// Déplacer un dossier : seul son parentId change, son contenu le suit
+export function moveFolder(folderId, targetFolderId = null) {
+    if (!getFolder(folderId) || !canMoveFolder(folderId, targetFolderId)) {
+        debug(LOCAL_DEBUG, "Déplacement de dossier impossible", folderId, "->", targetFolderId);
+        return false;
+    }
+
+    updateFolder(folderId, { parentId: targetFolderId });
+    return true;
+}
+
+// Déplacer une flashcard dans un dossier (null = racine)
+export function moveFlashcard(flashcardId, targetFolderId = null) {
+    if (!getFlashcard(flashcardId) || (targetFolderId !== null && !getFolder(targetFolderId))) {
+        debug(LOCAL_DEBUG, "Déplacement de flashcard impossible", flashcardId, "->", targetFolderId);
+        return false;
+    }
+
+    updateFlashcard(flashcardId, { parentId: targetFolderId });
+    return true;
+}
+
+// Supprimer un dossier avec tout son contenu (sous-dossiers + flashcards),
+// archivés dans les tableaux de supprimés comme pour deleteFlashcard
+export function deleteFolder(folderId) {
+    if (!getFolder(folderId)) return;
+
+    const removedFolderIds = [folderId, ...getDescendantFolderIds(folderId)];
+
+    const removedFlashcards = flashcardsArray.filter(
+        flashcard => removedFolderIds.includes(getFlashcardParentId(flashcard))
+    );
+    deletedFlashcardsArray.push(...removedFlashcards);
+    saveDeletedFlashcards();
+
+    flashcardsArray = flashcardsArray.filter(
+        flashcard => !removedFlashcards.includes(flashcard)
+    );
+    saveFlashcards();
+
+    deletedFoldersArray.push(...foldersArray.filter(folder => removedFolderIds.includes(folder.id)));
+    saveDeletedFolders();
+
+    foldersArray = foldersArray.filter(
+        folder => !removedFolderIds.includes(folder.id)
+    );
+    saveFolders();
+}
+
+export function clearFolders() {
+    foldersArray = [];
+
+    saveFolders();
+}
+//end AI made
