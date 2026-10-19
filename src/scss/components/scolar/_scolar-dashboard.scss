@@ -8,19 +8,24 @@
     flex-wrap: wrap;
     
     justify-content: center;
-    //AI made : marge intérieure entre le conteneur et la grille de flashcards
-    padding: var(--space-6);
+    //AI made : marge intérieure entre le conteneur et la grille de flashcards, réduite sur les écrans étroits
+    padding: clamp(var(--space-3), 2vw, var(--space-6));
 }
 
-//AI made : grille alignée à gauche (comme du texte), gaps identiques en ligne et en colonne
+//AI made : gap entre colonnes adaptatif
+// le nombre de colonnes est calculé avec le gap minimal (column-gap), puis la place restante
+// est répartie équitablement entre et autour des colonnes (space-evenly) : une 3e colonne
+// tient dès qu'il y a la place pour 3 cartes + 2 petits gaps
 .flashcardBox {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);
-    gap: var(--space-5);
-    justify-content: center;
+    column-gap: var(--space-2);
+    row-gap: var(--space-5);
+    justify-content: space-evenly;
     align-content: start;
 }
+//end AI made
 .flashcard, .editableFlashcard {
     perspective: 1000px;
     width: 300px;
