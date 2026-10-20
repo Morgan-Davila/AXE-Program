@@ -215,14 +215,13 @@ export function clearFlashcards() {
     saveFlashcards();
 }
 
-
 //AI made
 //--------------------
 //folder management
 //--------------------
-// Les dossiers sont stockés à plat : chaque dossier (et chaque flashcard) connaît
-// seulement son parentId (null = racine). Les enfants ne sont jamais stockés,
-// ils sont recalculés à la demande (cf. getFolderChildren).
+// Règle de base : chaque dossier et chaque flashcard a un parentId,
+// qui est l'id du dossier qui le contient (null = à la racine).
+// On n'enregistre jamais la liste des enfants : on la retrouve avec un filter.
 
 const FOLDERS_STORAGE_KEY = "foldersArray";
 const DELETED_FOLDERS_STORAGE_KEY = "deletedFoldersArray";
@@ -266,13 +265,14 @@ export function addFolder(folder) {
     saveFolders();
 }
 
+// Trouver un dossier grâce à son id
 export function getFolder(id) {
     return foldersArray.find(
         folder => folder.id === id
     );
 }
 
-// Modifier un dossier (renommage...) ; la date est ajoutée à son editList
+// Modifier un dossier (ex : le renommer)
 export function updateFolder(id, data) {
 
     const folder = getFolder(id);
@@ -280,82 +280,99 @@ export function updateFolder(id, data) {
     if (!folder) return;
 
     Object.assign(folder, data);
-    folder.editList = [...(folder.editList ?? []), Date.now()];
+
+    // on note la date de la modification
+    if (!folder.editList) {
+        folder.editList = [];
+    }
+    folder.editList.push(Date.now());
 
     saveFolders();
 }
 
-// parentId d'une flashcard : les anciennes cartes sans parentId sont à la racine
+// Les flashcards créées avant les dossiers n'ont pas de parentId :
+// on considère qu'elles sont à la racine (null)
 function getFlashcardParentId(flashcard) {
-    return flashcard.parentId ?? null;
+    if (flashcard.parentId === undefined) {
+        return null;
+    }
+    return flashcard.parentId;
 }
 
-// Contenu direct d'un dossier (null = racine), ce qu'affiche l'explorateur
-export function getFolderChildren(folderId = null) {
-    return {
-        folders: foldersArray.filter(folder => folder.parentId === folderId),
-        flashcards: flashcardsArray.filter(flashcard => getFlashcardParentId(flashcard) === folderId)
-    };
+// Les sous-dossiers directs d'un dossier (null = racine)
+export function getSubFolders(folderId) {
+    return foldersArray.filter(
+        folder => folder.parentId === folderId
+    );
 }
 
-// Chemin depuis la racine jusqu'au dossier inclus, pour le fil d'Ariane
+// Les flashcards rangées directement dans un dossier (null = racine)
+export function getFolderFlashcards(folderId) {
+    return flashcardsArray.filter(
+        flashcard => getFlashcardParentId(flashcard) === folderId
+    );
+}
+
+// Le chemin jusqu'à un dossier, pour le fil d'Ariane
 // ex : getFolderPath("c3") -> [Maths, Algèbre, Chapitre 1]
 export function getFolderPath(folderId) {
     const path = [];
-    const visited = new Set(); // sécurité : évite une boucle infinie si les données sont corrompues
     let current = getFolder(folderId);
 
-    while (current && !visited.has(current.id)) {
-        visited.add(current.id);
-        path.unshift(current);
+    // on remonte de parent en parent jusqu'à la racine
+    while (current) {
+        path.unshift(current); // unshift = ajouter au début du tableau
         current = getFolder(current.parentId);
     }
 
     return path;
 }
 
-// Ids de tous les sous-dossiers, à toutes les profondeurs (le dossier lui-même exclu)
-export function getDescendantFolderIds(folderId) {
-    const ids = [];
-    const queue = [folderId];
+// Les ids de tous les sous-dossiers, sous-sous-dossiers, etc.
+export function getAllSubFolderIds(folderId) {
+    let ids = [];
 
-    while (queue.length) {
-        const parentId = queue.shift();
-        for (const folder of foldersArray) {
-            if (folder.parentId === parentId && !ids.includes(folder.id)) {
-                ids.push(folder.id);
-                queue.push(folder.id);
-            }
-        }
+    for (const subFolder of getSubFolders(folderId)) {
+        ids.push(subFolder.id);
+
+        // la fonction s'appelle elle-même pour descendre d'un niveau
+        const deeperIds = getAllSubFolderIds(subFolder.id);
+        ids = ids.concat(deeperIds);
     }
 
     return ids;
 }
 
-// Un dossier ne peut pas aller dans lui-même ni dans un de ses descendants
-export function canMoveFolder(folderId, targetFolderId) {
-    if (targetFolderId === null) return true;
-    if (!getFolder(targetFolderId)) return false;
+// Déplacer un dossier dans un autre (null = racine)
+// renvoie true si le déplacement a marché, false sinon
+export function moveFolder(folderId, targetFolderId) {
 
-    return folderId !== targetFolderId
-        && !getDescendantFolderIds(folderId).includes(targetFolderId);
-}
-
-// Déplacer un dossier : seul son parentId change, son contenu le suit
-export function moveFolder(folderId, targetFolderId = null) {
-    if (!getFolder(folderId) || !canMoveFolder(folderId, targetFolderId)) {
-        debug(LOCAL_DEBUG, "Déplacement de dossier impossible", folderId, "->", targetFolderId);
+    // on ne peut pas mettre un dossier dans lui-même
+    if (folderId === targetFolderId) {
         return false;
     }
 
+    // ni dans un de ses propres sous-dossiers
+    if (getAllSubFolderIds(folderId).includes(targetFolderId)) {
+        return false;
+    }
+
+    // le dossier de destination doit exister (sauf la racine)
+    if (targetFolderId !== null && !getFolder(targetFolderId)) {
+        return false;
+    }
+
+    // seul le parentId change : tout son contenu le suit
     updateFolder(folderId, { parentId: targetFolderId });
     return true;
 }
 
 // Déplacer une flashcard dans un dossier (null = racine)
-export function moveFlashcard(flashcardId, targetFolderId = null) {
-    if (!getFlashcard(flashcardId) || (targetFolderId !== null && !getFolder(targetFolderId))) {
-        debug(LOCAL_DEBUG, "Déplacement de flashcard impossible", flashcardId, "->", targetFolderId);
+// renvoie true si le déplacement a marché, false sinon
+export function moveFlashcard(flashcardId, targetFolderId) {
+
+    // le dossier de destination doit exister (sauf la racine)
+    if (targetFolderId !== null && !getFolder(targetFolderId)) {
         return false;
     }
 
@@ -363,31 +380,37 @@ export function moveFlashcard(flashcardId, targetFolderId = null) {
     return true;
 }
 
-// Supprimer un dossier avec tout son contenu (sous-dossiers + flashcards),
-// archivés dans les tableaux de supprimés comme pour deleteFlashcard
+// Supprimer un dossier avec tout ce qu'il contient
 export function deleteFolder(folderId) {
+
     if (!getFolder(folderId)) return;
 
-    const removedFolderIds = [folderId, ...getDescendantFolderIds(folderId)];
+    // 1. la liste de tous les dossiers à supprimer : lui + tous ses sous-dossiers
+    const folderIdsToDelete = [folderId].concat(getAllSubFolderIds(folderId));
 
-    const removedFlashcards = flashcardsArray.filter(
-        flashcard => removedFolderIds.includes(getFlashcardParentId(flashcard))
-    );
-    deletedFlashcardsArray.push(...removedFlashcards);
-    saveDeletedFlashcards();
-
+    // 2. on supprime les flashcards rangées dans ces dossiers
+    for (const flashcard of flashcardsArray) {
+        if (folderIdsToDelete.includes(getFlashcardParentId(flashcard))) {
+            deletedFlashcardsArray.push(flashcard); // archive
+        }
+    }
     flashcardsArray = flashcardsArray.filter(
-        flashcard => !removedFlashcards.includes(flashcard)
+        flashcard => !folderIdsToDelete.includes(getFlashcardParentId(flashcard))
     );
     saveFlashcards();
+    saveDeletedFlashcards();
 
-    deletedFoldersArray.push(...foldersArray.filter(folder => removedFolderIds.includes(folder.id)));
-    saveDeletedFolders();
-
+    // 3. on supprime les dossiers eux-mêmes
+    for (const folder of foldersArray) {
+        if (folderIdsToDelete.includes(folder.id)) {
+            deletedFoldersArray.push(folder); // archive
+        }
+    }
     foldersArray = foldersArray.filter(
-        folder => !removedFolderIds.includes(folder.id)
+        folder => !folderIdsToDelete.includes(folder.id)
     );
     saveFolders();
+    saveDeletedFolders();
 }
 
 export function clearFolders() {
