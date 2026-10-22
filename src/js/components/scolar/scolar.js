@@ -13,7 +13,7 @@ import {
     exists
 } from "../../utils/dom.js"
 
-import { flashcardBox, renderFlashcard, renderFolder } from "./scolarUI.js";
+import { clearFlashcardsBox, flashcardBox, renderFlashcard, renderFolder } from "./scolarUI.js";
 
 
 export function setupRootFlashcard () {
@@ -31,7 +31,7 @@ export function setupRootFolders () {
 
 export function setupRoot () {
     if (!exists(flashcardBox)) return;
-    flashcardBox.innerHTML = ""
+    clearFlashcardsBox();
     
     setupRootFolders();
     setupRootFlashcard();

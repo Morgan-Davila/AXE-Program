@@ -94,11 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
 import { setupRoot } from "./components/scolar/scolar.js";
 setupRoot();
 
-
-import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";
+import { actualizeFolderBreadcrumb, setupFlashcardFlip} from "./components/scolar/scolarUI.js";
 
 setupFlashcardFlip();
-
+actualizeFolderBreadcrumb();
 //AI made
 import { 
     setupFlashcardPopup, 
@@ -110,10 +109,7 @@ import {
 } from "./components/scolar/scolarEvents.js";
 setupFlashcardPopup();
 setupFlashcardSaving();
-//AI made
 setupFlashcardSwitch();
-
-
 setupFlashcardsCommandsButton();
 setupTestFlashcardGeneration();
 setupFolderEvents();

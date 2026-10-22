@@ -24,7 +24,10 @@ import {
     getVisibleFlashcardFace,
     flashcardTestButton,
     clearFlashcardsBox,
-    renderFolder
+    renderFolder,
+    actualizeFoldersLevel,
+    actualizeFolderBreadcrumb,
+    breadcrumbPlaceholder
 } from "./scolarUI.js";
 
 import { 
@@ -47,7 +50,7 @@ import {
 import { 
     createFlashcard, 
     editDataFlashcard, 
-    setupRootFlashcard 
+    setupRoot
 } from "./scolar.js";
 
 import { 
@@ -58,8 +61,17 @@ import {
 
 //AI made : pas de bundler, donc chemin relatif vers node_modules (version française uniquement)
 import { faker } from "../../../../node_modules/@faker-js/faker/dist/locale/fr.js";
-import { safeQueryAll, exists } from "../../utils/dom.js";
 //end AI made
+
+import { 
+    safeQueryAll, 
+    exists 
+} from "../../utils/dom.js";
+
+import { 
+    getFolderTextualPath 
+} from "../../utils/format.js";
+
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 let flashcardPopupMode = "create";
@@ -124,7 +136,7 @@ export function setupFlashcardSaving () {
                     addFlashcard(flashcard);
                     closeFlashcardPopup();
                     resetFlashcardEditor();
-                    setupRootFlashcard();
+                    setupRoot();
                     setupFlashcardFlip();
 
                     break;
@@ -136,7 +148,7 @@ export function setupFlashcardSaving () {
 
                     updateFlashcard(actualId, flashcard);
 
-                    setupRootFlashcard();
+                    setupRoot();
                     setupFlashcardFlip();
                     closeFlashcardPopup();
                     resetFlashcardEditor();
@@ -243,7 +255,7 @@ export function setupTestFlashcardGeneration () {
         const flashcard = createFlashcard(content);
         addFlashcard(flashcard);
         resetFlashcardEditor();
-        setupRootFlashcard();
+        setupRoot();
         setupFlashcardFlip();
     });
 }
@@ -268,5 +280,12 @@ export function setupFolderEvents () {
         flashcardBox.append(...renderFolder(foldersFolders));
         flashcardBox.append(...renderFlashcard(foldersFlashcards));
         setupFlashcardFlip();
+
+        flashcardBox.dataset.actualFolderId = folderId;
+
+        actualizeFoldersLevel();
+        actualizeFolderBreadcrumb();
+        debug(getFolderTextualPath("array", folderId));
+
     })
 }

@@ -35,7 +35,7 @@ export const editableFlashcard = safeQuery(".editableFlashcard");
 export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 
 //humain made
-export const breadcrumbPlaceholder = safeQuery(".breadcrumb");
+export const breadcrumbPlaceholder = safeQuery(".scolarToolbar__breadcrumb");
 
 //AI made
 export function showFlashcardPopup() {
@@ -284,7 +284,9 @@ export function actualizeFoldersLevel () {
     debug(getFolderPath(actualFolderId));
 }
 
-export function actualizeDisplayFolderPath () {
+export function actualizeFolderBreadcrumb () {
+    breadcrumbPlaceholder.innerText = ""
+
     const breadcrumb = document.createElement("ol");
     breadcrumb.classList.add("breadcrumb");
 
@@ -305,5 +307,5 @@ export function actualizeDisplayFolderPath () {
         breadcrumb.appendChild(li);
     }
 
-    return breadcrumb;
+    breadcrumbPlaceholder.appendChild(breadcrumb);
 } 
