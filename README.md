@@ -35,6 +35,9 @@ L'objectif est de construire une application complète avec une architecture sol
 ## Librairies
 
 * Chart.js (graphique hebdomadaire du dashboard, futures statistiques)
+* Quill (éditeur de texte riche des flashcards)
+* DOMPurify (nettoyage de HTML, chargé mais pas encore utilisé)
+* Faker (développement uniquement : génération de flashcards de test)
 
 ## Outils
 
@@ -63,15 +66,24 @@ src
 │   │   │   ├── habitsEvents.js
 │   │   │   ├── habitsUI.js
 │   │   │   └── popupSearch
+│   │   ├── scolar
+│   │   │   ├── scolar.js
+│   │   │   ├── scolarEvents.js
+│   │   │   ├── scolarUI.js
+│   │   │   └── flashcardsEditor.js
 │   │   └── theme
 │   │
 │   ├── services
 │   │   └── storage.js
 │   │
+│   ├── testData
+│   │   └── testData.js
+│   │
 │   └── utils
 │       ├── date.js
 │       ├── dom.js
 │       ├── effects.js
+│       ├── error.js
 │       └── format.js
 │
 └── scss
@@ -79,7 +91,7 @@ src
     ├── abstracts   (_tokens.scss : variables CSS clair/sombre)
     ├── base
     ├── layout      (header, footer, mise en page)
-    └── components  (dashboard, habitManager, calendar, graph)
+    └── components  (dashboard, habitManager, scolar, calendar, graph)
 ```
 
 ---
@@ -94,6 +106,7 @@ Exemple :
 
 * `components/habits` : gestionnaire d'habitudes
 * `components/dashboard` : affichage du tableau de bord
+* `components/scolar` : flashcards et dossiers (gestion scolaire)
 * `components/calendar` : calendrier
 * `components/theme` : bascule mode clair / mode sombre
 
@@ -109,9 +122,16 @@ Actuellement :
 
 Responsabilités :
 
-* Sauvegarde des données (habitudes, préférence de thème)
+* Sauvegarde des données (habitudes, flashcards, dossiers, préférence de thème)
 * Récupération des données
 * Suppression des données
+* Navigation dans l'arborescence des dossiers (sous-dossiers, chemin, déplacement)
+
+---
+
+## Test data
+
+`testData/testData.js` crée un jeu de dossiers et de flashcards de test (marqués `isTest`, pour pouvoir les retirer sans toucher aux vraies données). Le module n'est pas chargé par défaut : il faut l'importer dans `main.js` pour l'utiliser.
 
 ---
 
@@ -138,55 +158,30 @@ Couleurs, espacements, rayons et ombres sont des variables CSS définies dans `a
 
 # Système de debug
 
-AXE possède un système de debug global.
+AXE possède un système de debug, défini dans `debug.js`.
 
-Chaque fichier peut définir son propre niveau de debug local :
+Chaque fichier crée sa propre fonction de debug, avec un niveau local :
 
 ```javascript
-const LOCAL_DEBUG = true;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Message de debug");
+const LOCAL_DEBUG = true;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Message de debug");
 ```
 
-Le debug global est contrôlé depuis `main.js`.
+Les logs s'affichent si le debug local du fichier est actif, ou si le debug global (`AXE.DEBUG` dans `debug.js`) l'est. La console indique le fichier et la ligne d'origine de chaque log.
 
 Cela permet d'activer ou désactiver facilement les logs pendant le développement.
-
----
-
-# Fonctionnalités actuelles
-
-## AXE 0.5 - Habit Manager
-
-Statut : En développement
-
-Fonctionnalités disponibles :
-
-* Création d'habitudes
-* Gestion du nom d'une habitude
-* Gestion du type d'habitude
-* Gestion de la fréquence :
-
-  * Intervalle
-  * Hebdomadaire
-  * Mensuelle
-* Gestion de la durée
-* Stockage local des habitudes
-* Modification, suppression et recherche d'habitudes
-* Dashboard : habitudes du jour, séries (streaks), anneau de progression, graphique de la semaine
-* Interface redessinée, mode clair / mode sombre
-
-Fonctionnalités restantes :
-
-* Rendu dynamique des habitudes dans le dashboard
-* Amélioration de l'interface
-* Nettoyage et refactorisation du code
 
 ---
 
 # Roadmap
 
 ## AXE 1 - Habit Manager
+
+Statut : terminé
 
 Objectif : Finaliser le système complet de gestion des habitudes.
 
@@ -203,6 +198,8 @@ Fonctionnalités :
 ---
 
 ## AXE 2 - Gestion scolaire
+
+Statut : en cours (partie 1 - flashcards)
 
 Objectif : Centraliser les révisions et les cours dans AXE. La mise à jour se fait en deux parties.
 
