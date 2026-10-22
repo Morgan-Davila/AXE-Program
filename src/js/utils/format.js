@@ -144,14 +144,30 @@ export function streakTier(streak) {
 
 
 //human made
-export function getFolderTextualPath (folderId) {
-    const pathArray = getFolderPath(folderId);
+export function getFolderTextualPath (mode, folderId) {
 
-    const textPath = pathArray.map(folder => folder.name);
+    switch (mode) {
+        case "textual" : {
+            const pathArray = getFolderPath(folderId);
 
-    textPath.unshift("Racine");
+            const textPath = pathArray.map(folder => folder.name);
 
-    const finalTextPath = textPath.join(" > ");
+            textPath.unshift("Racine");
 
-    return finalTextPath;
+            const finalTextPath = textPath.join(" > ");
+
+            return finalTextPath; // ex return : Racine > Histoire
+        }
+
+        case "array" : {
+            const pathArray = getFolderPath(folderId);
+
+            const textPath = pathArray.map(folder => folder.name);
+
+            textPath.unshift("Racine");
+            
+            return textPath;  // ex return : ['Racine', 'Histoire']
+        }
+    }
+    
 }
