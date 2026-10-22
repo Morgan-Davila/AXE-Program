@@ -19,7 +19,11 @@ import { flashcardBox, renderFlashcard } from "./scolarUI.js";
 export function setupFlashcard () {
     //lancement des flashcards de test
     if (!exists(flashcardBox)) return;
+
     flashcardBox.replaceChildren(...renderFlashcard(flashcardsArray))
+
+
+    const rootFlashcards = flashcardsArray.filter(f => f.parentId === null)
 }
 
 

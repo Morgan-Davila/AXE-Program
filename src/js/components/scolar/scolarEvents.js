@@ -229,8 +229,6 @@ export function setupTestFlashcardGeneration () {
     if (!flashcardTestButton) return;
     
     flashcardTestButton.addEventListener("click", (e) => {
-        debug(faker.word.noun())
-        debug(faker.lorem.paragraph())
 
         const content = {
             front : editors.front.setText(faker.word.noun()),

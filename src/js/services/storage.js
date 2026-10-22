@@ -424,6 +424,29 @@ export function clearFolders() {
 //end AI made
 
 
+export function renameFolder (folderId, newName) {
+    updateFolder(folderId, {name : newName} );
+}
+
+export function isRootFolder (folder) {
+    if (!folder) return;
+    if (folder.parentId === null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export function countAllFlashcards (folderId) {
+    let total = getFolderFlashcards(folderId).length;
+
+    for (const subFolder of getSubFolders(folderId)) {
+        total += countAllFlashcards(subFolder.id);
+    }
+    
+    return total;
+}
+
 
 //AI made
 //--------------------

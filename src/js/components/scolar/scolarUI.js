@@ -211,3 +211,8 @@ export function renderFlashcard (packet) {
 
     return flashcards;
 }
+
+
+export function renderFolder (data, destination) {
+    
+}
