@@ -1,6 +1,6 @@
 import { createDebug } from "../../debug.js";
 
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement scolarUI.js"); //test
@@ -238,20 +238,26 @@ function folderSvg(gradientId) {
 }
 
 // Crée le bouton d'un dossier ; le nom passe par textContent (jamais interprété comme du HTML)
-export function renderFolder(folder) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.classList.add("folder");
-    button.dataset.folderId = folder.id;
-    button.innerHTML = folderSvg(`folder-reflet-${folder.id}`);
+export function renderFolder(packet) {
+    let folders = [];
+    for (let folder of packet) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.classList.add("folder");
+        button.dataset.folderId = folder.id;
+        button.innerHTML = folderSvg(`folder-reflet-${folder.id}`);
 
-    const title = document.createElement("span");
-    title.classList.add("folder__title");
-    title.textContent = folder.name;
-    // nom complet en info-bulle, utile quand il est tronqué
-    button.title = folder.name;
+        const title = document.createElement("span");
+        title.classList.add("folder__title");
+        title.textContent = folder.name;
+        // nom complet en info-bulle, utile quand il est tronqué
+        button.title = folder.name;
 
-    button.appendChild(title);
-    return button;
+        button.appendChild(title);  
+
+        folders.push(folder);
+    }
+    
+    return folders;
 }
 //end AI made
