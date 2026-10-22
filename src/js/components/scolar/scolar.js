@@ -5,7 +5,7 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement scolar.js"); //test
 
-import { flashcardsArray } from "../../services/storage.js";
+import { flashcardsArray, foldersArray, getRootFlashcards, getRootFolders } from "../../services/storage.js";
 import {
     safeQuery,
     safeQueryAll,
@@ -13,25 +13,28 @@ import {
     exists
 } from "../../utils/dom.js"
 
-import { flashcardBox, renderFlashcard } from "./scolarUI.js";
+import { flashcardBox, renderFlashcard, renderFolder } from "./scolarUI.js";
 
 
-export function setupFlashcard () {
+export function setupRootFlashcard () {
     //lancement des flashcards de test
     if (!exists(flashcardBox)) return;
 
-    flashcardBox.replaceChildren(...renderFlashcard(flashcardsArray))
-
-
-    const rootFlashcards = flashcardsArray.filter(f => f.parentId === null)
+    flashcardBox.append(...renderFlashcard(getRootFlashcards()))
 }
 
+export function setupRootFolders () {
+    if (!exists(flashcardBox)) return;
+
+    flashcardBox.append(...renderFolder(getRootFolders()))
+}
 
 export function createFlashcard (content) {
     return {
         id: Date.now(),
         createdAt: Date.now(),
-        content : content
+        content : content,
+        parentId : null
     }
 }
 

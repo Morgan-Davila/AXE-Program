@@ -2,13 +2,6 @@
 import  "./debug.js";
 
 //AI made
-// données de test des dossiers/flashcards (ajoutées une seule fois) : à retirer plus tard
-import { seedTestData } from "./services/storage.js";
-seedTestData();
-
-//end AI made
-
-//AI made
 import { setupThemeToggle } from "./components/theme/themeEvents.js";
 setupThemeToggle();
 
@@ -98,8 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMidnightRefresh();
 });
 
-import { setupFlashcard } from "./components/scolar/scolar.js";
-setupFlashcard();
+import { setupRootFlashcard, setupRootFolders } from "./components/scolar/scolar.js";
+setupRootFlashcard();
+setupRootFolders();
 
 
 import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";

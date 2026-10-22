@@ -43,7 +43,7 @@ import {
 import { 
     createFlashcard, 
     editDataFlashcard, 
-    setupFlashcard 
+    setupRootFlashcard 
 } from "./scolar.js";
 
 import { 
@@ -120,7 +120,7 @@ export function setupFlashcardSaving () {
                     addFlashcard(flashcard);
                     closeFlashcardPopup();
                     resetFlashcardEditor();
-                    setupFlashcard();
+                    setupRootFlashcard();
                     setupFlashcardFlip();
 
                     break;
@@ -132,7 +132,7 @@ export function setupFlashcardSaving () {
 
                     updateFlashcard(actualId, flashcard);
 
-                    setupFlashcard();
+                    setupRootFlashcard();
                     setupFlashcardFlip();
                     closeFlashcardPopup();
                     resetFlashcardEditor();
@@ -239,7 +239,7 @@ export function setupTestFlashcardGeneration () {
         const flashcard = createFlashcard(content);
         addFlashcard(flashcard);
         resetFlashcardEditor();
-        setupFlashcard();
+        setupRootFlashcard();
         setupFlashcardFlip();
     });
 }
@@ -247,12 +247,13 @@ export function setupTestFlashcardGeneration () {
 
 export function setupFolderEvents () {
     if (!exists(flashcardBox)) return;
-    
+
     flashcardBox.addEventListener("click", (e) => {
         const folder = e.target.closest(".folder");
         if (!folder) return;
 
         const folderId = folder.dataset.folderId;
-        debug(folderId)
+        
+        
     })
 }
