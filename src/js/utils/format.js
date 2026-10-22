@@ -1,6 +1,7 @@
 import { createDebug } from "../debug.js";
+import { getFolder, getFolderPath } from "../services/storage.js";
 
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement format.js");
@@ -137,4 +138,22 @@ export function streakTier(streak) {
 
     return "cold";
 
+}
+
+
+
+
+//human made
+export function getFoldertextualPath (folderId) {
+    const pathArray = getFolderPath(folderId);
+    debug(pathArray);
+
+    const textPath = pathArray.map(folder => folder.name);
+
+
+    textPath.unshift("Racine");
+
+    const finalTextPath = textPath.join(" > ");
+
+    return finalTextPath;
 }
