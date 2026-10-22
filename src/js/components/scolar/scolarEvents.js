@@ -22,7 +22,9 @@ import {
     //AI made
     removeFlashcardCard,
     getVisibleFlashcardFace,
-    flashcardTestButton
+    flashcardTestButton,
+    clearFlashcardsBox,
+    renderFolder
 } from "./scolarUI.js";
 
 import { 
@@ -37,6 +39,8 @@ import {
     deleteFlashcard, 
     flashcardsArray, 
     getFlashcard, 
+    getFolderFlashcards, 
+    getSubFolders, 
     updateFlashcard 
 } from "../../services/storage.js";
 
@@ -254,6 +258,15 @@ export function setupFolderEvents () {
 
         const folderId = folder.dataset.folderId;
         
-        
+        debug(folderId)
+
+        const foldersFlashcards = getFolderFlashcards(folderId);
+        const foldersFolders = getSubFolders(folderId);
+
+        clearFlashcardsBox();
+
+        flashcardBox.append(...renderFolder(foldersFolders));
+        flashcardBox.append(...renderFlashcard(foldersFlashcards));
+        setupFlashcardFlip();
     })
 }
