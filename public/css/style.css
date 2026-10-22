@@ -96,6 +96,13 @@
   --flame-high: #FB5607;
   --header-bg: rgba(255, 255, 255, 0.72);
   --scrollbar-thumb: rgba(15, 82, 186, 0.25);
+  --folder-back: #D97706;
+  --folder-front: #F59E0B;
+  --folder-sheet-1: #A1A1AA;
+  --folder-sheet-2: #D4D4D8;
+  --folder-sheet-3: #E4E4E7;
+  --folder-title: #FFFFFF;
+  --folder-shadow: rgba(11, 18, 32, 0.2);
 }
 
 /* AI made — le mode clair est désormais privilégié par défaut : plus de
@@ -124,6 +131,13 @@
   --flame-high: #FF6B4A;
   --header-bg: rgba(18, 23, 41, 0.72);
   --scrollbar-thumb: rgba(76, 134, 230, 0.35);
+  --folder-back: #B45309;
+  --folder-front: #D97706;
+  --folder-sheet-1: #71717A;
+  --folder-sheet-2: #A1A1AA;
+  --folder-sheet-3: #D4D4D8;
+  --folder-title: #FFFFFF;
+  --folder-shadow: rgba(0, 0, 0, 0.45);
 }
 
 /* ==========================================================================
@@ -2718,6 +2732,88 @@ td:last-child {
 }
 @media (prefers-reduced-motion: reduce) {
   .flashcardSwitch::after {
+    transition: none;
+  }
+}
+
+.folder {
+  position: relative;
+  width: 300px;
+  aspect-ratio: 252/184;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.folder:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.folder__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.folder__back {
+  fill: var(--folder-back);
+  transition: filter var(--dur-base) var(--ease);
+}
+.folder__front {
+  fill: var(--folder-front);
+}
+.folder__sheet--1 {
+  fill: var(--folder-sheet-1);
+}
+.folder__sheet--2 {
+  fill: var(--folder-sheet-2);
+}
+.folder__sheet--3 {
+  fill: var(--folder-sheet-3);
+}
+.folder__sheet, .folder__frontGroup {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform var(--dur-base) var(--ease);
+}
+.folder__title {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 9%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  color: var(--folder-title);
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  transition: transform var(--dur-base) var(--ease);
+}
+.folder:hover .folder__back, .folder:focus-visible .folder__back {
+  filter: drop-shadow(0 12px 14px var(--folder-shadow));
+}
+.folder:hover .folder__sheet--1, .folder:focus-visible .folder__sheet--1 {
+  transform: scaleY(0.94);
+}
+.folder:hover .folder__sheet--2, .folder:focus-visible .folder__sheet--2 {
+  transform: scaleY(0.87);
+}
+.folder:hover .folder__sheet--3, .folder:focus-visible .folder__sheet--3 {
+  transform: scaleY(0.79);
+}
+.folder:hover .folder__frontGroup, .folder:focus-visible .folder__frontGroup {
+  transform: scaleY(0.69);
+}
+.folder:hover .folder__title, .folder:focus-visible .folder__title {
+  transform: translateY(5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .folder__back, .folder__sheet, .folder__frontGroup, .folder__title {
     transition: none;
   }
 }

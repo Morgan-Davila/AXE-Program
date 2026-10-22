@@ -213,6 +213,45 @@ export function renderFlashcard (packet) {
 }
 
 
-export function renderFolder (data, destination) {
-    
+//AI made : formes du dossier (sans style ni couleur : tout est dans _folder.scss)
+// gradientId doit être unique dans la page, d'où l'id du dossier dedans
+function folderSvg(gradientId) {
+    const frontShape = "M16 160 H224 A16 16 0 0 0 240 144 V4 A16 16 0 0 0 224 -12 H112 C98 -12 96 4 82 4 H16 A16 16 0 0 0 0 20 V144 A16 16 0 0 0 16 160 Z";
+
+    return `
+        <svg class="folder__svg" viewBox="-6 -20 252 184" aria-hidden="true">
+            <defs>
+                <linearGradient id="${gradientId}" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+                    <stop offset="1" stop-color="#fff" stop-opacity=".22"/>
+                </linearGradient>
+            </defs>
+            <path class="folder__back" d="M16 160 H224 A16 16 0 0 0 240 144 V16 A16 16 0 0 0 224 0 H92 C78 0 78 -16 64 -16 H16 A16 16 0 0 0 0 0 V144 A16 16 0 0 0 16 160 Z"/>
+            <rect class="folder__sheet folder__sheet--1" x="4" y="4" width="232" height="152" rx="16"/>
+            <rect class="folder__sheet folder__sheet--2" x="4" y="4" width="232" height="152" rx="16"/>
+            <rect class="folder__sheet folder__sheet--3" x="4" y="4" width="232" height="152" rx="16"/>
+            <g class="folder__frontGroup">
+                <path class="folder__front" d="${frontShape}"/>
+                <path d="${frontShape}" fill="url(#${gradientId})"/>
+            </g>
+        </svg>`;
 }
+
+// Crée le bouton d'un dossier ; le nom passe par textContent (jamais interprété comme du HTML)
+export function renderFolder(folder) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("folder");
+    button.dataset.folderId = folder.id;
+    button.innerHTML = folderSvg(`folder-reflet-${folder.id}`);
+
+    const title = document.createElement("span");
+    title.classList.add("folder__title");
+    title.textContent = folder.name;
+    // nom complet en info-bulle, utile quand il est tronqué
+    button.title = folder.name;
+
+    button.appendChild(title);
+    return button;
+}
+//end AI made

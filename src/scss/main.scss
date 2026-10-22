@@ -24,6 +24,9 @@
 
 @use 'components/scolar/_scolar-dashboard.scss';
 @use 'components/scolar/_scolar-popup.scss';
+//AI made
+@use 'components/scolar/_folder.scss';
+//end AI made
 
 //AI made : les effets (ex. .error) restent en dernier pour passer par-dessus les styles des composants
 @use 'components/_effects.scss';

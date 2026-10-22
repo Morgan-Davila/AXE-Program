@@ -116,6 +116,16 @@
 
     --header-bg: rgba(255, 255, 255, 0.72);
     --scrollbar-thumb: rgba(15, 82, 186, 0.25);
+
+    //AI made : dossiers de flashcards (couche arrière, couche avant, feuilles du fond vers l'avant)
+    --folder-back: #D97706;
+    --folder-front: #F59E0B;
+    --folder-sheet-1: #A1A1AA;
+    --folder-sheet-2: #D4D4D8;
+    --folder-sheet-3: #E4E4E7;
+    --folder-title: #FFFFFF;
+    --folder-shadow: rgba(11, 18, 32, 0.2);
+    //end AI made
 }
 
 /* AI made — le mode clair est désormais privilégié par défaut : plus de
@@ -150,4 +160,14 @@
 
     --header-bg: rgba(18, 23, 41, 0.72);
     --scrollbar-thumb: rgba(76, 134, 230, 0.35);
+
+    //AI made : dossiers un peu plus sombres pour ne pas éblouir sur fond sombre
+    --folder-back: #B45309;
+    --folder-front: #D97706;
+    --folder-sheet-1: #71717A;
+    --folder-sheet-2: #A1A1AA;
+    --folder-sheet-3: #D4D4D8;
+    --folder-title: #FFFFFF;
+    --folder-shadow: rgba(0, 0, 0, 0.45);
+    //end AI made
 }

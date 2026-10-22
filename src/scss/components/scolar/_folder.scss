@@ -1,0 +1,76 @@
+//AI made : dossier de flashcards (markup généré par renderFolder dans scolarUI.js)
+// Le SVG ne contient que les formes : toutes les couleurs viennent des variables --folder-*
+// de _tokens.scss, pour suivre le thème clair/sombre.
+// Au survol ou au focus clavier, les feuilles et la face avant s'abaissent (le dossier "s'ouvre").
+.folder {
+    position: relative;
+    width: 300px;
+    // même proportions que le viewBox du SVG (252 x 184) : les positions en % du titre restent justes
+    aspect-ratio: 252 / 184;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+
+    &:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+    }
+
+    &__svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    &__back { fill: var(--folder-back); transition: filter var(--dur-base) var(--ease); }
+    &__front { fill: var(--folder-front); }
+    &__sheet--1 { fill: var(--folder-sheet-1); }
+    &__sheet--2 { fill: var(--folder-sheet-2); }
+    &__sheet--3 { fill: var(--folder-sheet-3); }
+
+    // feuilles et face avant s'écrasent vers le bas, depuis leur propre bord inférieur
+    &__sheet, &__frontGroup {
+        transform-box: fill-box;
+        transform-origin: bottom center;
+        transition: transform var(--dur-base) var(--ease);
+    }
+
+    // titre en HTML (et non en <text> SVG) : il peut être tronqué avec "…" et n'est pas écrasé par l'animation
+    &__title {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: 9%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: left;
+        color: var(--folder-title);
+        font-family: var(--font-ui);
+        font-size: var(--text-lg);
+        font-weight: 700;
+        transition: transform var(--dur-base) var(--ease);
+    }
+
+    &:hover, &:focus-visible {
+        .folder__back { filter: drop-shadow(0 12px 14px var(--folder-shadow)); }
+        .folder__sheet--1 { transform: scaleY(0.94); }
+        .folder__sheet--2 { transform: scaleY(0.87); }
+        .folder__sheet--3 { transform: scaleY(0.79); }
+        .folder__frontGroup { transform: scaleY(0.69); }
+        // suit la face avant, qui descend un peu en s'écrasant
+        .folder__title { transform: translateY(5px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__back, &__sheet, &__frontGroup, &__title {
+            transition: none;
+        }
+    }
+}
+//end AI made
