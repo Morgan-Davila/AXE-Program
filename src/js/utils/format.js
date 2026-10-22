@@ -1,5 +1,5 @@
 import { createDebug } from "../debug.js";
-import { getFolder, getFolderPath } from "../services/storage.js";
+import { getFolderPath } from "../services/storage.js";
 
 const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);
@@ -144,12 +144,10 @@ export function streakTier(streak) {
 
 
 //human made
-export function getFoldertextualPath (folderId) {
+export function getFolderTextualPath (folderId) {
     const pathArray = getFolderPath(folderId);
-    debug(pathArray);
 
     const textPath = pathArray.map(folder => folder.name);
-
 
     textPath.unshift("Racine");
 
