@@ -14,8 +14,10 @@ import {
 } from "../../utils/dom.js"
 
 import {
-    flashcardsArray
+    flashcardsArray,
+    getFolderPath
 } from "../../services/storage.js"
+import { getFolderTextualPath } from "../../utils/format.js";
 export const flashcardBox = safeQuery(".flashcardBox");
 
 export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
@@ -32,6 +34,8 @@ export const flashcardTestButton = safeQuery(".flashcardTestButton");
 export const editableFlashcard = safeQuery(".editableFlashcard");
 export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 
+//humain made
+export const breadcrumbPlaceholder = safeQuery(".breadcrumb");
 
 //AI made
 export function showFlashcardPopup() {
@@ -268,3 +272,38 @@ export function clearFlashcardsBox () {
 
     flashcardBox.innerHTML = "";
 }
+
+
+
+
+export function actualizeFoldersLevel () {
+    flashcardBox.dataset.folderLevel = null;
+
+    const actualFolderId = flashcardBox.dataset.actualFolderId;
+
+    debug(getFolderPath(actualFolderId));
+}
+
+export function actualizeDisplayFolderPath () {
+    const breadcrumb = document.createElement("ol");
+    breadcrumb.classList.add("breadcrumb");
+
+    const folderId = flashcardBox.dataset.actualFolderId;
+    const folderPathBreadcrumb = getFolderTextualPath("array", folderId);
+
+    for (let name of folderPathBreadcrumb) {
+        const li = document.createElement("li");
+        li.classList.add("breadcrumb__item");
+
+        const button = document.createElement("button");
+        button.classList.add("breadcrumb__link")
+        button.type = "button";
+        button.textContent = name;
+        
+        li.appendChild(button);
+
+        breadcrumb.appendChild(li);
+    }
+
+    return breadcrumb;
+} 
