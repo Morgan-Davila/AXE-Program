@@ -261,3 +261,10 @@ export function renderFolder(packet) {
     
     return folders;
 }
+
+
+export function clearFlashcardsBox () {
+    if (!exists(flashcardBox)) return;
+
+    flashcardBox.innerHTML = "";
+}
