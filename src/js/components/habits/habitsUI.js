@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement habitsUI.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement habitsUI.js");
 
 
 
@@ -250,7 +253,7 @@ export function initTabs(selector = ".tabs") {
     const tabs = safeQueryAll(".tab", root);
     const contents = safeQueryAll(".tab-content", root);
 
-    debug(LOCAL_DEBUG, tabs, contents);
+    debug(tabs, contents);
 
     tabs.forEach(tab => {
         tab.addEventListener("click", (event) => {

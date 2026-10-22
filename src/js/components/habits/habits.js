@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement habits.js"); //test
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement habits.js"); //test
 
 import { habitArray } from "../../services/storage.js";
 import {
@@ -40,7 +43,7 @@ export function getFrequency() {
 
     const tab = safeQuery(".tab.activeTabs")?.dataset.tab;
 
-    debug(LOCAL_DEBUG, tab);
+    debug(tab);
 
     switch (tab) {
         case tabs.interval.id : {
@@ -122,7 +125,7 @@ export function setupTypePropositionSelection () {
                 typesArray.push(habit.type);
             }
         }
-        debug(LOCAL_DEBUG, typesArray)
+        debug(typesArray)
 
 
         renderTypesProposition(typesArray); //initial rendering
@@ -130,7 +133,7 @@ export function setupTypePropositionSelection () {
 }
 
 export function getAllTypes() {
-    debug(LOCAL_DEBUG, typesArray)
+    debug(typesArray)
     return typesArray;
 }
 

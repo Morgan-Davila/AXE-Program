@@ -1,9 +1,12 @@
 //AI made
 // Logique du thème clair/sombre (aucun accès au DOM ici).
 
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement theme.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement theme.js");
 
 
 

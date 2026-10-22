@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = true;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement scolarEvents.js"); //test
+const LOCAL_DEBUG = true;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement scolarEvents.js"); //test
 
 import {
     flashcardCreateButton,
@@ -213,7 +216,7 @@ async function copyFlashcardFace(card) {
         showSuccessPopup(side === "back" ? "Verso copié" : "Recto copié");
     } catch (error) {
         // presse-papier refusé (page non sécurisée, permission refusée…)
-        debug(LOCAL_DEBUG, error);
+        debug(error);
         showErrorPopup("Impossible de copier la flashcard.");
     }
 }
@@ -226,8 +229,8 @@ export function setupTestFlashcardGeneration () {
     if (!flashcardTestButton) return;
     
     flashcardTestButton.addEventListener("click", (e) => {
-        debug(LOCAL_DEBUG, faker.word.noun())
-        debug(LOCAL_DEBUG, faker.lorem.paragraph())
+        debug(faker.word.noun())
+        debug(faker.lorem.paragraph())
 
         const content = {
             front : editors.front.setText(faker.word.noun()),

@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement dashboard.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement dashboard.js");
 
 import { habitArray } from "../../services/storage.js";
 //AI made
@@ -212,7 +215,7 @@ export function resetMissedStreaks (habitArray, now = Date.now()) {
         resetCount++;
     }
 
-    debug(LOCAL_DEBUG, `resetMissedStreaks : ${resetCount} streak(s) remis à 0`);
+    debug(`resetMissedStreaks : ${resetCount} streak(s) remis à 0`);
 
     return resetCount;
 }

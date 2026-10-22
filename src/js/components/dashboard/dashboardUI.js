@@ -8,9 +8,12 @@ import {
 import { streakTier } from "./../../utils/format.js";
 import { countUp } from "./../../utils/effects.js";
 
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement dashboardUI.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement dashboardUI.js");
 
 export const recallPlace = safeQuery(".habits");
 
@@ -70,7 +73,7 @@ export function renderRecalls (dataArray, isDone) {
 
 
 // export const checkboxRecalls = safeQueryAll(".habits__cell__checkmark");
-// debug(LOCAL_DEBUG, checkboxRecalls);
+// debug(checkboxRecalls);
 
 
 

@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement error.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement error.js");
 
 
 //AI made : variant "success" pour réutiliser la même popup en vert (ex. "Recto copié")

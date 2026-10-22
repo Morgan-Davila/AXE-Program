@@ -20,7 +20,16 @@ Il n'y a ni étape de build ni bundler — `index.html` et `public/pages/*.html`
 
 **Multi-pages, sans routeur.** `index.html` (dashboard) et `public/pages/{habits,schedule,graphs-stats}.html` sont des pages statiques distinctes reliées par de simples liens `<a href>` (voir le header dans `index.html`). Chaque page charge `src/js/main.js` en tant que module ES ; il n'y a pas de point d'entrée par page, donc `main.js` appelle les fonctions d'initialisation de chaque fonctionnalité sans distinction (les recherches DOM renvoient `null` sur les pages où le markup correspondant est absent, et le code en aval est censé vérifier ces `null` via les helpers de `utils/dom.js`).
 
-**Système de debug global (`src/js/debug.js`).** Définit `window.AXE = { DEBUG, VERSION, ... }` et une fonction globale `window.debug(localDebug, ...args)` — pas un export ES. Chaque autre module déclare son propre `const LOCAL_DEBUG = true|false` en haut du fichier et appelle la fonction globale `debug(LOCAL_DEBUG, ...)` sans l'importer. Comme `debug()` est utilisé partout sans import, `debug.js` doit être le premier import dans `main.js`. Pour un nouveau module, reprends ce même schéma (const locale `LOCAL_DEBUG` + appels à `debug()` global) plutôt que d'importer un logger.
+**Système de debug (`src/js/debug.js`).** Définit `window.AXE = { DEBUG, VERSION, ... }` et exporte `createDebug(localDebug)`, qui renvoie `console.log` « bindé » (préfixé par `[VERSION]`) si `AXE.DEBUG` ou `localDebug` est vrai, sinon une fonction vide. Comme c'est le module appelant qui exécute `console.log`, la console affiche la vraie origine `fichier:ligne` (une fonction qui envelopperait `console.log` afficherait toujours `debug.js`). Chaque module reprend ce schéma en haut du fichier :
+```js
+import { createDebug } from "../../debug.js";
+
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("message", valeur);
+```
+Le test des drapeaux est fait une seule fois, au chargement du module : changer `AXE.DEBUG` depuis la console demande de recharger la page.
 
 **Couche de stockage (`src/js/services/storage.js`).** Basée sur localStorage. La clé `"habitArray"` contient les habitudes : le module exporte un tableau mutable, `habitArray`, ainsi que `addHabit/deleteHabit/updateHabit/getHabit/clearHabits`, qui mutent tous `habitArray` et appellent `saveHabits()` pour persister. La clé `"axeTheme"` (`"light"`/`"dark"`) contient le thème, via `loadTheme()`/`saveTheme()`. Toute nouvelle fonctionnalité nécessitant de la persistance devrait suivre ce même schéma charger/muter/sauvegarder-dans-localStorage plutôt que d'introduire un autre pattern.
 

@@ -2,9 +2,12 @@
 // Effets visuels génériques (compteurs animés, confettis), repris du redesign.
 // Aucune logique métier ici : uniquement du DOM décoratif.
 
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement effects.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement effects.js");
 
 
 

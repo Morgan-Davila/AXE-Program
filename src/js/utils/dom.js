@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement dom.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement dom.js");
 
 
 
@@ -13,7 +16,7 @@ export function safeQuery(selector, parent = document) {
     const element = parent.querySelector(selector);
 
     if (!element) {
-        debug(LOCAL_DEBUG, `Element introuvable : ${selector}`);
+        debug(`Element introuvable : ${selector}`);
     }
 
     return element;
@@ -31,7 +34,7 @@ export function safeQueryAll(selector, parent = document) {
     const elements = parent.querySelectorAll(selector);
 
     if (elements.length === 0) {
-        debug(LOCAL_DEBUG, `Aucun élément trouvé : ${selector}`);
+        debug(`Aucun élément trouvé : ${selector}`);
     }
 
     return elements;
@@ -49,7 +52,7 @@ export function safeId(id) {
     const element = document.getElementById(id);
 
     if (!element) {
-        debug(LOCAL_DEBUG, `Element introuvable : #${id}`);
+        debug(`Element introuvable : #${id}`);
     }
 
     return element;

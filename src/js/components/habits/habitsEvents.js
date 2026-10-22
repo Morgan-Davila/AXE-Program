@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement habitsEvents.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement habitsEvents.js");
 
 
 import {
@@ -113,11 +116,11 @@ export function setupHabitsForm() {
 
         switch (habitPopupMode) {
             case "create" : {
-                debug(LOCAL_DEBUG, data);
+                debug(data);
 
                 const habit = createHabit(data);
 
-                debug(LOCAL_DEBUG, habit);
+                debug(habit);
                 addHabit(habit);
                 //AI made - garde la recherche en cours affichée
                 renderHabits(getVisibleHabits());
@@ -184,13 +187,13 @@ export function setupPopupTypePicker () {
     if (!habitsFormInput.type || !typeProposition) return;
 
     habitsFormInput.type.addEventListener("focus", () =>{
-        debug(LOCAL_DEBUG, "Entré");
+        debug("Entré");
 
         typeProposition.classList.toggle("hiddenTypeProposition")
     });
 
     habitsFormInput.type.addEventListener("blur", () =>{
-        debug(LOCAL_DEBUG, "Sortie");
+        debug("Sortie");
 
         typeProposition.classList.toggle("hiddenTypeProposition")
     });
@@ -201,14 +204,14 @@ export function setupPopupTypePicker () {
 
         if (!element) return;
 
-        debug(LOCAL_DEBUG, element.textContent);
+        debug(element.textContent);
 
         habitsFormInput.type.value = element.textContent;
     });
 
     habitsFormInput.type.addEventListener("input", () => {
         const value = habitsFormInput.type.value;
-        debug(LOCAL_DEBUG, value)
+        debug(value)
         const types = searchTypes(value);
         
         renderTypesProposition(types)

@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement date.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement date.js");
 
 import {
     safeQuery,

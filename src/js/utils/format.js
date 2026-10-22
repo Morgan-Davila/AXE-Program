@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement format.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement format.js");
 
 
 
@@ -15,7 +18,7 @@ export function formatDate(timestamp) {
     const date = new Date(Number(timestamp));
 
     if (Number.isNaN(date.getTime())) {
-        debug(LOCAL_DEBUG, "formatDate : valeur invalide", timestamp);
+        debug("formatDate : valeur invalide", timestamp);
         return "";
     }
 
@@ -28,7 +31,7 @@ export function formatTime(timestamp) {
     const date = new Date(Number(timestamp));
 
     if (Number.isNaN(date.getTime())) {
-        debug(LOCAL_DEBUG, "formatTime : valeur invalide", timestamp);
+        debug("formatTime : valeur invalide", timestamp);
         return "";
     }
 
@@ -71,7 +74,7 @@ export function joinFrench(list) {
 export function translateFrequency(data) {
 
     if (!data?.frequency) {
-        debug(LOCAL_DEBUG, "translateFrequency : fréquence absente", data);
+        debug("translateFrequency : fréquence absente", data);
         return "";
     }
 
@@ -95,7 +98,7 @@ export function translateFrequency(data) {
             ];
 
             if (!Array.isArray(value)) {
-                debug(LOCAL_DEBUG, "translateFrequency weekly : valeur invalide", value);
+                debug("translateFrequency weekly : valeur invalide", value);
                 return "";
             }
 
@@ -106,13 +109,13 @@ export function translateFrequency(data) {
 
         case "monthly":
             if (!Array.isArray(value)) {
-                debug(LOCAL_DEBUG, "translateFrequency monthly : valeur invalide", value);
+                debug("translateFrequency monthly : valeur invalide", value);
                 return "";
             }
             return `Chaque ${joinFrench(value)} du mois`;
 
         default:
-            debug(LOCAL_DEBUG, "translateFrequency : type inconnu", type);
+            debug("translateFrequency : type inconnu", type);
             return "";
     }
 

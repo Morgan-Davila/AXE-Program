@@ -1,9 +1,12 @@
 //AI made
 // Application du thème sur la page : attribut data-theme sur <html>, lu par _tokens.scss.
 
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement themeUI.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement themeUI.js");
 
 
 
@@ -33,6 +36,6 @@ export function applyTheme(theme) {
 
     themeToggleButton?.setAttribute("aria-pressed", String(theme === "dark"));
 
-    debug(LOCAL_DEBUG, "Thème appliqué :", theme);
+    debug("Thème appliqué :", theme);
 
 }

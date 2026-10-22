@@ -5,9 +5,12 @@ window.AXE = {
     DEBUG: false
 };
 
+const noop = () => {};
 
-window.debug = function (localDebug, ...args) {
-    if (window.AXE.DEBUG || localDebug) {
-        console.log(`[${window.AXE.VERSION}]`, ...args);
-    }
-};
+// Renvoie console.log "bindé" (et non une fonction qui l'enveloppe) : c'est donc le module appelant
+// qui exécute console.log, et la console affiche sa vraie position fichier:ligne.
+// Le test est fait une seule fois, au chargement du module appelant.
+export function createDebug(localDebug) {
+    if (!(window.AXE.DEBUG || localDebug)) return noop;
+    return console.log.bind(console, `[${window.AXE.VERSION}]`);
+}

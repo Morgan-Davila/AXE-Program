@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement storage.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement storage.js");
 
 
 // services/storage.js
@@ -530,7 +533,7 @@ function createTestFolders(treeFolders, parentId) {
 export function seedTestData() {
     const alreadySeeded = foldersArray.some(folder => folder.isTest);
     if (alreadySeeded) {
-        debug(LOCAL_DEBUG, "Données de test déjà présentes");
+        debug("Données de test déjà présentes");
         return;
     }
 
@@ -541,7 +544,7 @@ export function seedTestData() {
 
     saveFolders();
     saveFlashcards();
-    debug(LOCAL_DEBUG, "Données de test ajoutées");
+    debug("Données de test ajoutées");
 }
 
 // Retire uniquement les données de test

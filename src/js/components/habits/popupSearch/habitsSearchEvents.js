@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement habitsSearchEvents.js");
 
 
 import {
@@ -178,8 +181,8 @@ export function setupPopupOverlay () {
 
     if (!habitsCommandIcons.search || !searchHabitsPopupOverlay) return;
 
-    debug(LOCAL_DEBUG, habitsCommandIcons.search)
-    debug(LOCAL_DEBUG, habitsPopupOverlay)
+    debug(habitsCommandIcons.search)
+    debug(habitsPopupOverlay)
 
     habitsCommandIcons.search.addEventListener("click", () =>{
         openSearchHabitsPopup();

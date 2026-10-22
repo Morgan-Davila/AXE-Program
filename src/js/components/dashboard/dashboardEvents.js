@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement dashboardEvents.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement dashboardEvents.js");
 
 import { getHabit, habitArray, updateHabit } from "../../services/storage.js";
 import {
@@ -20,7 +23,7 @@ import { burstConfetti } from "./../../utils/effects.js";
 
 export function setupRecallsCheckmarks () {
     const checkboxRecalls = safeQueryAll(".habits__cell__checkmark");
-    debug(LOCAL_DEBUG, checkboxRecalls)
+    debug(checkboxRecalls)
 
     for (let checkmark of checkboxRecalls) {
         const checkbox = checkmark.querySelector("input[type='checkbox']");
@@ -29,8 +32,8 @@ export function setupRecallsCheckmarks () {
             const checkmarkArticle = event.currentTarget.closest(".habits__cell");
             const checkmarkId = Number(checkmarkArticle.dataset.habitId);
 
-            // debug(LOCAL_DEBUG, checkmarkArticle)
-            // debug(LOCAL_DEBUG, checkmarkId)
+            // debug(checkmarkArticle)
+            // debug(checkmarkId)
             const timestamp = Date.now();
 
             const habit = getHabit(checkmarkId);

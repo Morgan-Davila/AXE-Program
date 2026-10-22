@@ -1,9 +1,12 @@
 //AI made
 // Branche le bouton #themeToggle : bascule, sauvegarde et rafraîchit ce qui ne suit pas le CSS seul.
 
-const LOCAL_DEBUG = false;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement themeEvents.js");
+const LOCAL_DEBUG = false;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement themeEvents.js");
 
 
 

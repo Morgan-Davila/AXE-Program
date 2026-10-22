@@ -1,6 +1,9 @@
-const LOCAL_DEBUG = true;
+import { createDebug } from "../../debug.js";
 
-debug(LOCAL_DEBUG, "Chargement scolarUI.js"); //test
+const LOCAL_DEBUG = true;
+const debug = createDebug(LOCAL_DEBUG);
+
+debug("Chargement scolarUI.js"); //test
 
 
 import {
