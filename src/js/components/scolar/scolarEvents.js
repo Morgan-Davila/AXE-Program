@@ -54,6 +54,7 @@ import {
 
 //AI made : pas de bundler, donc chemin relatif vers node_modules (version française uniquement)
 import { faker } from "../../../../node_modules/@faker-js/faker/dist/locale/fr.js";
+import { safeQueryAll, exists } from "../../utils/dom.js";
 //end AI made
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
@@ -241,4 +242,17 @@ export function setupTestFlashcardGeneration () {
         setupFlashcard();
         setupFlashcardFlip();
     });
+}
+
+
+export function setupFolderEvents () {
+    if (!exists(flashcardBox)) return;
+    
+    flashcardBox.addEventListener("click", (e) => {
+        const folder = e.target.closest(".folder");
+        if (!folder) return;
+
+        const folderId = folder.dataset.folderId;
+        debug(folderId)
+    })
 }
