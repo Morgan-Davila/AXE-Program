@@ -29,6 +29,14 @@ export function setupRootFolders () {
     flashcardBox.append(...renderFolder(getRootFolders()))
 }
 
+export function setupRoot () {
+    if (!exists(flashcardBox)) return;
+    flashcardBox.innerHTML = ""
+    
+    setupRootFolders();
+    setupRootFlashcard();
+    
+}
 export function createFlashcard (content) {
     return {
         id: Date.now(),
