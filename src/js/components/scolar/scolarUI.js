@@ -1,6 +1,6 @@
 import { createDebug } from "../../debug.js";
 
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement scolarUI.js"); //test
@@ -236,6 +236,7 @@ function folderSvg(gradientId) {
             </g>
         </svg>`;
 }
+//end AI mad
 
 // Crée le bouton d'un dossier ; le nom passe par textContent (jamais interprété comme du HTML)
 export function renderFolder(packet) {
@@ -255,9 +256,8 @@ export function renderFolder(packet) {
 
         button.appendChild(title);  
 
-        folders.push(folder);
+        folders.push(button);
     }
     
     return folders;
 }
-//end AI made

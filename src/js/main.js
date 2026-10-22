@@ -91,9 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMidnightRefresh();
 });
 
-import { setupRootFlashcard, setupRootFolders } from "./components/scolar/scolar.js";
-setupRootFlashcard();
-setupRootFolders();
+import { setupRoot } from "./components/scolar/scolar.js";
+setupRoot();
 
 
 import { setupFlashcardFlip} from "./components/scolar/scolarUI.js";
