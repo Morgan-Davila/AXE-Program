@@ -53,46 +53,48 @@ L'objectif est de construire une application complète avec une architecture sol
 src
 ├── assets
 ├── font
-│
 ├── js
-│   ├── main.js
-│   ├── debug.js
-│   │
 │   ├── components
 │   │   ├── calendar
 │   │   ├── dashboard
 │   │   ├── habits
-│   │   │   ├── habits.js
-│   │   │   ├── habitsEvents.js
-│   │   │   ├── habitsUI.js
 │   │   │   └── popupSearch
 │   │   ├── scolar
-│   │   │   ├── scolar.js
-│   │   │   ├── scolarEvents.js
-│   │   │   ├── scolarUI.js
-│   │   │   └── flashcardsEditor.js
 │   │   └── theme
-│   │
 │   ├── services
-│   │   └── storage.js
-│   │
 │   ├── testData
-│   │   └── testData.js
-│   │
 │   └── utils
-│       ├── date.js
-│       ├── dom.js
-│       ├── effects.js
-│       ├── error.js
-│       └── format.js
-│
 └── scss
-    ├── main.scss
-    ├── abstracts   (_tokens.scss : variables CSS clair/sombre)
+    ├── abstracts
     ├── base
-    ├── layout      (header, footer, mise en page)
-    └── components  (dashboard, habitManager, scolar, calendar, graph)
+    ├── components
+    │   ├── calendar
+    │   ├── dashboard
+    │   ├── graph
+    │   ├── habitManager
+    │   └── scolar
+    └── layout
 ```
+
+| Dossier | Rôle |
+| --- | --- |
+| `assets` | Images et icônes (vide pour l'instant) |
+| `font` | Polices du projet (Inter, Frick Condensed) |
+| `js` | `main.js` (point d'entrée de toutes les pages) et `debug.js` |
+| `js/components` | Une fonctionnalité par dossier, découpée en logique / UI / events |
+| `js/components/calendar` | Calendrier (préparé pour AXE 4) |
+| `js/components/dashboard` | Tableau de bord : habitudes du jour, streaks, graphique de la semaine |
+| `js/components/habits` | Gestionnaire d'habitudes : création, modification, suppression, recherche |
+| `js/components/scolar` | Flashcards et dossiers (AXE 2), éditeur de texte Quill |
+| `js/components/theme` | Bascule mode clair / mode sombre |
+| `js/services` | Accès aux données (localStorage), sans lien avec l'interface |
+| `js/testData` | Jeu de dossiers et de flashcards de test (non chargé par défaut) |
+| `js/utils` | Fonctions réutilisables : DOM, dates, formats, effets, popups d'erreur |
+| `scss` | `main.scss` importe toutes les feuilles de style |
+| `scss/abstracts` | Variables CSS (couleurs, espacements…) du thème clair et du thème sombre |
+| `scss/base` | Styles de base de la page (reset, typographie) |
+| `scss/components` | Styles des composants, un sous-dossier par fonctionnalité |
+| `scss/layout` | Header, footer et mise en page générale |
 
 ---
 
@@ -324,7 +326,7 @@ fonctionnalité → utilisation → amélioration → refactorisation.
 Cloner le projet :
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Morgan-Davila/AXE-Program.git
 ```
 
 Installer les dépendances :
