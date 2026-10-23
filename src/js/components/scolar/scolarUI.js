@@ -15,7 +15,9 @@ import {
 
 import {
     flashcardsArray,
-    getFolderPath
+    getFolderFlashcards,
+    getFolderPath,
+    getSubFolders
 } from "../../services/storage.js"
 import { getFolderTextualPath } from "../../utils/format.js";
 export const flashcardBox = safeQuery(".flashcardBox");
@@ -309,3 +311,19 @@ export function actualizeFolderBreadcrumb () {
 
     breadcrumbPlaceholder.appendChild(breadcrumb);
 } 
+
+
+export function displayFolder (folderId) {
+    const foldersFlashcards = getFolderFlashcards(folderId); //folders's flashcards
+    const foldersFolders = getSubFolders(folderId); //folders's folders
+
+    clearFlashcardsBox();
+
+    flashcardBox.append(...renderFolder(foldersFolders));
+    flashcardBox.append(...renderFlashcard(foldersFlashcards));
+    setupFlashcardFlip();
+    flashcardBox.dataset.actualFolderId = folderId;
+
+    actualizeFoldersLevel();
+    actualizeFolderBreadcrumb();
+}

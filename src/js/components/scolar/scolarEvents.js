@@ -27,7 +27,8 @@ import {
     renderFolder,
     actualizeFoldersLevel,
     actualizeFolderBreadcrumb,
-    breadcrumbPlaceholder
+    breadcrumbPlaceholder,
+    displayFolder
 } from "./scolarUI.js";
 
 import { 
@@ -272,20 +273,9 @@ export function setupFolderEvents () {
         
         debug(folderId)
 
-        const foldersFlashcards = getFolderFlashcards(folderId);
-        const foldersFolders = getSubFolders(folderId);
-
-        clearFlashcardsBox();
-
-        flashcardBox.append(...renderFolder(foldersFolders));
-        flashcardBox.append(...renderFlashcard(foldersFlashcards));
-        setupFlashcardFlip();
-
-        flashcardBox.dataset.actualFolderId = folderId;
-
-        actualizeFoldersLevel();
-        actualizeFolderBreadcrumb();
-        debug(getFolderTextualPath("array", folderId));
+        displayFolder(folderId);
+        
 
     })
 }
+
