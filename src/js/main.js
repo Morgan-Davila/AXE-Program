@@ -105,7 +105,8 @@ import {
     setupFlashcardSaving, 
     setupFlashcardsCommandsButton, 
     setupTestFlashcardGeneration,
-    setupFolderEvents
+    setupFolderEvents,
+    setupBreadCrumbButtonEvents
 } from "./components/scolar/scolarEvents.js";
 setupFlashcardPopup();
 setupFlashcardSaving();
@@ -113,6 +114,7 @@ setupFlashcardSwitch();
 setupFlashcardsCommandsButton();
 setupTestFlashcardGeneration();
 setupFolderEvents();
+setupBreadCrumbButtonEvents();
 
 
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";

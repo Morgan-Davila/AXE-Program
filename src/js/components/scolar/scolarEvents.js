@@ -28,7 +28,8 @@ import {
     actualizeFoldersLevel,
     actualizeFolderBreadcrumb,
     breadcrumbPlaceholder,
-    displayFolder
+    displayFolder,
+    scolarToolbar
 } from "./scolarUI.js";
 
 import { 
@@ -270,12 +271,25 @@ export function setupFolderEvents () {
         if (!folder) return;
 
         const folderId = folder.dataset.folderId;
-        
-        debug(folderId)
 
         displayFolder(folderId);
-        
+        setupBreadCrumbButtonEvents();
 
     })
 }
 
+
+export function setupBreadCrumbButtonEvents () {
+    if (!exists(scolarToolbar)) return ;
+
+    scolarToolbar.addEventListener("click", (e) => {
+        const button = e.target.closest(".breadcrumb__link");
+
+        let folderId = button.dataset.folderId;
+        if (folderId === "null") {
+            folderId = null
+        };
+
+        displayFolder(folderId);
+    })
+}

@@ -11,15 +11,18 @@ import {
     safeQueryAll,
     safeId,
     exists
-} from "../../utils/dom.js"
+} from "../../utils/dom.js";
 
 import {
-    flashcardsArray,
     getFolderFlashcards,
     getFolderPath,
     getSubFolders
-} from "../../services/storage.js"
-import { getFolderTextualPath } from "../../utils/format.js";
+} from "../../services/storage.js";
+
+import { 
+    getFolderTextualPath 
+} from "../../utils/format.js";
+
 export const flashcardBox = safeQuery(".flashcardBox");
 
 export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
@@ -38,7 +41,7 @@ export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 
 //humain made
 export const breadcrumbPlaceholder = safeQuery(".scolarToolbar__breadcrumb");
-
+export const scolarToolbar = safeQuery(".scolarToolbar")
 //AI made
 export function showFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
@@ -282,8 +285,6 @@ export function actualizeFoldersLevel () {
     flashcardBox.dataset.folderLevel = null;
 
     const actualFolderId = flashcardBox.dataset.actualFolderId;
-
-    debug(getFolderPath(actualFolderId));
 }
 
 export function actualizeFolderBreadcrumb () {
@@ -294,11 +295,11 @@ export function actualizeFolderBreadcrumb () {
 
     const folderId = flashcardBox.dataset.actualFolderId;
     const folderPathBreadcrumb = getFolderTextualPath("array", folderId);
-    debug(folderPathBreadcrumb);
+    
 
     for (let info of folderPathBreadcrumb) {
         const name = info.name;
-        debug(name)
+        
         const id = info.id;
 
         const li = document.createElement("li");
