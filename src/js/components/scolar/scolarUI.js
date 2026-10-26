@@ -324,5 +324,5 @@ export function getActualFolderId () {
         folderId = null;
     }
 
-    return folderId;
+    return folderId ?? null;
 }

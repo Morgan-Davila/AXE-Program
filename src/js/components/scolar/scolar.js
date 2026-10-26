@@ -16,7 +16,13 @@ import {
     exists
 } from "../../utils/dom.js"
 
-import { clearFlashcardsBox, flashcardBox, renderFlashcard, renderFolder } from "./scolarUI.js";
+import { 
+    clearFlashcardsBox, 
+    flashcardBox, 
+    getActualFolderId, 
+    renderFlashcard, 
+    renderFolder 
+} from "./scolarUI.js";
 
 
 export function setupRootFlashcard () {
@@ -45,7 +51,7 @@ export function createFlashcard (content) {
         id: Date.now(),
         createdAt: Date.now(),
         content : content,
-        parentId : null
+        parentId : getActualFolderId()
     }
 }
 

@@ -23,7 +23,8 @@ import {
     getVisibleFlashcardFace,
     flashcardTestButton,
     displayFolder,
-    scolarToolbar
+    scolarToolbar,
+    getActualFolderId
 } from "./scolarUI.js";
 
 import { 
@@ -133,6 +134,9 @@ export function setupFlashcardSaving () {
             front: editors.front.getContents(),
             back: editors.back.getContents()
         };
+
+        const folderId = getActualFolderId();
+
         if (checkIfNotEmpty()) {
 
             switch (flashcardPopupMode) {
@@ -141,7 +145,7 @@ export function setupFlashcardSaving () {
                     addFlashcard(flashcard);
                     closeFlashcardPopup();
                     resetFlashcardEditor();
-                    setupRoot();
+                    displayFolder(folderId);
 
                     break;
                 }
@@ -152,7 +156,7 @@ export function setupFlashcardSaving () {
 
                     updateFlashcard(actualId, flashcard);
 
-                    setupRoot();
+                    displayFolder(folderId);
                     closeFlashcardPopup();
                     resetFlashcardEditor();
 
@@ -254,11 +258,12 @@ export function setupTestFlashcardGeneration () {
             front : editors.front.setText(faker.word.noun()),
             back : editors.back.setText(faker.lorem.paragraph())
         }
-
+        const folderId = getActualFolderId();
         const flashcard = createFlashcard(content);
         addFlashcard(flashcard);
         resetFlashcardEditor();
-        setupRoot();
+        displayFolder(folderId);
+        
     });
 }
 
