@@ -273,7 +273,6 @@ export function setupFolderEvents () {
         const folderId = folder.dataset.folderId;
 
         displayFolder(folderId);
-        setupBreadCrumbButtonEvents();
 
     })
 }
@@ -284,7 +283,8 @@ export function setupBreadCrumbButtonEvents () {
 
     scolarToolbar.addEventListener("click", (e) => {
         const button = e.target.closest(".breadcrumb__link");
-
+        if (!button) return;
+        
         let folderId = button.dataset.folderId;
         if (folderId === "null") {
             folderId = null
