@@ -1,5 +1,5 @@
 import { createDebug } from "../debug.js";
-import { getFolderPath } from "../services/storage.js";
+import { getAllSubFolderIds, getFolderPath } from "../services/storage.js";
 
 const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);
@@ -161,12 +161,23 @@ export function getFolderTextualPath (mode, folderId) {
 
         case "array" : {
             const pathArray = getFolderPath(folderId);
-
-            const textPath = pathArray.map(folder => folder.name);
-
-            textPath.unshift("Racine");
             
-            return textPath;  // ex return : ['Racine', 'Histoire']
+            const crumbs = pathArray.map(folder => ({name : folder.name, id : folder.id}));
+
+            crumbs.unshift({name : "Racine", id : null});
+
+            return crumbs;  
+            /* ex return : 
+                [
+                    {
+                        "name": "racine",
+                        "id": null
+                    },
+                    {
+                        "name": "Maths",
+                        "id": "d30d5e2d-75f6-431a-84ed-d3461c6d832b"
+                    }
+                ]*/
         }
     }
     
