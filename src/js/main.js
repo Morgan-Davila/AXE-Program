@@ -139,4 +139,9 @@ setupBreadCrumbButtonEvents();
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();
 
+//AI made
+import { logStorageSize } from "./services/storage.js";
+logStorageSize();
+//end AI made
+
 

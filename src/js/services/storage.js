@@ -454,3 +454,22 @@ export function getRootFlashcards () {
 export function getRootFolders () {
     return foldersArray.filter(f => f.parentId === null)
 }
+
+//AI made
+//--------------------
+//taille du localStorage
+//--------------------
+// Affiche la taille de chaque clé et le total, si AXE.STORAGE_SIZE est à true.
+// localStorage stocke en UTF-16 : 2 octets par caractère.
+export function logStorageSize() {
+    if (!window.AXE.STORAGE_SIZE) return;
+
+    let total = 0;
+    for (const key of Object.keys(localStorage)) {
+        const size = (key.length + localStorage.getItem(key).length) * 2;
+        total += size;
+        console.log(`[${window.AXE.VERSION}] localStorage`, key, (size / 1024).toFixed(2) + " Ko");
+    }
+    console.log(`[${window.AXE.VERSION}] localStorage TOTAL`, (total / 1024).toFixed(2) + " Ko");
+}
+//end AI made

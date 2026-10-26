@@ -2,7 +2,11 @@
 window.AXE = {
     NAME: "AXE",
     VERSION: "AXE 2",
-    DEBUG: false
+    DEBUG: false,
+    //AI made
+    // true : affiche dans la console la taille du localStorage au chargement (cf. logStorageSize dans storage.js)
+    STORAGE_SIZE: false
+    //end AI made
 };
 
 const noop = () => {};
