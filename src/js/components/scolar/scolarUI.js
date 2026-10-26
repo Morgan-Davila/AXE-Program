@@ -325,3 +325,17 @@ export function displayFolder (folderId) {
     
     actualizeFolderBreadcrumb();
 }
+
+
+
+export function getActualFolderId () {
+    if (!flashcardBox) return;
+
+    let folderId = flashcardBox.dataset.actualFolderId;
+
+    if (folderId === "null") {
+        folderId = null;
+    }
+
+    return folderId;
+}
