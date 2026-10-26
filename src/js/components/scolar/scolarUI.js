@@ -294,8 +294,13 @@ export function actualizeFolderBreadcrumb () {
 
     const folderId = flashcardBox.dataset.actualFolderId;
     const folderPathBreadcrumb = getFolderTextualPath("array", folderId);
+    debug(folderPathBreadcrumb);
 
-    for (let name of folderPathBreadcrumb) {
+    for (let info of folderPathBreadcrumb) {
+        const name = info.name;
+        debug(name)
+        const id = info.id;
+
         const li = document.createElement("li");
         li.classList.add("breadcrumb__item");
 
@@ -303,6 +308,7 @@ export function actualizeFolderBreadcrumb () {
         button.classList.add("breadcrumb__link")
         button.type = "button";
         button.textContent = name;
+        button.dataset.folderId = id;
         
         li.appendChild(button);
 
