@@ -70,20 +70,8 @@ export function flipFlashcard(card, block = "flashcard") {
     return card.classList.toggle(`${block}--flipped`);
 }
 
-export function setupFlashcardFlip() {
-    const cards = safeQueryAll(".flashcard");
-
-    cards.forEach(card => {
-        card.addEventListener("click", (e) => {
-            if (e.target.closest(".flashcard__commands")) return;
-            flipFlashcard(card);
-            hideCommandsDuringFlip(card);
-        });
-    });
-}
-
 //AI made : cache les commandes pendant l'animation de retournement, puis les réaffiche
-function hideCommandsDuringFlip(card) {
+export function hideCommandsDuringFlip(card) {
     // pas d'animation (prefers-reduced-motion) : rien à cacher
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -319,7 +307,6 @@ export function displayFolder (folderId) {
 
     flashcardBox.append(...renderFolder(foldersFolders));
     flashcardBox.append(...renderFlashcard(foldersFlashcards));
-    setupFlashcardFlip();
     flashcardBox.dataset.actualFolderId = folderId;
 
     

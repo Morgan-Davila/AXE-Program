@@ -110,12 +110,10 @@ import {
 } from "./components/scolar/scolar.js";
 setupRoot();
 
-import { 
-    actualizeFolderBreadcrumb, 
-    setupFlashcardFlip
+import {
+    actualizeFolderBreadcrumb
 } from "./components/scolar/scolarUI.js";
 
-setupFlashcardFlip();
 actualizeFolderBreadcrumb();
 //AI made
 import { 
@@ -125,8 +123,10 @@ import {
     setupFlashcardsCommandsButton, 
     setupTestFlashcardGeneration,
     setupFolderEvents,
-    setupBreadCrumbButtonEvents
+    setupBreadCrumbButtonEvents,
+    setupFlashcardFlip
 } from "./components/scolar/scolarEvents.js";
+setupFlashcardFlip();
 setupFlashcardPopup();
 setupFlashcardSaving();
 setupFlashcardSwitch();

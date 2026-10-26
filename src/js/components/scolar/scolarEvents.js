@@ -16,7 +16,7 @@ import {
     flipFlashcard,
     saveFlashcardButton,
     flashcardLab,
-    setupFlashcardFlip,
+    hideCommandsDuringFlip,
     flashcardBox,
     //AI made
     removeFlashcardCard,
@@ -77,6 +77,21 @@ export function setupFlashcardSwitch() {
     });
 }
 
+export function setupFlashcardFlip() {
+
+    if (!flashcardBox) return;
+    flashcardBox.addEventListener("click", (e) => {
+        if (e.target.closest(".flashcard__commands")) return;
+
+        const card = e.target.closest(".flashcard");
+        if(!card) return;
+
+
+        flipFlashcard(card);
+        hideCommandsDuringFlip(card);
+    })
+}
+
 
 //AI made : ouverture/fermeture de la popup flashcard
 export function setupFlashcardPopup() {
@@ -127,7 +142,6 @@ export function setupFlashcardSaving () {
                     closeFlashcardPopup();
                     resetFlashcardEditor();
                     setupRoot();
-                    setupFlashcardFlip();
 
                     break;
                 }
@@ -139,7 +153,6 @@ export function setupFlashcardSaving () {
                     updateFlashcard(actualId, flashcard);
 
                     setupRoot();
-                    setupFlashcardFlip();
                     closeFlashcardPopup();
                     resetFlashcardEditor();
 
@@ -246,7 +259,6 @@ export function setupTestFlashcardGeneration () {
         addFlashcard(flashcard);
         resetFlashcardEditor();
         setupRoot();
-        setupFlashcardFlip();
     });
 }
 
