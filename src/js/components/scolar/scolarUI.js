@@ -42,6 +42,11 @@ export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 //humain made
 export const breadcrumbPlaceholder = safeQuery(".scolarToolbar__breadcrumb");
 export const scolarToolbar = safeQuery(".scolarToolbar")
+export const scolarNavChevrons = {
+    prev : safeQuery(".scolarToolbar__iconButton .folderNavPrev"),
+    next : safeQuery(".scolarToolbar__iconButton .folderNavNext")
+}
+
 //AI made
 export function showFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
@@ -127,11 +132,12 @@ export function removeFlashcardCard(card) {
 // let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });
 export function deltaToHTML (viewer, delta) {
     viewer.setContents(delta);
-        
-    const html = viewer.getSemanticHTML();
 
-    return html.replaceAll("&nbsp;", " ");   // remet de vraies espaces, pour que le texte passe à la ligne
-} 
+    const html = viewer.getSemanticHTML()
+        .replaceAll("&nbsp;", " ");   // remet de vraies espaces, pour que le texte passe à la ligne
+
+    return DOMPurify.sanitize(html);
+}
 
 export function renderFlashcard (packet) {
     let element = document.createElement("div");
@@ -278,7 +284,6 @@ export function actualizeFolderBreadcrumb () {
 
     for (let info of folderPathBreadcrumb) {
         const name = info.name;
-        
         const id = info.id;
 
         const li = document.createElement("li");
@@ -289,7 +294,8 @@ export function actualizeFolderBreadcrumb () {
         button.type = "button";
         button.textContent = name;
         button.dataset.folderId = id;
-        
+        button.title = "Aller à " + name
+    
         li.appendChild(button);
 
         breadcrumb.appendChild(li);
