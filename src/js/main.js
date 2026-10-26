@@ -56,7 +56,6 @@ import {
     renderHabits,
     initTabs,
     renderMonthlyDays,
-    frequencyMonthlyDays
 } from "./components/habits/habitsUI.js"
 
 
@@ -68,17 +67,32 @@ renderMonthlyDays();
 
 
 
-import { loadDeletedHabits, habitArray } from "./services/storage.js";
+import { 
+    loadDeletedHabits, 
+    habitArray 
+} from "./services/storage.js";
 loadDeletedHabits();
 
 //AI made — avant tout rendu : remet à 0 les streaks des habitudes dont une échéance a été manquée
-import { resetMissedStreaks } from "./components/dashboard/dashboard.js";
+import { 
+    resetMissedStreaks 
+} from "./components/dashboard/dashboard.js";
 resetMissedStreaks(habitArray);
 
-import { reactHabit } from "./components/dashboard/dashboard.js";
-import { setupRecallsCheckmarks } from "./components/dashboard/dashboardEvents.js";
+import { 
+    reactHabit 
+} from "./components/dashboard/dashboard.js";
+
+import { 
+    setupRecallsCheckmarks 
+} from "./components/dashboard/dashboardEvents.js";
+
 //AI made
-import { setupCheckEffects, setupMidnightRefresh } from "./components/dashboard/dashboardEvents.js";
+import { 
+    setupCheckEffects, 
+    setupMidnightRefresh 
+} from "./components/dashboard/dashboardEvents.js";
+
 setupCheckEffects();
 
 
@@ -91,10 +105,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMidnightRefresh();
 });
 
-import { setupRoot } from "./components/scolar/scolar.js";
+import { 
+    setupRoot 
+} from "./components/scolar/scolar.js";
 setupRoot();
 
-import { actualizeFolderBreadcrumb, setupFlashcardFlip} from "./components/scolar/scolarUI.js";
+import { 
+    actualizeFolderBreadcrumb, 
+    setupFlashcardFlip
+} from "./components/scolar/scolarUI.js";
 
 setupFlashcardFlip();
 actualizeFolderBreadcrumb();

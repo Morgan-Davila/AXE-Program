@@ -278,15 +278,6 @@ export function clearFlashcardsBox () {
     flashcardBox.innerHTML = "";
 }
 
-
-
-
-export function actualizeFoldersLevel () {
-    flashcardBox.dataset.folderLevel = null;
-
-    const actualFolderId = flashcardBox.dataset.actualFolderId;
-}
-
 export function actualizeFolderBreadcrumb () {
     breadcrumbPlaceholder.innerText = ""
 
@@ -331,6 +322,6 @@ export function displayFolder (folderId) {
     setupFlashcardFlip();
     flashcardBox.dataset.actualFolderId = folderId;
 
-    actualizeFoldersLevel();
+    
     actualizeFolderBreadcrumb();
 }

@@ -1,5 +1,7 @@
 import { createDebug } from "../debug.js";
-import { getAllSubFolderIds, getFolderPath } from "../services/storage.js";
+import { 
+    getFolderPath 
+} from "../services/storage.js";
 
 const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);

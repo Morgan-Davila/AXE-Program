@@ -1,5 +1,12 @@
-import { safeId, safeQuery } from "../../utils/dom.js";
-import { editableFlashcard, flashcardSwitchButton } from "./scolarUI.js";
+import { 
+    safeId, 
+    safeQuery 
+} from "../../utils/dom.js";
+
+import { 
+    editableFlashcard, 
+    flashcardSwitchButton 
+} from "./scolarUI.js";
 
 //AI made : un éditeur Quill par face de la carte
 export const editors = { front: null, back: null };

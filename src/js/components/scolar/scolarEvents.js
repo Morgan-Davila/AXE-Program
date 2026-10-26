@@ -18,16 +18,10 @@ import {
     flashcardLab,
     setupFlashcardFlip,
     flashcardBox,
-    renderFlashcard,
     //AI made
     removeFlashcardCard,
     getVisibleFlashcardFace,
     flashcardTestButton,
-    clearFlashcardsBox,
-    renderFolder,
-    actualizeFoldersLevel,
-    actualizeFolderBreadcrumb,
-    breadcrumbPlaceholder,
     displayFolder,
     scolarToolbar
 } from "./scolarUI.js";
@@ -42,10 +36,7 @@ import {
 import { 
     addFlashcard, 
     deleteFlashcard, 
-    flashcardsArray, 
     getFlashcard, 
-    getFolderFlashcards, 
-    getSubFolders, 
     updateFlashcard 
 } from "../../services/storage.js";
 
@@ -70,9 +61,6 @@ import {
     exists 
 } from "../../utils/dom.js";
 
-import { 
-    getFolderTextualPath 
-} from "../../utils/format.js";
 
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
@@ -284,7 +272,7 @@ export function setupBreadCrumbButtonEvents () {
     scolarToolbar.addEventListener("click", (e) => {
         const button = e.target.closest(".breadcrumb__link");
         if (!button) return;
-        
+
         let folderId = button.dataset.folderId;
         if (folderId === "null") {
             folderId = null

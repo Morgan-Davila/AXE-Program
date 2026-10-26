@@ -5,7 +5,10 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement scolar.js"); //test
 
-import { flashcardsArray, foldersArray, getRootFlashcards, getRootFolders } from "../../services/storage.js";
+import { 
+    getRootFlashcards, 
+    getRootFolders 
+} from "../../services/storage.js";
 import {
     safeQuery,
     safeQueryAll,
