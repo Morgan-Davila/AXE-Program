@@ -273,6 +273,8 @@ export function clearFlashcardsBox () {
 }
 
 export function actualizeFolderBreadcrumb () {
+    if (!breadcrumbPlaceholder) return;
+    
     breadcrumbPlaceholder.innerText = ""
 
     const breadcrumb = document.createElement("ol");
