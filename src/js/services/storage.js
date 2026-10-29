@@ -270,6 +270,8 @@ export function addFolder(folder) {
 
 // Trouver un dossier grâce à son id
 export function getFolder(id) {
+    if (id === null || id === "null") return null;
+
     return foldersArray.find(
         folder => folder.id === id
     );
@@ -341,6 +343,25 @@ export function getFolderPath(folderId) {
 
     return path;
 }
+
+//AI made
+// Transforme un tableau d'ids de dossiers en tableau de noms (null = "Racine")
+// ex : getFolderNames([null, "a1", "b2"]) -> ["Racine", "Maths", "Algèbre"]
+export function getFolderNames(folderIds) {
+    return folderIds.map(id => {
+        if (id === null) return "Racine";
+
+        const folder = getFolder(id);
+        // id inconnu (dossier supprimé ?) : on le signale au lieu de planter
+        if (!folder) {
+            debug("getFolderNames : dossier introuvable", id);
+            return "(introuvable)";
+        }
+
+        return folder.name;
+    });
+}
+//end AI made
 
 // Les ids de tous les sous-dossiers, sous-sous-dossiers, etc.
 export function getAllSubFolderIds(folderId) {
