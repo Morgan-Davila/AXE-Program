@@ -377,21 +377,20 @@ export function getAllSubFolderIds(folderId) {
 
     return ids;
 }
-let ids = [];
+//AI made
+// Les ids de tous les dossiers parents, de la racine (null) jusqu'au parent direct
+// ex : getAllParentFolderIds("chapitre1") -> [null, "maths", "algebre"]
 export function getAllParentFolderIds (folderId) {
-    
-    //debug(getFolder(folderId).name)
+    // cas d'arrêt : la racine n'a pas de parent
+    if (folderId === null) return [];
 
-    while (ids[0] !== null) {
-        const parentId = getParentFolderId(folderId);
-        debug(parentId)
-        ids.unshift(parentId)
-        debug(ids)
-        getAllParentFolderIds(parentId);
-    }
-    debug(ids);
-    return ids;
+    const parentId = getParentFolderId(folderId);
+
+    // la fonction s'appelle elle-même pour remonter d'un niveau,
+    // puis ajoute le parent direct à la fin
+    return getAllParentFolderIds(parentId).concat(parentId);
 }
+//end AI made
 
 // Déplacer un dossier dans un autre (null = racine)
 // renvoie true si le déplacement a marché, false sinon
