@@ -309,6 +309,17 @@ export function getSubFolders(folderId) {
     );
 }
 
+//human made
+export function getParentFolderId (folderId) {
+    const folder = getFolder(folderId);
+
+    //if (folder === null) return null;
+    debug(folder)
+    const parent = folder.parentId ?? null
+    
+    return parent;
+}
+
 // Les flashcards rangées directement dans un dossier (null = racine)
 export function getFolderFlashcards(folderId) {
     return flashcardsArray.filter(
@@ -343,6 +354,21 @@ export function getAllSubFolderIds(folderId) {
         ids = ids.concat(deeperIds);
     }
 
+    return ids;
+}
+let ids = [];
+export function getAllParentFolderIds (folderId) {
+    
+    //debug(getFolder(folderId).name)
+
+    while (ids[0] !== null) {
+        const parentId = getParentFolderId(folderId);
+        debug(parentId)
+        ids.unshift(parentId)
+        debug(ids)
+        getAllParentFolderIds(parentId);
+    }
+    debug(ids);
     return ids;
 }
 
