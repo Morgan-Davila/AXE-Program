@@ -347,3 +347,7 @@ export function actualizeHistoricAndCursor (folderId) {
     HISTORIC.push(folderId);
     debug(HISTORIC)
 }
+
+export function setCursor (value) {
+    cursor = value;
+}
