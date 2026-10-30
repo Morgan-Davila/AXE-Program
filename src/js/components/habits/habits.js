@@ -5,7 +5,7 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement habits.js"); //test
 
-import { habitArray } from "../../services/storage.js";
+import { habitArray } from "../../services/storage/storageHabits.js";
 import {
     safeQuery,
     safeQueryAll,

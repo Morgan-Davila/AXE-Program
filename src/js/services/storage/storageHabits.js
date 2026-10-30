@@ -8,13 +8,6 @@ debug("Chargement storage.js");
 const STORAGE_KEY = "habitArray";
 const DELETED_STORAGE_KEY = "deletedHabitsArray";
 
-const FLASHCARDS_STORAGE_KEY = "flashcardsArray"
-//AI made
-const DELETED_FLASHCARDS_STORAGE_KEY = "deletedFlashcardsArray";
-//end AI made
-
-
-
 // Charger les habitudes
 export function loadHabits() {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];

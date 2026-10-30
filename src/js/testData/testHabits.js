@@ -6,7 +6,7 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement testHabits.js");
 
-import { habitArray, saveHabits } from "../services/storage.js";
+import { habitArray, saveHabits } from "../services/storage/storageHabits.js";
 
 //--------------------
 //données de test (habitudes)

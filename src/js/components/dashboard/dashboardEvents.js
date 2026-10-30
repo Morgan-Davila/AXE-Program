@@ -5,7 +5,7 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement dashboardEvents.js");
 
-import { getHabit, habitArray, updateHabit } from "../../services/storage.js";
+import { getHabit, habitArray, updateHabit } from "../../services/storage/storageHabits.js";
 import {
     safeQuery,
     safeQueryAll,

@@ -5,9 +5,11 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement dashboard.js");
 
-import { habitArray } from "../../services/storage.js";
+
 //AI made
-import { updateHabit } from "../../services/storage.js";
+import { 
+    updateHabit 
+} from "../../services/storage/storageHabits.js";
 import {
     safeQuery,
     safeQueryAll,

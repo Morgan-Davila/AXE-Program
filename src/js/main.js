@@ -69,8 +69,8 @@ renderMonthlyDays();
 
 import { 
     loadDeletedHabits, 
-    habitArray 
-} from "./services/storage.js";
+    habitArray
+} from "./services/storage/storageHabits.js";
 loadDeletedHabits();
 
 //AI made — avant tout rendu : remet à 0 les streaks des habitudes dont une échéance a été manquée

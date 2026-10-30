@@ -5,7 +5,10 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement storage.js");
 
-
+const FLASHCARDS_STORAGE_KEY = "flashcardsArray"
+//AI made
+const DELETED_FLASHCARDS_STORAGE_KEY = "deletedFlashcardsArray";
+//end AI made
 // services/storage.js
 
 

@@ -14,7 +14,7 @@ import {
 
 import {
     habitArray
-} from "./../../services/storage.js"
+} from "./../../services/storage/storageHabits.js"
 
 
 import {

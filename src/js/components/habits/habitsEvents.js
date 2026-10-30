@@ -25,7 +25,7 @@ import {
     deleteHabit,
     getHabit,
     updateHabit
-} from "./../../services/storage.js";
+} from "./../../services/storage/storageHabits.js";
 
 import {
     // variables
