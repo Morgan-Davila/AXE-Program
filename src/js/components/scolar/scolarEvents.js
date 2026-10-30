@@ -25,6 +25,10 @@ import {
     displayFolder,
     scolarToolbar,
     getActualFolderId,
+    scolarNavChevrons,
+    HISTORIC,
+    cursor,
+    setCursor,
     actualizeHistoricAndCursor
 } from "./scolarUI.js";
 
@@ -299,4 +303,43 @@ export function setupBreadCrumbButtonEvents () {
 
         displayFolder(folderId);
     })
+}
+
+
+
+export function setupNavChevrons () {
+    debug("debut stupNavChevrons")
+    const prev = scolarNavChevrons.prev;
+    const next = scolarNavChevrons.next;
+    
+    if (!prev) return;
+    if (!next) return;
+
+    
+    
+    prev.addEventListener("click", () => {
+        // let actualFolder = HISTORIC[cursor];
+        // debug(getFolder(actualFolder));
+        if (HISTORIC[0] === null && cursor === 0) return;
+ 
+        const value = cursor - 1;
+        setCursor(value);
+
+
+        let previousFolder = HISTORIC[cursor];
+        
+        
+        debug(cursor);
+
+        // debug("nom des dossiers : " + getFolderNames(HISTORIC));
+        // debug("dossier affiché : " + getFolder(previousFolder).name)
+        // debug(previousFolder);
+        displayFolder(previousFolder);
+
+        debug(HISTORIC)
+        
+        //debug("curseur : " + cursor)
+        //debug(getFolder(HISTORIC[cursor]))
+    })
+
 }

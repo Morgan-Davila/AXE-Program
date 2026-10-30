@@ -46,8 +46,8 @@ export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
 export const breadcrumbPlaceholder = safeQuery(".scolarToolbar__breadcrumb");
 export const scolarToolbar = safeQuery(".scolarToolbar")
 export const scolarNavChevrons = {
-    prev : safeQuery(".scolarToolbar__iconButton .folderNavPrev"),
-    next : safeQuery(".scolarToolbar__iconButton .folderNavNext")
+    prev : safeQuery(".folderNavPrev"),
+    next : safeQuery(".folderNavNext")
 }
 
 //AI made
