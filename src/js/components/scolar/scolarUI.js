@@ -15,9 +15,10 @@ import {
 
 import {
     getFolderFlashcards,
+    getFolderNames,
     getFolderPath,
     getSubFolders
-} from "../../services/storage.js";
+} from "../../services/storage/storageFlashcards.js";
 
 import { 
     getFolderTextualPath 
@@ -277,7 +278,7 @@ export function clearFlashcardsBox () {
 
 export function actualizeFolderBreadcrumb () {
     if (!breadcrumbPlaceholder) return;
-    
+
     breadcrumbPlaceholder.innerText = ""
 
     const breadcrumb = document.createElement("ol");
@@ -330,6 +331,8 @@ export function displayFolder (folderId) {
 
     
     actualizeFolderBreadcrumb();
+    
+    // debug(getFolderNames(HISTORIC))
 }
 
 

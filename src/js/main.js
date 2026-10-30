@@ -66,7 +66,6 @@ renderMonthlyDays();
 
 
 
-
 import { 
     loadDeletedHabits, 
     habitArray
@@ -111,11 +110,10 @@ import {
 setupRoot();
 
 import {
-    actualizeFolderBreadcrumb
+    actualizeFolderBreadcrumb,
 } from "./components/scolar/scolarUI.js";
 
 actualizeFolderBreadcrumb();
-//AI made
 import { 
     setupFlashcardPopup, 
     setupFlashcardSwitch, 

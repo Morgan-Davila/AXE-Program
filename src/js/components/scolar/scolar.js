@@ -8,7 +8,7 @@ debug("Chargement scolar.js"); //test
 import { 
     getRootFlashcards, 
     getRootFolders 
-} from "../../services/storage.js";
+} from "../../services/storage/storageFlashcards.js";
 import {
     safeQuery,
     safeQueryAll,

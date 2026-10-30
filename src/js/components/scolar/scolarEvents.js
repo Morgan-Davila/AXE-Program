@@ -18,7 +18,6 @@ import {
     flashcardLab,
     hideCommandsDuringFlip,
     flashcardBox,
-    //AI made
     removeFlashcardCard,
     getVisibleFlashcardFace,
     flashcardTestButton,
@@ -43,8 +42,10 @@ import {
     addFlashcard, 
     deleteFlashcard, 
     getFlashcard, 
+    getFolder, 
+    getFolderNames, 
     updateFlashcard 
-} from "../../services/storage.js";
+} from "../../services/storage/storageFlashcards.js";
 
 import { 
     createFlashcard, 
