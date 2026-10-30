@@ -311,6 +311,14 @@ export function actualizeFolderBreadcrumb () {
 
 
 export function displayFolder (folderId) {
+    //debug("displayFolder utilisée");
+    //debug("avant translate " + folderId);
+    if(folderId === undefined) {
+        folderId = null 
+    };
+
+    //debug("apres translate " + folderId);
+
     const foldersFlashcards = getFolderFlashcards(folderId); //folders's flashcards
     const foldersFolders = getSubFolders(folderId); //folders's folders
 
