@@ -342,4 +342,12 @@ export function setupNavChevrons () {
         //debug(getFolder(HISTORIC[cursor]))
     })
 
+    next.addEventListener("click", () => {
+        if (cursor < (HISTORIC.length - 1))  {
+            const value = cursor + 1;
+            setCursor(value)
+            debug(cursor);
+            displayFolder(HISTORIC[cursor]);
+        }
+    })
 }
