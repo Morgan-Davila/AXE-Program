@@ -23,6 +23,9 @@ import {
     getFolderTextualPath 
 } from "../../utils/format.js";
 
+export const HISTORIC = [null];
+export let cursor = 0;
+
 export const flashcardBox = safeQuery(".flashcardBox");
 
 export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
@@ -333,4 +336,14 @@ export function getActualFolderId () {
     }
 
     return folderId ?? null;
+}
+
+export function actualizeHistoricAndCursor (folderId) {
+
+    cursor ++;
+    debug(cursor);
+    HISTORIC.length = cursor;
+    debug(HISTORIC);
+    HISTORIC.push(folderId);
+    debug(HISTORIC)
 }

@@ -24,7 +24,8 @@ import {
     flashcardTestButton,
     displayFolder,
     scolarToolbar,
-    getActualFolderId
+    getActualFolderId,
+    actualizeHistoricAndCursor
 } from "./scolarUI.js";
 
 import { 
@@ -278,6 +279,7 @@ export function setupFolderEvents () {
         const folderId = folder.dataset.folderId;
 
         displayFolder(folderId);
+        actualizeHistoricAndCursor(folderId); // trouver un moyen de distinguer les diplsayFolder de deplacement dans l'historic et ceux de nouvelles entrées
 
     })
 }
