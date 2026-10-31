@@ -1,10 +1,9 @@
-import { createDebug } from "../debug.js";
+import { createDebug } from "../../debug.js";
 
 const LOCAL_DEBUG = false;
 const debug = createDebug(LOCAL_DEBUG);
 
-debug("Chargement storage.js");
-// services/storage.js
+debug("Chargement storageSize.js");
 
 
 //AI made

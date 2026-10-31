@@ -140,7 +140,7 @@ import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();
 
 //AI made
-import { logStorageSize } from "./services/storage.js";
+import { logStorageSize } from "./services/storage/storageSize.js";
 logStorageSize();
 //end AI made
 
