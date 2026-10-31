@@ -383,3 +383,8 @@ export function renderEditableFolder () {
     button.appendChild(champ)
     return button;
 }
+
+export function setFocusOnInputs (button) {
+    let champ = button.querySelector(".folder__champ");
+    champ.focus();
+}
