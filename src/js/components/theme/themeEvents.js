@@ -10,7 +10,7 @@ debug("Chargement themeEvents.js");
 
 
 
-import { loadTheme, saveTheme } from "./../../services/storage.js";
+import { loadTheme, saveTheme } from "./../../services/storage/storageTheme.js";
 import { getNextTheme } from "./theme.js";
 import { themeToggleButton, getCurrentTheme, applyTheme } from "./themeUI.js";
 import { updateWeeklyChartColors } from "./../dashboard/dashboardUI.js";
