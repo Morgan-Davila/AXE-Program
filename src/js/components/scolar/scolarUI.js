@@ -51,6 +51,10 @@ export const scolarNavChevrons = {
     next : safeQuery(".folderNavNext")
 }
 
+export const folderCreateButton = safeQuery(".folderCreateButton");
+
+
+
 //AI made
 export function showFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
@@ -253,6 +257,7 @@ export function renderFolder(packet) {
         button.type = "button";
         button.classList.add("folder");
         button.dataset.folderId = folder.id;
+        button.dataset.isEditable = false;
         button.innerHTML = folderSvg(`folder-reflet-${folder.id}`);
 
         const title = document.createElement("span");

@@ -123,7 +123,8 @@ import {
     setupFolderEvents,
     setupBreadCrumbButtonEvents,
     setupFlashcardFlip,
-    setupNavChevrons
+    setupNavChevrons,
+    setupFolderCreation
 } from "./components/scolar/scolarEvents.js";
 setupFlashcardFlip();
 setupFlashcardPopup();
@@ -135,6 +136,7 @@ setupFolderEvents();
 setupBreadCrumbButtonEvents();
 setupNavChevrons();
 
+setupFolderCreation();
 
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();

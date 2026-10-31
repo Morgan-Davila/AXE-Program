@@ -28,7 +28,10 @@ import {
     HISTORIC,
     cursor,
     setCursor,
-    actualizeHistoricAndCursor
+    actualizeHistoricAndCursor,
+    folderCreateButton,
+    renderEditableFolder,
+    setFocusOnInputs
 } from "./scolarUI.js";
 
 import { 
@@ -284,6 +287,9 @@ export function setupFolderEvents () {
         const folder = e.target.closest(".folder");
         if (!folder) return;
 
+        const isEditable = folder.dataset.isEditable;
+        if (isEditable) return;
+
         const folderId = folder.dataset.folderId;
 
         displayFolder(folderId);
@@ -353,5 +359,21 @@ export function setupNavChevrons () {
             debug(cursor);
             displayFolder(HISTORIC[cursor]);
         }
+    })
+}
+
+
+
+
+
+export function setupFolderCreation () {
+    if (!folderCreateButton) return;
+
+    folderCreateButton.addEventListener("click", () =>{
+        let button = renderEditableFolder()
+        
+        flashcardBox.append(button);
+        
+        setFocusOnInputs(button)
     })
 }
