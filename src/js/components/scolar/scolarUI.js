@@ -362,3 +362,24 @@ export function actualizeHistoricAndCursor (folderId) {
 export function setCursor (value) {
     cursor = value;
 }
+
+
+
+
+
+
+export function renderEditableFolder () {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("folder");
+    button.innerHTML = folderSvg(`folder-reflet-${crypto.randomUUID()}`);
+    button.dataset.isEditable = true;
+
+    const champ = document.createElement("input");
+    champ.type = "text"
+    champ.classList.add("folder__champ");
+    
+
+    button.appendChild(champ)
+    return button;
+}

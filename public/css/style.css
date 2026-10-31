@@ -2870,6 +2870,27 @@ td:last-child {
   font-weight: 700;
   transition: transform var(--dur-base) var(--ease);
 }
+.folder__champ {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 9%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  color: var(--folder-title);
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  resize: none;
+  border: none;
+  height: 40px;
+  background: none;
+}
+.folder__champ:focus {
+  outline: none;
+}
 .folder:hover .folder__back, .folder:focus-visible .folder__back {
   filter: drop-shadow(0 12px 14px var(--folder-shadow));
 }

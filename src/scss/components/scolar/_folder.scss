@@ -57,6 +57,31 @@
         transition: transform var(--dur-base) var(--ease);
     }
 
+    //human made
+    &__champ {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        bottom: 9%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: left;
+        color: var(--folder-title);
+        font-family: var(--font-ui);
+        font-size: var(--text-lg);
+        font-weight: 700;
+
+        resize: none;
+        border: none;
+        height: 40px;
+        background: none;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+
     &:hover, &:focus-visible {
         .folder__back { filter: drop-shadow(0 12px 14px var(--folder-shadow)); }
         .folder__sheet--1 { transform: scaleY(0.94); }
