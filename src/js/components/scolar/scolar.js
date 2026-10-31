@@ -6,9 +6,11 @@ const debug = createDebug(LOCAL_DEBUG);
 debug("Chargement scolar.js"); //test
 
 import { 
-    getRootFlashcards, 
-    getRootFolders 
+    getRootFlashcards 
 } from "../../services/storage/storageFlashcards.js";
+import { 
+    getRootFolders 
+} from "../../services/storage/storageFolders.js";
 import {
     safeQuery,
     safeQueryAll,

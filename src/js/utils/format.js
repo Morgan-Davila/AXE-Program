@@ -1,7 +1,7 @@
 import { createDebug } from "../debug.js";
 import { 
     getFolderPath 
-} from "../services/storage.js";
+} from "../services/storage/storageFolders.js";
 
 const LOCAL_DEBUG = true;
 const debug = createDebug(LOCAL_DEBUG);

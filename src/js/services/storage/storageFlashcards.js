@@ -102,3 +102,30 @@ export function clearFlashcards() {
 
     saveFlashcards();
 }
+
+// Les flashcards créées avant les dossiers n'ont pas de parentId :
+// on considère qu'elles sont à la racine (null)
+export function getFlashcardParentId(flashcard) {
+    if (flashcard.parentId === undefined) {
+        return null;
+    }
+    return flashcard.parentId;
+}
+
+export function getRootFlashcards () {
+    return flashcardsArray.filter(f => f.parentId === null);
+}
+
+//AI made
+// Supprime (en les archivant) toutes les flashcards rangées dans ces dossiers.
+// Doit rester dans ce fichier : un module qui importe flashcardsArray ne peut pas le réassigner.
+export function deleteFlashcardsInFolders(folderIds) {
+    const isInFolders = flashcard => folderIds.includes(getFlashcardParentId(flashcard));
+
+    deletedFlashcardsArray.push(...flashcardsArray.filter(isInFolders));
+    flashcardsArray = flashcardsArray.filter(flashcard => !isInFolders(flashcard));
+
+    saveFlashcards();
+    saveDeletedFlashcards();
+}
+//end AI made

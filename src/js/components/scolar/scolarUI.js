@@ -18,7 +18,7 @@ import {
     getFolderNames,
     getFolderPath,
     getSubFolders
-} from "../../services/storage/storageFlashcards.js";
+} from "../../services/storage/storageFolders.js";
 
 import { 
     getFolderTextualPath 

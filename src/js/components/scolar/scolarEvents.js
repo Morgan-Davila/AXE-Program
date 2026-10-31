@@ -42,10 +42,13 @@ import {
     addFlashcard, 
     deleteFlashcard, 
     getFlashcard, 
-    getFolder, 
-    getFolderNames, 
     updateFlashcard 
 } from "../../services/storage/storageFlashcards.js";
+
+import { 
+    getFolder, 
+    getFolderNames 
+} from "../../services/storage/storageFolders.js";
 
 import { 
     createFlashcard, 

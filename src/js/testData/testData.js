@@ -6,7 +6,8 @@ const debug = createDebug(LOCAL_DEBUG);
 
 debug("Chargement testData.js");
 
-import { foldersArray, flashcardsArray, saveFolders, saveFlashcards } from "../services/storage.js";
+import { foldersArray, saveFolders } from "../services/storage/storageFolders.js";
+import { flashcardsArray, saveFlashcards } from "../services/storage/storageFlashcards.js";
 
 //--------------------
 //données de test (dossiers + flashcards)
