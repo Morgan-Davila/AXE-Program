@@ -62,3 +62,14 @@ export function editDataFlashcard (content) {
         content : content
     }
 }
+
+
+export function createFolder (content) {
+    return {
+        createdAt : Date.now(),
+        editList : [],
+        id : crypto.randomUUID(),
+        name : content.name,
+        parentId : content.parentId
+    }
+}
