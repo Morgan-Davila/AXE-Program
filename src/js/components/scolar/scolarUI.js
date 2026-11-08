@@ -23,6 +23,7 @@ import {
 import { 
     getFolderTextualPath 
 } from "../../utils/format.js";
+import { createFolder } from "./scolar.js";
 
 export const HISTORIC = [null];
 export let cursor = 0;
@@ -392,4 +393,23 @@ export function renderEditableFolder () {
 export function setFocusOnInputs (button) {
     let champ = button.querySelector(".folder__champ");
     champ.focus();
+}
+
+export function saveEditableFolder () {
+    const folder = safeQuery(".folder[data-is-editable='true']");
+    const actualId = flashcardBox.dataset.actualFolderId || null;
+
+    if (!folder) return;
+    const champ = folder.querySelector("input");
+    let name = champ.value.trim() || "Nouveau Dossier";
+
+    const content = {
+        name : name,
+        parentId : actualId
+    }
+
+    const folderData = createFolder(content);
+
+    debug(folderData);
+
 }
