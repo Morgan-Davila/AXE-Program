@@ -395,7 +395,7 @@ export function setFocusOnInputs (button) {
     champ.focus();
 }
 
-export function saveEditableFolder () {
+export function collectDataEditableFolder () {
     const folder = safeQuery(".folder[data-is-editable='true']");
     const actualId = flashcardBox.dataset.actualFolderId || null;
 
@@ -408,8 +408,6 @@ export function saveEditableFolder () {
         parentId : actualId
     }
 
-    const folderData = createFolder(content);
-
-    debug(folderData);
+    return content;
 
 }
