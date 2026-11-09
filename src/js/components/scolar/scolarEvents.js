@@ -31,7 +31,8 @@ import {
     actualizeHistoricAndCursor,
     folderCreateButton,
     renderEditableFolder,
-    setFocusOnInputs
+    setFocusOnInputs,
+    collectDataEditableFolder
 } from "./scolarUI.js";
 
 import { 
@@ -49,12 +50,14 @@ import {
 } from "../../services/storage/storageFlashcards.js";
 
 import { 
+    addFolder,
     getFolder, 
     getFolderNames 
 } from "../../services/storage/storageFolders.js";
 
 import { 
     createFlashcard, 
+    createFolder, 
     editDataFlashcard, 
     setupRoot
 } from "./scolar.js";
@@ -368,12 +371,33 @@ export function setupNavChevrons () {
 
 export function setupFolderCreation () {
     if (!folderCreateButton) return;
-
+    
+    //on crée un dossier editable
     folderCreateButton.addEventListener("click", () =>{
         let button = renderEditableFolder()
         
         flashcardBox.append(button);
         
-        setFocusOnInputs(button)
+        setFocusOnInputs(button);
+    })
+
+
+    flashcardBox.addEventListener("click", (e) => {
+        //const folder = e.target.closest(".folder");
+        //const flashcard = e.target.closest(".flashcard");
+ 
+        
+        if (e.target === flashcardBox) { //pour gérer le click en dehors du dossier editable, si l'user clique en dehors du dossier, on l'enregistre
+            const content = collectDataEditableFolder();
+
+            const folder = createFolder(content);
+            addFolder(folder);
+            const actualId = flashcardBox.dataset.actualFolderId;
+            displayFolder(actualId);
+
+        } else {
+            debug("mauvais endroit")
+        }
+        
     })
 }
