@@ -3,13 +3,14 @@
 
 
 .scolar {
-    min-height: 640px;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
 
-    justify-content: center;
-    //AI made : les lignes (barre d'outils, grille) restent en haut au lieu de se répartir sur la hauteur
-    align-content: flex-start;
+    min-height: 640px;
+    //AI made : colonne qui remplit toute la hauteur restante du <main> (lui-même en flex column) :
+    // la barre d'outils garde sa hauteur, .flashcardBox prend tout le reste
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     //end AI made
     //AI made : marge intérieure entre le conteneur et la grille de flashcards, réduite sur les écrans étroits
     padding: clamp(var(--space-3), 2vw, var(--space-6));
@@ -21,6 +22,10 @@
 // tient dès qu'il y a la place pour 3 cartes + 2 petits gaps
 .flashcardBox {
     width: 100%;
+    //AI made : occupe toute la place sous la barre d'outils, même quand le dossier est vide
+    // (le clic sur le fond de la boîte enregistre le dossier en cours de création)
+    flex: 1;
+    //end AI made
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);
     column-gap: var(--space-2);

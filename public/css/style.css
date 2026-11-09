@@ -2303,16 +2303,17 @@ td:last-child {
 }
 
 .scolar {
+  width: 100%;
   min-height: 640px;
+  flex: 1;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
+  flex-direction: column;
   padding: clamp(var(--space-3), 2vw, var(--space-6));
 }
 
 .flashcardBox {
   width: 100%;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   column-gap: var(--space-2);
