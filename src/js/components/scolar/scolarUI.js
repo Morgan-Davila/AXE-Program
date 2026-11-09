@@ -397,6 +397,8 @@ export function setFocusOnInputs (button) {
 
 export function collectDataEditableFolder () {
     const folder = safeQuery(".folder[data-is-editable='true']");
+    if (folder === null) return null;
+   
     const actualId = flashcardBox.dataset.actualFolderId || null;
 
     if (!folder) return;

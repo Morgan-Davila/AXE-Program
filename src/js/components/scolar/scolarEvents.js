@@ -291,13 +291,12 @@ export function setupFolderEvents () {
         if (!folder) return;
 
         const isEditable = folder.dataset.isEditable;
-        if (isEditable) return;
+        if (isEditable === "true") return;
 
         const folderId = folder.dataset.folderId;
 
         displayFolder(folderId);
         actualizeHistoricAndCursor(folderId); // trouver un moyen de distinguer les diplsayFolder de deplacement dans l'historic et ceux de nouvelles entrées
-
     })
 }
 
@@ -385,10 +384,10 @@ export function setupFolderCreation () {
     flashcardBox.addEventListener("click", (e) => {
         //const folder = e.target.closest(".folder");
         //const flashcard = e.target.closest(".flashcard");
- 
         
         if (e.target === flashcardBox) { //pour gérer le click en dehors du dossier editable, si l'user clique en dehors du dossier, on l'enregistre
             const content = collectDataEditableFolder();
+            if(content === null) return;
 
             const folder = createFolder(content);
             addFolder(folder);
