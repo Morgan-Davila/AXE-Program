@@ -3,7 +3,7 @@ import { createDebug } from "../../debug.js";
 const LOCAL_DEBUG = false;
 const debug = createDebug(LOCAL_DEBUG);
 
-debug("Chargement storage.js");
+debug("Chargement storageHabits.js");
 
 const STORAGE_KEY = "habitArray";
 const DELETED_STORAGE_KEY = "deletedHabitsArray";
