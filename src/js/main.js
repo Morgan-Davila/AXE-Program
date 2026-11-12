@@ -125,7 +125,8 @@ import {
     setupFlashcardFlip,
     setupNavChevrons,
     setupFolderCreation,
-    setupFolderSaving
+    setupFolderSaving,
+    setupFolderEdit
 } from "./components/scolar/scolarEvents.js";
 setupFlashcardFlip();
 setupFlashcardPopup();
@@ -139,6 +140,7 @@ setupNavChevrons();
 
 setupFolderCreation();
 setupFolderSaving();
+setupFolderEdit();
 
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();

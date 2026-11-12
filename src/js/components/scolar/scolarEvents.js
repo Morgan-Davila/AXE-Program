@@ -61,6 +61,7 @@ import {
     createFlashcard, 
     createFolder, 
     editDataFlashcard, 
+    editFolderName, 
     setupRoot
 } from "./scolar.js";
 

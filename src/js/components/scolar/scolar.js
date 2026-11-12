@@ -73,3 +73,8 @@ export function createFolder (content) {
         parentId : content.parentId
     }
 }
+export function editFolderName (newName) {
+    return {
+        name : newName
+    }
+}
