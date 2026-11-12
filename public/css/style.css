@@ -2916,6 +2916,56 @@ td:last-child {
   }
 }
 
+.folder:hover .folder__commands, .folder:focus-visible .folder__commands {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.folder:hover .folder__title, .folder:focus-visible .folder__title {
+  right: 88px;
+}
+.folder__commands {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-2);
+  z-index: 1;
+  transform: translateX(8px);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, visibility 150ms ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .folder__commands {
+    transition: none;
+  }
+}
+.folder__commands__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.folder__commands__button--edit:hover {
+  background-color: var(--bg-soft);
+  color: var(--accent);
+}
+.folder__commands__button--del:hover {
+  background-color: color-mix(in srgb, #ef4444 12%, transparent);
+  color: #ef4444;
+}
+
 /* ==========================================================================
    AXE — Redesign — Effets & animations (src/js/utils/effects.js)
    ========================================================================== */

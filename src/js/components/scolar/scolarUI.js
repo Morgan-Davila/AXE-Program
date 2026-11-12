@@ -267,7 +267,29 @@ export function renderFolder(packet) {
         // nom complet en info-bulle, utile quand il est tronqué
         button.title = folder.name;
 
-        button.appendChild(title);  
+        button.appendChild(title);
+
+        //AI made : barre d'actions au survol (modifier / supprimer), même markup que flashcard__commands
+        // des <div> et non des <button> : un bouton ne peut pas en contenir un autre
+        const commands = document.createElement("div");
+        commands.classList.add("folder__commands");
+
+        const edit = document.createElement("div");
+        edit.classList.add("folder__commands__button", "folder__commands__button--edit");
+        edit.dataset.folderCommandAction = "edit";
+        edit.title = "Renommer";
+        edit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg>';
+
+        const del = document.createElement("div");
+        del.classList.add("folder__commands__button", "folder__commands__button--del");
+        del.dataset.folderCommandAction = "del";
+        del.title = "Supprimer";
+        del.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
+
+        commands.appendChild(edit);
+        commands.appendChild(del);
+        button.appendChild(commands);
+        //end AI made
 
         folders.push(button);
     }

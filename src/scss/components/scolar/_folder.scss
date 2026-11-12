@@ -99,3 +99,73 @@
     }
 }
 //end AI made
+
+//AI made : barre d'actions au survol d'un dossier (renommer / supprimer), dans le coin bas droit
+// même style que .flashcard__commands (_scolar-dashboard.scss)
+.folder {
+    &:hover &__commands,
+    &:focus-visible &__commands {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    // le titre s'arrête avant la barre d'actions (tronqué avec "…") au lieu de passer dessous
+    &:hover &__title,
+    &:focus-visible &__title {
+        right: 88px;
+    }
+
+    &__commands {
+        position: absolute;
+        bottom: var(--space-2);
+        right: var(--space-2);
+        z-index: 1; // au-dessus du SVG et du titre
+        transform: translateX(8px);
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        padding: 4px;
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+            opacity 150ms ease-in-out,
+            transform 150ms ease-in-out,
+            visibility 150ms ease-in-out;
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+
+        &__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            color: var(--ink-soft);
+            cursor: pointer;
+
+            transition: all var(--dur-fast) var(--ease);
+
+            &--edit:hover {
+                background-color: var(--bg-soft);
+                color: var(--accent);
+            }
+            &--del:hover {
+                background-color: color-mix(in srgb, #ef4444 12%, transparent);
+                color: #ef4444;
+            }
+        }
+    }
+}
+//end AI made
