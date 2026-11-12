@@ -399,7 +399,9 @@ export function collectDataEditableFolder () {
     const folder = safeQuery(".folder[data-is-editable='true']");
     if (folder === null) return null;
    
-    const actualId = flashcardBox.dataset.actualFolderId || null;
+    //AI made : le dataset stocke "null" (une chaîne, donc truthy) : getActualFolderId le transforme en vrai null
+    const actualId = getActualFolderId();
+    //end AI made
 
     if (!folder) return;
     const champ = folder.querySelector("input");

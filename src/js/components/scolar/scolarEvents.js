@@ -391,11 +391,10 @@ export function setupFolderCreation () {
 
             const folder = createFolder(content);
             addFolder(folder);
-            const actualId = flashcardBox.dataset.actualFolderId;
-            displayFolder(actualId);
+            //AI made : getActualFolderId transforme le "null" stocké dans le dataset en vrai null
+            displayFolder(getActualFolderId());
+            //end AI made
 
-        } else {
-            debug("mauvais endroit")
         }
         
     })
@@ -410,8 +409,9 @@ export function setupFolderSaving () {
 
             const folder = createFolder(content);
             addFolder(folder);
-            const actualId = flashcardBox.dataset.actualFolderId;
-            displayFolder(actualId);
+            //AI made : getActualFolderId transforme le "null" stocké dans le dataset en vrai null
+            displayFolder(getActualFolderId());
+            //end AI made
         }
     })
 }
