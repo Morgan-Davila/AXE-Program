@@ -53,7 +53,8 @@ import {
 import { 
     addFolder,
     getFolder, 
-    getFolderNames 
+    getFolderNames, 
+    updateFolder
 } from "../../services/storage/storageFolders.js";
 
 import { 
@@ -344,8 +345,6 @@ export function setupNavChevrons () {
     
     
     prev.addEventListener("click", () => {
-        // let actualFolder = HISTORIC[cursor];
-        // debug(getFolder(actualFolder));
         if (HISTORIC[0] === null && cursor === 0) return;
  
         const value = cursor - 1;
@@ -357,15 +356,9 @@ export function setupNavChevrons () {
         
         debug(cursor);
 
-        // debug("nom des dossiers : " + getFolderNames(HISTORIC));
-        // debug("dossier affiché : " + getFolder(previousFolder).name)
-        // debug(previousFolder);
         displayFolder(previousFolder);
 
         debug(HISTORIC)
-        
-        //debug("curseur : " + cursor)
-        //debug(getFolder(HISTORIC[cursor]))
     })
 
     next.addEventListener("click", () => {
@@ -396,8 +389,7 @@ export function setupFolderCreation () {
 
 
     flashcardBox.addEventListener("click", (e) => {
-        //const folder = e.target.closest(".folder");
-        //const flashcard = e.target.closest(".flashcard");
+
         
         if (e.target === flashcardBox) { //pour gérer le click en dehors du dossier editable, si l'user clique en dehors du dossier, on l'enregistre
             const content = collectDataEditableFolder();
@@ -405,9 +397,9 @@ export function setupFolderCreation () {
 
             const folder = createFolder(content);
             addFolder(folder);
-            //AI made : getActualFolderId transforme le "null" stocké dans le dataset en vrai null
+
             displayFolder(getActualFolderId());
-            //end AI made
+
 
         }
         
@@ -423,9 +415,35 @@ export function setupFolderSaving () {
 
             const folder = createFolder(content);
             addFolder(folder);
-            //AI made : getActualFolderId transforme le "null" stocké dans le dataset en vrai null
+
             displayFolder(getActualFolderId());
-            //end AI made
+           
         }
+    })
+}
+
+
+
+export function setupFolderEdit () {
+    flashcardBox.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const folder = e.target.closest(".folder");
+            const folderId = folder.dataset.folderId;
+            
+            const champ = e.target.closest(".folder__champ");
+            const text = champ.value;
+
+            const content = editFolderName(text);
+            updateFolder(folderId, content);
+
+            displayFolder(getActualFolderId());
+        }
+    })
+
+    flashcardBox.addEventListener("click", (e) =>{
+        // const folder = e.target.closest(".folder");
+        // if (e.target !== folder) {
+        //     debug("salut")
+        // }
     })
 }
