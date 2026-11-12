@@ -400,3 +400,18 @@ export function setupFolderCreation () {
         
     })
 }
+
+export function setupFolderSaving () {
+    
+    flashcardBox.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const content = collectDataEditableFolder();
+            if(content === null) return;
+
+            const folder = createFolder(content);
+            addFolder(folder);
+            const actualId = flashcardBox.dataset.actualFolderId;
+            displayFolder(actualId);
+        }
+    })
+}

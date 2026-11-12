@@ -124,7 +124,8 @@ import {
     setupBreadCrumbButtonEvents,
     setupFlashcardFlip,
     setupNavChevrons,
-    setupFolderCreation
+    setupFolderCreation,
+    setupFolderSaving
 } from "./components/scolar/scolarEvents.js";
 setupFlashcardFlip();
 setupFlashcardPopup();
@@ -137,6 +138,7 @@ setupBreadCrumbButtonEvents();
 setupNavChevrons();
 
 setupFolderCreation();
+setupFolderSaving();
 
 import { setupEditor } from "./components/scolar/flashcardsEditor.js";
 setupEditor();
