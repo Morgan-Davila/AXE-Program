@@ -32,7 +32,8 @@ import {
     folderCreateButton,
     renderEditableFolder,
     setFocusOnInputs,
-    collectDataEditableFolder
+    collectDataEditableFolder,
+    replaceChampofAFolder
 } from "./scolarUI.js";
 
 import { 
@@ -289,6 +290,19 @@ export function setupFolderEvents () {
     flashcardBox.addEventListener("click", (e) => {
         const folder = e.target.closest(".folder");
         if (!folder) return;
+        
+        if (e.target.closest('.folder__commands')) {
+            if (e.target.closest('.folder__commands__button--edit')) {
+                replaceChampofAFolder(folder);
+                setFocusOnInputs(folder);
+                return;
+            } else if (e.target.closest('.folder__commands__button--del')){
+
+            }
+            
+        }
+        
+        
 
         const isEditable = folder.dataset.isEditable;
         if (isEditable === "true") return;
