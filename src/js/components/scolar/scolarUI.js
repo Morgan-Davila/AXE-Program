@@ -437,3 +437,15 @@ export function collectDataEditableFolder () {
     return content;
 
 }
+
+export function replaceChampofAFolder (folder) {
+    const lastChamp = folder.querySelector(".folder__title");
+    const lastChampText = lastChamp.textContent;
+
+    const newChamp = document.createElement("input");
+    newChamp.type = "text"
+    newChamp.classList.add("folder__champ");
+    newChamp.value = lastChampText;
+
+    lastChamp.replaceWith(newChamp);
+}
