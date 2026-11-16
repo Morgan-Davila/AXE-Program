@@ -52,6 +52,7 @@ import {
 
 import { 
     addFolder,
+    deleteFolder,
     getFolder, 
     getFolderNames, 
     updateFolder
@@ -284,27 +285,34 @@ export function setupTestFlashcardGeneration () {
     });
 }
 
-
+//gère l'entrée, l'edit et le del d'un folder
 export function setupFolderEvents () {
     if (!exists(flashcardBox)) return;
 
     flashcardBox.addEventListener("click", (e) => {
         const folder = e.target.closest(".folder");
         if (!folder) return;
-        
+
+        //si le click est sur un button de command (edit/del) on intercepte le click pour executer l'action adéquate
         if (e.target.closest('.folder__commands')) {
+
             if (e.target.closest('.folder__commands__button--edit')) {
                 replaceChampofAFolder(folder);
+                folder.dataset.isEditable = true;
+                folder.dataset.isEditing = true;
                 setFocusOnInputs(folder);
                 return;
-            } else if (e.target.closest('.folder__commands__button--del')){
 
+            } else if (e.target.closest('.folder__commands__button--del')){
+                const folderId = folder.dataset.folderId;
+                deleteFolder(folderId);
+                displayFolder(getActualFolderId());
+                return
             }
             
         }
         
-        
-
+        //si le click est réelement sur un dossier, alors on entre dedans
         const isEditable = folder.dataset.isEditable;
         if (isEditable === "true") return;
 
