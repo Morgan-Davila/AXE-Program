@@ -1,25 +1,37 @@
-# AXE
+# AXE Program
 
-AXE est une application de productivité personnelle conçue pour aider les utilisateurs à organiser leurs habitudes, suivre leur progression et structurer leur quotidien.
+AXE Program est un projet personnel à long terme : construire, brique par brique, un assistant personnel complet. D'abord sous forme d'application, puis capable de comprendre la voix et d'agir sur mes appareils, et enfin de prendre une forme physique.
 
-Le projet est développé avec une approche progressive : chaque fonctionnalité est construite lorsque le besoin apparaît afin de garder une architecture claire, maintenable et évolutive.
+Le projet est découpé en **divisions**. Chacune a son propre objectif et sert de base à la suivante : AXE App prépare AXE Intelligence, qui prépare AXE Fractal, qui prépare à son tour AXE Home et AXE Vision.
 
----
+## Les divisions
 
-## Objectif du projet
+| Division | Rôle | Statut |
+| --- | --- | --- |
+| **AXE App** | Application de productivité personnelle : habitudes, flashcards, cahiers, agenda, statistiques | En cours |
+| **AXE Intelligence** | LLM + reconnaissance vocale : transformer ma voix en commandes et opérer dans AXE, puis sur mon PC et mon téléphone | Prévu |
+| **AXE Fractal** | Boîtier connecté (micro, haut-parleur, capteurs de température, d'humidité…) : première implémentation physique d'AXE | Prévu |
+| **AXE Home** | Système domotique de la maison, construit sur la base technique d'AXE Fractal | Prévu |
+| **AXE Vision** | Lunettes connectées à AXE, construites sur la base technique d'AXE Fractal, pour qu'AXE soit constamment avec moi | Prévu |
 
-AXE a pour objectif de devenir un espace central de gestion personnelle regroupant :
+```mermaid
+flowchart LR
+    App[AXE App] --> Intel[AXE Intelligence]
+    Intel --> Fractal[AXE Fractal]
+    Fractal --> Home[AXE Home]
+    Fractal --> Vision[AXE Vision]
+```
 
-* Gestion des habitudes
-* Suivi de progression
-* Statistiques personnelles
-* Organisation du temps
-* Planification
-* Suivi des objectifs
-* Gestion scolaire (flashcards, cahiers)
+## AXE App
 
-L'objectif est de construire une application complète avec une architecture solide, en évoluant progressivement d'une application front-end locale vers une application complète avec backend.
+AXE App est la première division et le socle de tout le reste. C'est une application de productivité personnelle conçue pour organiser mes habitudes, mes révisions et mon temps, et suivre ma progression.
 
+Elle a deux objectifs :
+
+* Développer mes compétences en code
+* Apprendre la conception concrète d'une application, de la première fonctionnalité jusqu'au déploiement
+
+Le développement est progressif : chaque fonctionnalité est construite lorsque le besoin apparaît, afin de garder une architecture claire, maintenable et évolutive. L'application évolue d'un front-end local vers une application complète avec serveur, puis vers une application de bureau.
 ---
 
 # Technologies utilisées
@@ -181,9 +193,11 @@ Cela permet d'activer ou désactiver facilement les logs pendant le développeme
 
 # Roadmap
 
-## AXE 1 - Habit Manager
+## AXE App (AXE 1 → AXE 6)
 
-Statut : terminé
+### AXE 1 - Habit Manager
+
+**Statut :** terminé
 
 Objectif : Finaliser le système complet de gestion des habitudes.
 
@@ -197,15 +211,11 @@ Fonctionnalités :
 * Gestion des séries (streaks)
 * Amélioration UX/UI
 
----
+### AXE 2 - Flashcards
 
-## AXE 2 - Gestion scolaire
+**Statut :** en cours
 
-Statut : en cours (partie 1 - flashcards)
-
-Objectif : Centraliser les révisions et les cours dans AXE. La mise à jour se fait en deux parties.
-
-### Partie 1 - Flashcards
+Objectif : Centraliser les révisions dans AXE.
 
 Fonctionnalités :
 
@@ -215,16 +225,17 @@ Fonctionnalités :
 * Impression des flashcards (d'une carte, d'un dossier ou d'une sélection)
 * Session de révision lancée sur un dossier ou une sélection de flashcards
 
-### Partie 2 - Cahiers
+### AXE 3 - Cahiers
+
+Objectif : Centraliser les cours dans AXE, avec un CRUD complet des cahiers.
 
 Fonctionnalités :
 
-* Création de cahiers, avec choix du type de page : grands carreaux ou petits carreaux
+* Création, modification et suppression de cahiers, avec choix du type de page : grands carreaux ou petits carreaux
 * Ajout de chapitres dans un cahier
 * Fenêtre d'édition de texte en Markdown
 * Rendu du Markdown sur un cahier virtuel, consultable facilement
 * Hiérarchisation automatique à partir des titres Markdown :
-
   * Thème
   * Chapitre
   * Grandes parties (I, II, III…)
@@ -233,24 +244,7 @@ Fonctionnalités :
   * Textes / leçon / bilan
 * Ajout d'images et de documents (documents fournis par le professeur, scannés)
 
----
-
-## AXE 3 - Statistics & Progression
-
-Objectif : Transformer les habitudes en données exploitables.
-
-Fonctionnalités :
-
-* Statistiques personnelles
-* Graphiques de progression
-* Historique des habitudes
-* Calcul des performances
-* Analyse des séries
-* Visualisation des objectifs
-
----
-
-## AXE 4 - Agenda & Organisation
+### AXE 4 - Agenda & Organisation
 
 Objectif : Ajouter une gestion complète du temps.
 
@@ -263,47 +257,101 @@ Fonctionnalités :
 * Organisation des tâches
 * Connexion entre habitudes et agenda
 
----
+### AXE 5 - Statistiques & Progression
 
-## AXE 5 - Backend Update
-
-Objectif : Transformer AXE en application complète avec une architecture client/serveur.
+Objectif : Transformer les données d'AXE en informations exploitables.
 
 Fonctionnalités :
 
-* Création d'un backend
-* Base de données distante
-* Authentification utilisateur
-* Synchronisation des données
-* Gestion des comptes
-* API
+* Statistiques personnelles
+* Graphiques de progression
+* Historique des habitudes
+* Calcul des performances
+* Analyse des séries
+* Visualisation des objectifs
+
+### AXE 6 - Serveur & application de bureau
+
+Objectif : Faire d'AXE une application complète, avec ses données sur un serveur, puis installable sur ordinateur. La mise à jour se fait en deux parties.
+
+#### Partie 1 - Serveur
+
+* Création d'un backend et d'une API REST
+* Migration des données du localStorage vers une base de données
+* Authentification et gestion du compte
+* Synchronisation des données entre appareils
+* Hébergement du serveur
 * Sécurité des données
 
-Technologies envisagées :
+Technologies envisagées : Node.js, base de données SQL ou NoSQL, API REST.
 
-* Node.js
-* Base de données SQL ou NoSQL
-* API REST
-
----
-
-## AXE 6 - Application native
-
-Objectif : Migrer AXE vers Electron pour en faire une application de bureau native.
-
-Fonctionnalités :
+#### Partie 2 - Application de bureau
 
 * Migration du front-end vers Electron
 * Installation d'AXE comme application de bureau
 * Accès au système de fichiers local (import d'images et de documents scannés, export)
 * Notifications natives du système
-* Intégration avec le backend (synchronisation des données)
+* Connexion au serveur
 
-Technologies envisagées :
+Technologies envisagées : Electron, Node.js.
 
-* Electron
-* Node.js
+À la fin d'AXE 6, AXE App est terminée et sert de base à AXE Intelligence : l'API du serveur devient l'ensemble des commandes que l'IA pourra exécuter.
 
+---
+
+## AXE Intelligence (AXE 7 → …)
+
+Objectif : Passer d'une application à un assistant intelligent, capable de comprendre ma voix et d'agir à ma place.
+
+### AXE 7 - Commande vocale
+
+Fonctionnalités :
+
+* Reconnaissance vocale (voix → texte)
+* Connexion d'un LLM à AXE
+* Transformation d'une demande en commandes AXE (créer une habitude, une flashcard, un évènement…)
+* Exécution des commandes directement dans AXE
+
+### Étapes suivantes
+
+* Opérer sur mon PC
+* Opérer sur mon téléphone
+
+AXE Intelligence sert de base à AXE Fractal : c'est elle qui donne au boîtier sa capacité à comprendre et à agir.
+
+---
+
+## AXE Fractal
+
+Objectif : Créer un petit boîtier hardware, première implémentation physique d'AXE.
+
+Équipement envisagé :
+
+* Micro
+* Haut-parleur
+* Capteur de température
+* Capteur d'humidité
+* Autres capteurs
+
+AXE Fractal sert de base technique à AXE Home et à AXE Vision.
+
+---
+
+## AXE Home
+
+Objectif : Mettre en place un système domotique dans ma maison, basé sur AXE Fractal.
+
+---
+
+## AXE Vision
+
+Objectif : Créer des lunettes connectées à AXE, pour qu'AXE soit constamment avec moi.
+
+Équipement envisagé (première version) :
+
+* Haut-parleur à conduction osseuse
+* Micro
+* Antenne
 ---
 
 # Philosophie de développement
