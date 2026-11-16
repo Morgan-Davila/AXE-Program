@@ -136,6 +136,30 @@ export function removeFlashcardCard(card) {
 }
 //end AI made
 
+//AI made : même disparition en fondu que removeFlashcardCard, pour un dossier
+export function removeFolderElement(folder) {
+    if (!folder || folder.classList.contains("folder--removing")) return;   // déjà en train de disparaître
+
+    let removed = false;
+
+    const finish = () => {
+        if (removed) return;
+        removed = true;
+        folder.remove();
+    };
+
+    // les transitions du SVG, du titre et des commandes remontent aussi : on attend celle du dossier lui-même
+    folder.addEventListener("transitionend", (e) => {
+        if (e.target === folder && e.propertyName === "opacity") finish();
+    });
+
+    folder.classList.add("folder--removing");
+
+    // filet de sécurité si aucune transition ne se déclenche (ex. prefers-reduced-motion)
+    setTimeout(finish, 400);
+}
+//end AI made
+
 // pour utiliser cette function il faut imperativement lui fournir un viewer tel que :
 //  let element = document.createElement("div");
 // let viewer = new Quill(element, { readOnly: true, modules: { toolbar: false } });

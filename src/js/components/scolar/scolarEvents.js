@@ -19,6 +19,7 @@ import {
     hideCommandsDuringFlip,
     flashcardBox,
     removeFlashcardCard,
+    removeFolderElement,
     getVisibleFlashcardFace,
     flashcardTestButton,
     displayFolder,
@@ -308,7 +309,9 @@ export function setupFolderEvents () {
             } else if (e.target.closest('.folder__commands__button--del')){
                 const folderId = folder.dataset.folderId;
                 deleteFolder(folderId);
-                displayFolder(getActualFolderId());
+                //AI made : suppression animée, comme pour les flashcards (pas besoin de re-rendre toute la boîte)
+                removeFolderElement(folder);
+                //end AI made
                 return
             }
             

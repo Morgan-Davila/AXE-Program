@@ -103,6 +103,20 @@
 //AI made : barre d'actions au survol d'un dossier (renommer / supprimer), dans le coin bas droit
 // même style que .flashcard__commands (_scolar-dashboard.scss)
 .folder {
+    //AI made : disparition à la suppression (classe posée par removeFolderElement), comme .flashcard--removing
+    transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+
+    &--removing {
+        opacity: 0;
+        transform: scale(.92);
+        pointer-events: none; // plus de clic ni de hover pendant la disparition
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+    //end AI made
+
     &:hover &__commands,
     &:focus-visible &__commands {
         opacity: 1;
