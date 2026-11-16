@@ -84,6 +84,7 @@ import {
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 let flashcardPopupMode = "create";
+let folderMode = "create";
 
 //AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
 export function setupFlashcardSwitch() {
@@ -264,8 +265,6 @@ async function copyFlashcardFace(card) {
 }
 //end AI made
 
-
-
 export function setupTestFlashcardGeneration () {
 
     if (!flashcardTestButton) return;
@@ -333,8 +332,6 @@ export function setupBreadCrumbButtonEvents () {
     })
 }
 
-
-
 export function setupNavChevrons () {
     debug("debut stupNavChevrons")
     const prev = scolarNavChevrons.prev;
@@ -371,10 +368,6 @@ export function setupNavChevrons () {
         }
     })
 }
-
-
-
-
 
 export function setupFolderCreation () {
     if (!folderCreateButton) return;

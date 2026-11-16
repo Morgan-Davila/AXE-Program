@@ -259,6 +259,7 @@ export function renderFolder(packet) {
         button.classList.add("folder");
         button.dataset.folderId = folder.id;
         button.dataset.isEditable = false;
+        button.dataset.isEditing = false;
         button.innerHTML = folderSvg(`folder-reflet-${folder.id}`);
 
         const title = document.createElement("span");
@@ -402,6 +403,7 @@ export function renderEditableFolder () {
     button.classList.add("folder");
     button.innerHTML = folderSvg(`folder-reflet-${crypto.randomUUID()}`);
     button.dataset.isEditable = true;
+    button.dataset.isEditing = false;
 
     const champ = document.createElement("input");
     champ.type = "text"
@@ -448,4 +450,15 @@ export function replaceChampofAFolder (folder) {
     newChamp.value = lastChampText;
 
     lastChamp.replaceWith(newChamp);
+}
+
+export function knowEditableFolderType () {
+    const folder = safeQuery(".folder[data-is-editable='true']");
+    if (!folder) return;
+
+    if (folder.dataset.isEditing !== "true") {
+        return "create";
+    } else {
+        return "edit";
+    }
 }
