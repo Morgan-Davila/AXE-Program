@@ -79,7 +79,8 @@ import { faker } from "../../../../node_modules/@faker-js/faker/dist/locale/fr.j
 
 import { 
     safeQueryAll, 
-    exists 
+    exists, 
+    safeQuery
 } from "../../utils/dom.js";
 
 
@@ -447,9 +448,19 @@ export function setupFolderEdit () {
     })
 
     flashcardBox.addEventListener("click", (e) =>{
-        // const folder = e.target.closest(".folder");
-        // if (e.target !== folder) {
-        //     debug("salut")
-        // }
+        
+        const folder = safeQuery(".folder[data-is-editable='true']");
+
+        if (!folder || folder.contains(e.target)) return;
+        
+        const folderId = folder.dataset.folderId;
+
+        const champ = folder.querySelector(".folder__champ");
+        const text = champ.value;
+
+        const content = editFolderName(text);
+        updateFolder(folderId, content);
+
+        displayFolder(getActualFolderId());
     })
 }
