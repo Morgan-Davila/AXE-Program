@@ -33,7 +33,8 @@ import {
     renderEditableFolder,
     setFocusOnInputs,
     collectDataEditableFolder,
-    replaceChampofAFolder
+    replaceChampofAFolder,
+    knowEditableFolderType
 } from "./scolarUI.js";
 
 import { 
@@ -391,20 +392,16 @@ export function setupFolderCreation () {
 
 
     flashcardBox.addEventListener("click", (e) => {
-
+        if (knowEditableFolderType() !== "create") return; //on verif que c'est bien en mode create
         
-        if (e.target === flashcardBox) { //pour gérer le click en dehors du dossier editable, si l'user clique en dehors du dossier, on l'enregistre
-            const content = collectDataEditableFolder();
-            if(content === null) return;
-
-            const folder = createFolder(content);
-            addFolder(folder);
-
-            displayFolder(getActualFolderId());
-
-
-        }
         
+        const content = collectDataEditableFolder();
+        if(content === null) return;
+
+        const folder = createFolder(content);
+        addFolder(folder);
+
+        displayFolder(getActualFolderId());
     })
 }
 
