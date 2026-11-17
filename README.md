@@ -32,6 +32,7 @@ Elle a deux objectifs :
 * Apprendre la conception concrète d'une application, de la première fonctionnalité jusqu'au déploiement
 
 Le développement est progressif : chaque fonctionnalité est construite lorsque le besoin apparaît, afin de garder une architecture claire, maintenable et évolutive. L'application évolue d'un front-end local vers une application complète avec serveur, puis vers une application de bureau.
+
 ---
 
 # Technologies utilisées
@@ -130,9 +131,13 @@ Exemple :
 
 Contient les services indépendants de l'interface.
 
-Actuellement :
+Actuellement, un fichier par domaine dans `services/storage/` :
 
-* `storage.js`
+* `storageHabits.js` : habitudes
+* `storageFlashcards.js` : flashcards
+* `storageFolders.js` : dossiers et navigation dans l'arborescence
+* `storageTheme.js` : préférence de thème
+* `storageSize.js` : outil de debug (taille du localStorage)
 
 Responsabilités :
 
@@ -217,13 +222,27 @@ Fonctionnalités :
 
 Objectif : Centraliser les révisions dans AXE.
 
-Fonctionnalités :
+Fonctionnalités terminées :
 
 * Création, modification et suppression de flashcards
 * Classification des flashcards dans des dossiers et sous-dossiers (arborescence sans limite de profondeur)
-* Déplacement des flashcards et des dossiers dans l'arborescence
-* Impression des flashcards (d'une carte, d'un dossier ou d'une sélection)
+* Création, renommage et suppression de dossiers
+* Navigation dans les dossiers : flèches précédent / suivant (historique) et fil d'Ariane
+
+Prochaines fonctionnalités :
+
+* Sélection multiple de dossiers et de flashcards (clic, Ctrl+clic, Échap pour désélectionner)
+* Couper / coller de dossiers et de flashcards (déplacement dans l'arborescence)
+* Copier / coller de dossiers et de flashcards (copie récursive des sous-dossiers, avec de nouveaux identifiants)
+* Glisser-déposer de la sélection vers un dossier de la grille ou du fil d'Ariane
+* Raccourcis clavier : Ctrl+C, Ctrl+X, Ctrl+V, Suppr
 * Session de révision lancée sur un dossier ou une sélection de flashcards
+* Impression des flashcards (d'une carte, d'un dossier ou d'une sélection)
+
+Points à régler :
+
+* Choisir le comportement du clic (sélectionner ou ouvrir) quand la sélection multiple arrivera
+* Nettoyer l'historique de navigation quand un dossier qu'il contient est supprimé ou déplacé
 
 ### AXE 3 - Cahiers
 
@@ -352,6 +371,7 @@ Objectif : Créer des lunettes connectées à AXE, pour qu'AXE soit constamment 
 * Haut-parleur à conduction osseuse
 * Micro
 * Antenne
+
 ---
 
 # Philosophie de développement
