@@ -384,8 +384,6 @@ export function displayFolder (folderId) {
 
     
     actualizeFolderBreadcrumb();
-    
-    // debug(getFolderNames(HISTORIC))
 }
 
 
@@ -403,13 +401,9 @@ export function getActualFolderId () {
 }
 
 export function actualizeHistoricAndCursor (folderId) {
-
     cursor ++;
-    debug(cursor);
     HISTORIC.length = cursor;
-    debug(HISTORIC);
     HISTORIC.push(folderId);
-    debug(HISTORIC)
 }
 
 export function setCursor (value) {

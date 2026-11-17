@@ -88,7 +88,6 @@ import {
 
 const EMPTY_FLASHCARD_MESSAGE = "Les deux faces de la flashcard doivent être remplies.";
 let flashcardPopupMode = "create";
-let folderMode = "create";
 
 //AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
 export function setupFlashcardSwitch() {
@@ -342,6 +341,8 @@ export function setupBreadCrumbButtonEvents () {
         };
 
         displayFolder(folderId);
+
+        actualizeHistoricAndCursor(folderId);
     })
 }
 
@@ -361,10 +362,8 @@ export function setupNavChevrons () {
         const value = cursor - 1;
         setCursor(value);
 
-
         let previousFolder = HISTORIC[cursor];
-        
-        
+                
         debug(cursor);
 
         displayFolder(previousFolder);
