@@ -371,18 +371,14 @@ export function setupNavChevrons () {
 
         let previousFolder = HISTORIC[cursor];
                 
-        debug(cursor);
-
         displayFolder(previousFolder);
-
-        debug(HISTORIC)
     })
 
     next.addEventListener("click", () => {
         if (cursor < (HISTORIC.length - 1))  {
             const value = cursor + 1;
             setCursor(value)
-            debug(cursor);
+            
             displayFolder(HISTORIC[cursor]);
         }
     })
