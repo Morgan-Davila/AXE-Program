@@ -35,7 +35,8 @@ import {
     setFocusOnInputs,
     collectDataEditableFolder,
     replaceChampofAFolder,
-    knowEditableFolderType
+    knowEditableFolderType,
+    isDuplicate
 } from "./scolarUI.js";
 
 import { 
@@ -342,7 +343,11 @@ export function setupBreadCrumbButtonEvents () {
 
         displayFolder(folderId);
 
+        if (isDuplicate(folderId)) {
+            return
+        }
         actualizeHistoricAndCursor(folderId);
+
     })
 }
 

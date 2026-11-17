@@ -410,7 +410,10 @@ export function setCursor (value) {
     cursor = value;
 }
 
-
+//verif si le nouveau folder !== du last folder
+export function isDuplicate (folderId) {
+    if (HISTORIC.at(-1) === folderId) return true;
+}
 
 
 
