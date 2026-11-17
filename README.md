@@ -22,6 +22,18 @@ flowchart LR
     Fractal --> Vision[AXE Vision]
 ```
 
+## Nomenclature
+
+Chaque version suit le même nom : **AXE**, puis le **produit**, puis le **numéro de version** de ce produit.
+
+| Exemple | Signification |
+| --- | --- |
+| AXE App 2 | 2e version d'AXE App (flashcards) |
+| AXE Intelligence 1 | 1re version d'AXE Intelligence (commande vocale) |
+| AXE Fractal 1 | 1re version du boîtier AXE Fractal |
+
+La numérotation repart à 1 pour chaque produit : on ne dit pas « AXE 2 » mais « AXE App 2 ».
+
 ## AXE App
 
 AXE App est la première division et le socle de tout le reste. C'est une application de productivité personnelle conçue pour organiser mes habitudes, mes révisions et mon temps, et suivre ma progression.
@@ -95,10 +107,10 @@ src
 | `font` | Polices du projet (Inter, Frick Condensed) |
 | `js` | `main.js` (point d'entrée de toutes les pages) et `debug.js` |
 | `js/components` | Une fonctionnalité par dossier, découpée en logique / UI / events |
-| `js/components/calendar` | Calendrier (préparé pour AXE 4) |
+| `js/components/calendar` | Calendrier (préparé pour AXE App 4) |
 | `js/components/dashboard` | Tableau de bord : habitudes du jour, streaks, graphique de la semaine |
 | `js/components/habits` | Gestionnaire d'habitudes : création, modification, suppression, recherche |
-| `js/components/scolar` | Flashcards et dossiers (AXE 2), éditeur de texte Quill |
+| `js/components/scolar` | Flashcards et dossiers (AXE App 2), éditeur de texte Quill |
 | `js/components/theme` | Bascule mode clair / mode sombre |
 | `js/services` | Accès aux données (localStorage), sans lien avec l'interface |
 | `js/testData` | Jeu de dossiers et de flashcards de test (non chargé par défaut) |
@@ -198,9 +210,9 @@ Cela permet d'activer ou désactiver facilement les logs pendant le développeme
 
 # Roadmap
 
-## AXE App (AXE 1 → AXE 6)
+## AXE App (AXE App 1 → AXE App 6)
 
-### AXE 1 - Habit Manager
+### AXE App 1 - Habit Manager
 
 **Statut :** terminé
 
@@ -216,7 +228,7 @@ Fonctionnalités :
 * Gestion des séries (streaks)
 * Amélioration UX/UI
 
-### AXE 2 - Flashcards
+### AXE App 2 - Flashcards
 
 **Statut :** en cours
 
@@ -244,7 +256,7 @@ Points à régler :
 * Choisir le comportement du clic (sélectionner ou ouvrir) quand la sélection multiple arrivera
 * Nettoyer l'historique de navigation quand un dossier qu'il contient est supprimé ou déplacé
 
-### AXE 3 - Cahiers
+### AXE App 3 - Cahiers
 
 Objectif : Centraliser les cours dans AXE, avec un CRUD complet des cahiers.
 
@@ -263,7 +275,7 @@ Fonctionnalités :
   * Textes / leçon / bilan
 * Ajout d'images et de documents (documents fournis par le professeur, scannés)
 
-### AXE 4 - Agenda & Organisation
+### AXE App 4 - Agenda & Organisation
 
 Objectif : Ajouter une gestion complète du temps.
 
@@ -276,7 +288,7 @@ Fonctionnalités :
 * Organisation des tâches
 * Connexion entre habitudes et agenda
 
-### AXE 5 - Statistiques & Progression
+### AXE App 5 - Statistiques & Progression
 
 Objectif : Transformer les données d'AXE en informations exploitables.
 
@@ -289,7 +301,7 @@ Fonctionnalités :
 * Analyse des séries
 * Visualisation des objectifs
 
-### AXE 6 - Serveur & application de bureau
+### AXE App 6 - Serveur & application de bureau
 
 Objectif : Faire d'AXE une application complète, avec ses données sur un serveur, puis installable sur ordinateur. La mise à jour se fait en deux parties.
 
@@ -314,15 +326,15 @@ Technologies envisagées : Node.js, base de données SQL ou NoSQL, API REST.
 
 Technologies envisagées : Electron, Node.js.
 
-À la fin d'AXE 6, AXE App est terminée et sert de base à AXE Intelligence : l'API du serveur devient l'ensemble des commandes que l'IA pourra exécuter.
+À la fin d'AXE App 6, AXE App est terminée et sert de base à AXE Intelligence : l'API du serveur devient l'ensemble des commandes que l'IA pourra exécuter.
 
 ---
 
-## AXE Intelligence (AXE 7 → …)
+## AXE Intelligence (AXE Intelligence 1 → …)
 
 Objectif : Passer d'une application à un assistant intelligent, capable de comprendre ma voix et d'agir à ma place.
 
-### AXE 7 - Commande vocale
+### AXE Intelligence 1 - Commande vocale
 
 Fonctionnalités :
 

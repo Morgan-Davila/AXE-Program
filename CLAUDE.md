@@ -4,7 +4,9 @@ Ce fichier fournit des indications à Claude Code (claude.ai/code) pour travaill
 
 ## Projet
 
-AXE est une application de productivité personnelle (suivi d'habitudes, statistiques de progression, planification) construite de façon incrémentale en front-end vanilla (sans framework, sans bundler), avec un backend prévu pour une phase ultérieure. Voir README.md pour la roadmap complète (AXE 1 : habitudes, AXE 2 : gestion scolaire — flashcards et cahiers, AXE 3 : stats, AXE 4 : agenda, AXE 5 : backend, AXE 6 : migration vers Electron). AXE 1 (Habit Manager) est terminé ; le projet en est actuellement à AXE 2, partie 1 (flashcards rangées dans une arborescence de dossiers).
+Ce dépôt contient **AXE App**, la première division d'AXE Program (les suivantes — AXE Intelligence, AXE Fractal, AXE Home, AXE Vision — sont décrites dans README.md). C'est une application de productivité personnelle (suivi d'habitudes, flashcards, statistiques de progression, planification) construite de façon incrémentale en front-end vanilla (sans framework, sans bundler), avec un serveur prévu pour une phase ultérieure.
+
+**Nomenclature des versions :** AXE + produit + numéro de version propre à ce produit. On écrit « AXE App 2 », jamais « AXE 2 ». Roadmap d'AXE App : AXE App 1 : habitudes, AXE App 2 : flashcards, AXE App 3 : cahiers, AXE App 4 : agenda, AXE App 5 : statistiques, AXE App 6 : serveur puis application de bureau (Electron). AXE App 1 (Habit Manager) est terminé ; le projet en est actuellement à AXE App 2 (flashcards rangées dans une arborescence de dossiers).
 
 ## Commandes
 
@@ -60,7 +62,7 @@ Autres composants suivant ce découpage :
 
 **Styles.** Structure SCSS : `abstracts/` (`_tokens.scss`), `base/`, `layout/` (header, footer, mise en page), `components/` (avec les sous-dossiers `dashboard/`, `habitManager/`, `scolar/`, `calendar/`, `graph/`). `src/scss/main.scss` est un manifeste de directives `@use` — une nouvelle feuille de style de composant doit y être ajoutée, sinon elle ne sera pas incluse dans le `public/css/style.css` compilé. Tout style doit toujours être écrit en SCSS (`src/scss/`), jamais directement dans `public/css/style.css`, qui est un fichier généré par `npm run sass` et ne doit pas être édité à la main.
 
-Les couleurs, espacements, rayons, ombres et durées sont des **variables CSS** définies dans `abstracts/_tokens.scss` (`var(--accent)`, `var(--ink)`, `var(--space-4)`…), redéfinies pour le mode sombre sous `:root[data-theme="dark"]`. Utilise toujours ces variables plutôt que des couleurs en dur, sinon le composant ne suivra pas le thème. Les couleurs de marque (`--brand-*`, `--grey-*`) sont définies directement dans `_tokens.scss` (source unique, plus de variables Sass). Voir `skill.md` pour les conventions détaillées. Les styles `.stats-*`, `.calendar__*` et `.schedule__agenda*` ne sont pas encore utilisés : ils préparent AXE 3 et AXE 4.
+Les couleurs, espacements, rayons, ombres et durées sont des **variables CSS** définies dans `abstracts/_tokens.scss` (`var(--accent)`, `var(--ink)`, `var(--space-4)`…), redéfinies pour le mode sombre sous `:root[data-theme="dark"]`. Utilise toujours ces variables plutôt que des couleurs en dur, sinon le composant ne suivra pas le thème. Les couleurs de marque (`--brand-*`, `--grey-*`) sont définies directement dans `_tokens.scss` (source unique, plus de variables Sass). Voir `skill.md` pour les conventions détaillées. Les styles `.stats-*`, `.calendar__*` et `.schedule__agenda*` ne sont pas encore utilisés : ils préparent AXE App 4 (agenda) et AXE App 5 (statistiques).
 
 ## Conventions
 
