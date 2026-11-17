@@ -341,12 +341,14 @@ export function setupBreadCrumbButtonEvents () {
             folderId = null
         };
 
-        displayFolder(folderId);
-
+        //AI made : on vérifie avant d'afficher : si c'est le dossier déjà affiché, rien à re-rendre ni à ajouter à l'historique
         if (isDuplicate(folderId)) {
             return
         }
+
+        displayFolder(folderId);
         actualizeHistoricAndCursor(folderId);
+        //end AI made
 
     })
 }

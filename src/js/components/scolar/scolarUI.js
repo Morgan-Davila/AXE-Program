@@ -411,9 +411,12 @@ export function setCursor (value) {
 }
 
 //verif si le nouveau folder !== du last folder
+//AI made : on compare au dossier affiché (HISTORIC[cursor]) et non au dernier de l'historique,
+// qui n'est plus le dossier affiché après un "précédent" ; renvoie toujours un booléen
 export function isDuplicate (folderId) {
-    if (HISTORIC.at(-1) === folderId) return true;
+    return HISTORIC[cursor] === folderId;
 }
+//end AI made
 
 
 
