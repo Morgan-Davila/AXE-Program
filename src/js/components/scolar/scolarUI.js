@@ -502,3 +502,8 @@ export function clearSelection () {
         last.classList.remove("folder--selected")
     }
 }
+
+export function toggleSelection (folder) {
+    folder.classList.toggle("folder--selected");
+}
+

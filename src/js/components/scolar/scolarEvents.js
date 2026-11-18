@@ -38,7 +38,8 @@ import {
     knowEditableFolderType,
     isDuplicate,
     selectFolder,
-    clearSelection
+    clearSelection,
+    toggleSelection
 } from "./scolarUI.js";
 
 import { 
@@ -298,9 +299,15 @@ export function setupFolderEvents () {
         const folder = e.target.closest(".folder");
         if (!folder) return;
         
+
+        if (e.ctrlKey || e.metaKey) {
+            toggleSelection(folder);
+
+            return;
+        }
+
         if (e.shiftKey) { 
             selectFolder(folder)
-
 
             return
         } else { 
