@@ -36,7 +36,9 @@ import {
     collectDataEditableFolder,
     replaceChampofAFolder,
     knowEditableFolderType,
-    isDuplicate
+    isDuplicate,
+    selectFolder,
+    clearSelection
 } from "./scolarUI.js";
 
 import { 
@@ -295,7 +297,7 @@ export function setupFolderEvents () {
     flashcardBox.addEventListener("click", (e) => {
         const folder = e.target.closest(".folder");
         if (!folder) return;
-
+        
         //si le click est sur un button de command (edit/del) on intercepte le click pour executer l'action adéquate
         if (e.target.closest('.folder__commands')) {
 
@@ -316,7 +318,11 @@ export function setupFolderEvents () {
             }
             
         }
-        
+        clearSelection();
+        selectFolder(folder);
+    })
+
+    flashcardBox.addEventListener("dblclick", () => {
         //si le click est réelement sur un dossier, alors on entre dedans
         const isEditable = folder.dataset.isEditable;
         if (isEditable === "true") return;

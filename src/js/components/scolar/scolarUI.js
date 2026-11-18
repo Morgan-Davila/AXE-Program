@@ -486,3 +486,17 @@ export function knowEditableFolderType () {
         return "edit";
     }
 }
+
+let lastSelectedElement;
+export function selectFolder (folder) {
+    lastSelectedElement = folder;
+    
+    folder.classList.add("folder--selected");
+}
+//futur selectFlashcard()
+
+export function clearSelection () {
+    if (lastSelectedElement == null) return; //compare si =null ou =undefined, comparaison pas strict
+    
+    lastSelectedElement.classList.remove("folder--selected")
+}
