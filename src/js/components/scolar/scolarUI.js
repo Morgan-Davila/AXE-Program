@@ -487,9 +487,9 @@ export function knowEditableFolderType () {
     }
 }
 
-let lastSelectedElement;
+let lastSelectedElement = [];
 export function selectFolder (folder) {
-    lastSelectedElement = folder;
+    lastSelectedElement.push(folder);
     
     folder.classList.add("folder--selected");
 }
@@ -498,5 +498,7 @@ export function selectFolder (folder) {
 export function clearSelection () {
     if (lastSelectedElement == null) return; //compare si =null ou =undefined, comparaison pas strict
     
-    lastSelectedElement.classList.remove("folder--selected")
+    for (let last of lastSelectedElement) {
+        last.classList.remove("folder--selected")
+    }
 }

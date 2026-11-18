@@ -298,8 +298,12 @@ export function setupFolderEvents () {
         const folder = e.target.closest(".folder");
         if (!folder) return;
         
-        //si le click est sur un button de command (edit/del) on intercepte le click pour executer l'action adéquate
-        if (e.target.closest('.folder__commands')) {
+        if (e.shiftKey) { 
+            selectFolder(folder)
+
+
+            return
+        } else { 
 
             if (e.target.closest('.folder__commands__button--edit')) {
                 replaceChampofAFolder(folder);
@@ -316,13 +320,15 @@ export function setupFolderEvents () {
                 //end AI made
                 return
             }
-            
+            clearSelection();
+            selectFolder(folder);
         }
-        clearSelection();
-        selectFolder(folder);
     })
 
-    flashcardBox.addEventListener("dblclick", () => {
+    flashcardBox.addEventListener("dblclick", (e) => {
+        const folder = e.target.closest(".folder");
+        if (!folder) return;
+
         //si le click est réelement sur un dossier, alors on entre dedans
         const isEditable = folder.dataset.isEditable;
         if (isEditable === "true") return;
