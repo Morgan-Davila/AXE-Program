@@ -2322,6 +2322,22 @@ td:last-child {
   align-content: start;
 }
 
+.flashcardBox__empty {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-8) var(--space-4);
+  color: var(--ink-faint);
+  text-align: center;
+}
+.flashcardBox__empty p {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
 .flashcard, .editableFlashcard {
   perspective: 1000px;
   width: 300px;
