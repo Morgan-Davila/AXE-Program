@@ -4,7 +4,7 @@ Ce fichier fournit des indications à Claude Code (claude.ai/code) pour travaill
 
 ## Projet
 
-Ce dépôt contient **AXE App**, la première division d'AXE Program (les suivantes — AXE Intelligence, AXE Fractal, AXE Home, AXE Vision — sont décrites dans README.md). C'est une application de productivité personnelle (suivi d'habitudes, flashcards, statistiques de progression, planification) construite de façon incrémentale en front-end vanilla (sans framework, sans bundler), avec un serveur prévu pour une phase ultérieure.
+Ce dépôt contient **AXE App**, la première division d'AXE Program (les suivantes — AXE Synapse, AXE Fractal, AXE Home, AXE Vision — sont décrites dans README.md). C'est une application de productivité personnelle (suivi d'habitudes, flashcards, statistiques de progression, planification) construite de façon incrémentale en front-end vanilla (sans framework, sans bundler), avec un serveur prévu pour une phase ultérieure.
 
 **Nomenclature des versions :** AXE + produit + numéro de version propre à ce produit. On écrit « AXE App 2 », jamais « AXE 2 ». Roadmap d'AXE App : AXE App 1 : habitudes, AXE App 2 : flashcards, AXE App 3 : cahiers, AXE App 4 : agenda, AXE App 5 : statistiques, AXE App 6 : serveur puis application de bureau (Electron). AXE App 1 (Habit Manager) est terminé ; le projet en est actuellement à AXE App 2 (flashcards rangées dans une arborescence de dossiers).
 

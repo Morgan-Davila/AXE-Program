@@ -2,22 +2,22 @@
 
 AXE Program est un projet personnel à long terme : construire, brique par brique, un assistant personnel complet. D'abord sous forme d'application, puis capable de comprendre la voix et d'agir sur mes appareils, et enfin de prendre une forme physique.
 
-Le projet est découpé en **divisions**. Chacune a son propre objectif et sert de base à la suivante : AXE App prépare AXE Intelligence, qui prépare AXE Fractal, qui prépare à son tour AXE Home et AXE Vision.
+Le projet est découpé en **divisions**. Chacune a son propre objectif et sert de base à la suivante : AXE App prépare AXE Synapse, qui prépare AXE Fractal, qui prépare à son tour AXE Home et AXE Vision.
 
 ## Les divisions
 
 | Division | Rôle | Statut |
 | --- | --- | --- |
 | **AXE App** | Application de productivité personnelle : habitudes, flashcards, cahiers, agenda, statistiques | En cours |
-| **AXE Intelligence** | LLM + reconnaissance vocale : transformer ma voix en commandes et opérer dans AXE, puis sur mon PC et mon téléphone | Prévu |
+| **AXE Synapse** | LLM + reconnaissance vocale : transformer ma voix en commandes et opérer dans AXE, puis sur mon PC et mon téléphone | Prévu |
 | **AXE Fractal** | Boîtier connecté (micro, haut-parleur, capteurs de température, d'humidité…) : première implémentation physique d'AXE | Prévu |
 | **AXE Home** | Système domotique de la maison, construit sur la base technique d'AXE Fractal | Prévu |
 | **AXE Vision** | Lunettes connectées à AXE, construites sur la base technique d'AXE Fractal, pour qu'AXE soit constamment avec moi | Prévu |
 
 ```mermaid
 flowchart LR
-    App[AXE App] --> Intel[AXE Intelligence]
-    Intel --> Fractal[AXE Fractal]
+    App[AXE App] --> Synapse[AXE Synapse]
+    Synapse --> Fractal[AXE Fractal]
     Fractal --> Home[AXE Home]
     Fractal --> Vision[AXE Vision]
 ```
@@ -29,7 +29,7 @@ Chaque version suit le même nom : **AXE**, puis le **produit**, puis le **numé
 | Exemple | Signification |
 | --- | --- |
 | AXE App 2 | 2e version d'AXE App (flashcards) |
-| AXE Intelligence 1 | 1re version d'AXE Intelligence (commande vocale) |
+| AXE Synapse 1 | 1re version d'AXE Synapse (commande vocale) |
 | AXE Fractal 1 | 1re version du boîtier AXE Fractal |
 
 La numérotation repart à 1 pour chaque produit : on ne dit pas « AXE 2 » mais « AXE App 2 ».
@@ -326,15 +326,15 @@ Technologies envisagées : Node.js, base de données SQL ou NoSQL, API REST.
 
 Technologies envisagées : Electron, Node.js.
 
-À la fin d'AXE App 6, AXE App est terminée et sert de base à AXE Intelligence : l'API du serveur devient l'ensemble des commandes que l'IA pourra exécuter.
+À la fin d'AXE App 6, AXE App est terminée et sert de base à AXE Synapse : l'API du serveur devient l'ensemble des commandes que l'IA pourra exécuter.
 
 ---
 
-## AXE Intelligence (AXE Intelligence 1 → …)
+## AXE Synapse (AXE Synapse 1 → …)
 
 Objectif : Passer d'une application à un assistant intelligent, capable de comprendre ma voix et d'agir à ma place.
 
-### AXE Intelligence 1 - Commande vocale
+### AXE Synapse 1 - Commande vocale
 
 Fonctionnalités :
 
@@ -348,7 +348,7 @@ Fonctionnalités :
 * Opérer sur mon PC
 * Opérer sur mon téléphone
 
-AXE Intelligence sert de base à AXE Fractal : c'est elle qui donne au boîtier sa capacité à comprendre et à agir.
+AXE Synapse sert de base à AXE Fractal : c'est elle qui donne au boîtier sa capacité à comprendre et à agir.
 
 ---
 
