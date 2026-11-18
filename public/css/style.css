@@ -2917,7 +2917,7 @@ td:last-child {
 }
 
 .folder {
-  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease), background-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 .folder--removing {
   opacity: 0;
@@ -2928,6 +2928,15 @@ td:last-child {
   .folder {
     transition: none;
   }
+}
+.folder--selected {
+  --folder-selection-bg: color-mix(in srgb, var(--accent) 16%, transparent);
+  --folder-selection-border: color-mix(in srgb, var(--accent) 55%, transparent);
+  background-color: var(--folder-selection-bg);
+  box-shadow: 0 0 0 6px var(--folder-selection-bg), 0 0 0 7px var(--folder-selection-border);
+}
+.folder--selected:hover {
+  --folder-selection-bg: color-mix(in srgb, var(--accent) 24%, transparent);
 }
 .folder:hover .folder__commands, .folder:focus-visible .folder__commands {
   opacity: 1;

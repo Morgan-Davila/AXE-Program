@@ -104,7 +104,11 @@
 // même style que .flashcard__commands (_scolar-dashboard.scss)
 .folder {
     //AI made : disparition à la suppression (classe posée par removeFolderElement), comme .flashcard--removing
-    transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+    transition:
+        opacity var(--dur-base) var(--ease),
+        transform var(--dur-base) var(--ease),
+        background-color var(--dur-fast) var(--ease),
+        box-shadow var(--dur-fast) var(--ease);
 
     &--removing {
         opacity: 0;
@@ -114,6 +118,24 @@
 
     @media (prefers-reduced-motion: reduce) {
         transition: none;
+    }
+    //end AI made
+
+    //AI made : dossier sélectionné, façon explorateur Windows : fond bleuté translucide + fine bordure
+    // la sélection déborde de 6px autour du dossier via box-shadow : rien ne bouge dans la grille
+    &--selected {
+        --folder-selection-bg: color-mix(in srgb, var(--accent) 16%, transparent);
+        --folder-selection-border: color-mix(in srgb, var(--accent) 55%, transparent);
+
+        background-color: var(--folder-selection-bg);
+        box-shadow:
+            0 0 0 6px var(--folder-selection-bg),
+            0 0 0 7px var(--folder-selection-border);
+
+        // comme sous Windows, la sélection se renforce un peu au survol
+        &:hover {
+            --folder-selection-bg: color-mix(in srgb, var(--accent) 24%, transparent);
+        }
     }
     //end AI made
 
